@@ -73,15 +73,18 @@
   :config
   (load-theme 'material t))
 
-;; Add powerline
-(use-package powerline
-  :ensure t
+(use-package spaceline
+  :init
+  (require 'spaceline-config)
+  (setq powerline-default-separator 'wave)
   :config
-  (powerline-center-theme))
+  (spaceline-emacs-theme))
 
 ;; Show key config for shortcuts.
 (use-package which-key
   :diminish which-key-mode
+  :init
+  (setq which-key-idle-delay 0.5)
   :config (which-key-mode))
 
 ;; Add Beacon mode for highlighted cursor
