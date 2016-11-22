@@ -40,10 +40,7 @@
 
 ;; Get the location of init.el. Rest of the paths flow from this.
 (defvar femacs-init-file (or buffer-file-name load-file-name))
-(message "file name is %s" femacs-init-file)
 (defvar femacs-dir (file-name-directory femacs-init-file))
-(message "director is %s" femacs-dir)
-
 
 ;; Set the user directory as this directory.
 (setq user-init-file femacs-init-file)
@@ -60,6 +57,9 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(eval-when-compile
+(require 'use-package))
+(setq use-package-always-ensure t)
 
 ;; Store custom configuration in custom.el
 (setq custom-file (expand-file-name "custom.el" femacs-dir))
@@ -75,8 +75,16 @@
 (defvar femacs-module-path (expand-file-name "modules" femacs-dir))
 (push femacs-module-path load-path)
 
+;; Import OS related stuff.
+(use-package femacs-osx
+  :if (eq system-type 'darwin)
+  :ensure nil
+  :load-path "modules/"
+  )
+
 ;; And import the required stuff.
 (require 'femacs-ui)
+(require 'femacs-helm)
 
 (message "all set!")
 ;; init.el ends here.

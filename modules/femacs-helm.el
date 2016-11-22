@@ -1,4 +1,4 @@
-;;; femacs-ui.el --- Adds UI elements.
+;;; femacs-helm.el --- Helm configuration
 ;;
 ;; Copyright © 2016 Anurag Mishra
 ;;
@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-;; Adds various UI elements, including theme.
+;; Configures helm to be applied almost everywhere, along with flx search.
 
 ;;; License:
 
@@ -37,38 +37,26 @@
 
 ;;; Code:
 
-;; Remove various cruft from UI.
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(line-number-mode 1)
-(column-number-mode 1)
-(blink-cursor-mode -1)
-(setq read-file-name-completion-ignore-case t)
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;; Use diminish package to clean up the bar
-(use-package diminish
-  :ensure t)
-
-;; Remove the annoying bell sound.
-(setq visible-bell 1)
-(setq ring-bell-function
-      (lambda ()
-	(unless (memq this-command
-                      '(isearch-abort abort-recursive-edit exit-minibuffer keyboard-quit ))
-          (ding))))
-
-;; Add material theme.
-(use-package material-theme
-  :ensure t
+(use-package helm
+  :diminish helm-mode
+  :bind (("C-x b"     . helm-mini)
+         ("C-x C-b"   . helm-buffers-list)
+         ("M-y"       . helm-show-kill-ring)
+         ("M-x"       . helm-M-x)
+         ("C-c f"     . helm-recentf)
+         ("C-c h"     . helm-command-prefix))
+  :init
+  (progn
+    (require 'helm-config)
+    (setq helm-split-window-in-side-p t) ; Split in current window
+    (setq helm-move-to-line-cycle-in-source t)
+    (setq helm-ff-candidate-number-limit 500) ; Limit candidates.
+    (setq helm-ff-file-name-history-use-recentf t) ; Use standard file history.
+    (when (executable-find "curl")
+      (setq helm-google-suggest-use-curl-p t))
+    (global-unset-key (kbd "C-x c"))) ; Remove the default key prefix.
   :config
-  (load-theme 'material t))
+  (helm-mode 1))
 
-;; Add powerline
-(use-package powerline
-  :ensure t
-  :config
-  (powerline-center-theme))
-
-(provide 'femacs-ui)
-;; femacs-ui.el ends here
+(provide 'femacs-helm)
+;;; femacs-helm.el ends here
