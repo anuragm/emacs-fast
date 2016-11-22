@@ -83,6 +83,7 @@
   )
 
 ;; And import the required stuff.
+(require 'femacs-core)
 (require 'femacs-ui)
 (require 'femacs-helm)
 (require 'femacs-scm)
