@@ -37,6 +37,12 @@
 
 ;;; Code:
 
+;; Use CMD as Meta, Alt as Super, Fn as Hyper
+(setq mac-command-modifier  'meta)
+(setq mac-option-modifier   'super)
+(setq mac-function-modifier 'hyper)
+(setq mac-control-modifier  'control)
+
 ;; Don't delete directly, use Trash
 (setq delete-by-moving-to-trash t)
 
