@@ -41,6 +41,7 @@
   :diminish helm-mode
   :bind (("C-x b"     . helm-mini)
          ("C-x C-b"   . helm-buffers-list)
+	 ("C-x C-f"   . helm-find-files)
          ("M-y"       . helm-show-kill-ring)
          ("M-x"       . helm-M-x)
          ("C-c f"     . helm-recentf)
@@ -56,7 +57,11 @@
       (setq helm-google-suggest-use-curl-p t))
     (global-unset-key (kbd "C-x c"))) ; Remove the default key prefix.
   :config
-  (helm-mode 1))
+  (progn
+    (use-package helm-flx
+      :init
+      (helm-flx-mode +1))
+    (helm-mode 1)))
 
 (provide 'femacs-helm)
 ;;; femacs-helm.el ends here
