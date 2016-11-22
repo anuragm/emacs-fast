@@ -37,6 +37,10 @@
 
 ;;; Code:
 
+;; Use diminish package to clean up the bar
+(use-package diminish
+  :ensure t)
+
 ;; Remove various cruft from UI.
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -45,10 +49,15 @@
 (blink-cursor-mode -1)
 (setq read-file-name-completion-ignore-case t)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(global-hl-line-mode +1)
 
-;; Use diminish package to clean up the bar
-(use-package diminish
-  :ensure t)
+;;Use shift-<left/right/up/down> to change windows
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+;; Give a visual representation to switch windows
+(use-package switch-window
+  :bind ("C-x o" . switch-window))
 
 ;; Remove the annoying bell sound.
 (setq visible-bell 1)
@@ -69,6 +78,17 @@
   :ensure t
   :config
   (powerline-center-theme))
+
+;; Show key config for shortcuts.
+(use-package which-key
+  :diminish which-key-mode
+  :config (which-key-mode))
+
+;; Add Beacon mode for highlighted cursor
+(use-package beacon
+  :diminish beacon-mode
+  :init
+  (beacon-mode 1))
 
 (provide 'femacs-ui)
 ;; femacs-ui.el ends here
