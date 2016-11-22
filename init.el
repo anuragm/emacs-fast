@@ -85,6 +85,7 @@
 ;; And import the required stuff.
 (require 'femacs-ui)
 (require 'femacs-helm)
+(require 'femacs-scm)
 
 (message "all set!")
 ;; init.el ends here.
