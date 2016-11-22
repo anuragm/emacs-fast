@@ -88,5 +88,5 @@
 (require 'femacs-helm)
 (require 'femacs-scm)
 
-(message "all set!")
+(message "Fast Emacs! It took us %s to start!" (emacs-init-time))
 ;; init.el ends here.
