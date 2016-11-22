@@ -84,9 +84,12 @@
 
 ;; And import the required stuff.
 (require 'femacs-core)
+(require 'femacs-autocomplete)
 (require 'femacs-ui)
 (require 'femacs-helm)
 (require 'femacs-scm)
+
+;;Additional language support.
 
 (message "Fast Emacs! It took us %s to start!" (emacs-init-time))
 ;; init.el ends here.
