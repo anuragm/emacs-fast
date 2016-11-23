@@ -1,4 +1,4 @@
-;;; femacs-osx.el --- OS X Specific configuration
+;;; femacs-check.el --- Adds checks to different buffers
 ;;
 ;; Copyright © 2016 Anurag Mishra
 ;;
@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-;; Configures OS X.
+;; Spell check for text mode and Flycheck for programming modes.
 
 ;;; License:
 
@@ -37,41 +37,31 @@
 
 ;;; Code:
 
-;; Use CMD as Meta, Alt as Super, Fn as Hyper
-(setq mac-command-modifier  'meta)
-(setq mac-option-modifier   'super)
-(setq mac-function-modifier 'hyper)
-(setq mac-control-modifier  'control)
-
-;; Read path variable from command line
-(use-package exec-path-from-shell
+;; Add hunspell/aspell as dictionary back-ends.
+(use-package ispell
+  :ensure nil
+  :defer t
   :init
-  (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)))
+  (progn
+    (if
+        (executable-find "hunspell")
+        (setq ispell-program-name "hunspell")
+      (setq ispell-program-name "aspell"))))
 
-;; Don't delete directly, use Trash
-(setq delete-by-moving-to-trash t)
+(use-package flyspell
+  :ensure nil
+  :init
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  :config
+  (diminish 'flyspell-mode "ⓕ"))
 
-;; Use system browser
-(setq browse-url-browser-function 'browse-url-default-macosx-browser)
+;; Initialize flycheck mode for modes that need it.
+(use-package flycheck
+  :pin melpa-stable
+  :defer t
+  :config
+  (diminish 'flycheck-mode "Ⓕ"))
 
-;; Some helper functions.
-(use-package dired-x
-  :ensure nil)
-
-(defun finder-here ()
-  "Opens current buffer's directory in Finder."
-  (interactive)
-  (dired-smart-shell-command "open \"$PWD\"" nil nil))
-
-(defun iterm-here ()
-  "Opens current buffer's directory in iTerm."
-  (interactive)
-  (dired-smart-shell-command "open -a iTerm2 \"$PWD\"" nil nil))
-
-;; Use gls for dired mode if installed.
-(when (executable-find "gls")
-  (setq insert-directory-program (executable-find "gls")))
-
-(provide 'femacs-osx)
-;;; femacs-osx.el ends here
+(provide 'femacs-check)
+;;; femacs-check.el ends here

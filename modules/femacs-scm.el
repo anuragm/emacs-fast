@@ -42,7 +42,6 @@
   :bind ("C-x g" . magit-status)
   :init
   (progn
-    (setq magit-completing-read-function 'magit-ido-completing-read)
     (setq magit-delete-by-moving-to-trash t))
   :config
   (progn
