@@ -63,8 +63,9 @@
 
 ;; Store custom configuration in custom.el
 (setq custom-file (expand-file-name "custom.el" femacs-dir))
-(when (file-exists-p custom-file)
-  (load custom-file))
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+(load custom-file)
 
 ;; Other default options.
 (setq gc-cons-threshold 50000000) ;Increase garbage collector threshold
