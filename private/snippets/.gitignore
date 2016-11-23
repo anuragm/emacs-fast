@@ -3,4 +3,4 @@
 
 # ... except for these one.
 !.gitignore
-!snippets/
+

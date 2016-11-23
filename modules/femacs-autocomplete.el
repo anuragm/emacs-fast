@@ -44,7 +44,7 @@
 ;; Company, an auto-completion framework awesome!
 (use-package company
   :bind
-  ("S-TAB" . company-complete)
+  ("s-<tab>" . company-complete)
   :init
   (progn
     (add-hook 'prog-mode-hook 'company-mode))
@@ -61,11 +61,23 @@
 (use-package company-quickhelp
   :diminish company-quickhelp-mode
   :bind
-  ("A-h" . company-quickhelp-manual-begin)
+  ("s-h" . company-quickhelp-manual-begin)
   :init
   (setq company-quickhelp-delay nil)
   :config
   (add-hook 'prog-mode-hook 'company-quickhelp-mode))
 
+;; Add Yasnippet for expanding useful snippets.
+(use-package yasnippet
+  :commands (yas-minor-mode yas-global-mode)
+  :init
+  (setq yas-snippet-dirs nil)
+  (push 'yas-installed-snippets-dir yas-snippet-dirs)
+  (push (concat user-emacs-directory "private/snippets") yas-snippet-dirs)
+  :config
+  (yas-reload-all)
+  (diminish 'yas-minor-mode "ⓨ"))
+
 (provide 'femacs-autocomplete)
+
 ;;; femacs-autocomplete.el ends here
