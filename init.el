@@ -93,6 +93,7 @@
 (require 'femacs-scm)
 
 ;;Additional language support.
+(require 'femacs-lang)
 
 (message "Fast Emacs! It took us %s to start!" (emacs-init-time))
 ;; init.el ends here.
