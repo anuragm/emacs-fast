@@ -100,5 +100,11 @@
       (propertize (format (format "%%%dd " w) line) 'face 'linum)))
   (setq linum-format 'linum-format-func))
 
+;; Use rainbow delimiter mode
+(use-package rainbow-delimiters
+  :commands (rainbow-delimiters-mode)
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  
 (provide 'femacs-ui)
 ;; femacs-ui.el ends here
