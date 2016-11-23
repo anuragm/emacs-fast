@@ -51,6 +51,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-hl-line-mode +1)
 
+;; Use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
 ;;Use shift-<left/right/up/down> to change windows
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
