@@ -52,13 +52,14 @@
   (setq linum-format 'linum-format-func))
 
 ;;Whitespace mode.
-(use-package whitespace-mode
+(use-package whitespace
   :ensure nil
-  :commands (whitespace-minor-mode)
+  :commands (whitespace-mode)
   :init
   (setq whitespace-style '(face tabs empty trailing lines-tail))
   :config
-  (add-hook 'before-save-hook 'prelude-cleanup-maybe nil t))
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+  (diminish 'whitespace-mode "ⓦ"))
 
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
