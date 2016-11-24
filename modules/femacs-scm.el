@@ -43,6 +43,7 @@
   :bind ("C-x g" . magit-status)
   :init
   (progn
+    (add-hook 'git-commit-setup-hook 'whitespace-mode)
     (setq magit-delete-by-moving-to-trash t))
   :config
   (progn
