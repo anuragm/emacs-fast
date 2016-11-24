@@ -43,6 +43,7 @@
 
 ;; Company, an auto-completion framework awesome!
 (use-package company
+  :ensure t
   :bind
   ("s-<tab>" . company-complete)
   :init
@@ -55,10 +56,12 @@
 
 ;; Helm company, using helm for auto-complete suggestions
 (use-package helm-company
+  :ensure t
   :bind ("C-:" . helm-company))
 
 ;; Show help for completion candidates in Popups
 (use-package company-quickhelp
+  :ensure t
   :diminish company-quickhelp-mode
   :bind
   ("s-h" . company-quickhelp-manual-begin)
@@ -69,6 +72,7 @@
 
 ;; Add Yasnippet for expanding useful snippets.
 (use-package yasnippet
+  :ensure t
   :commands (yas-minor-mode yas-global-mode)
   :init
   (setq yas-snippet-dirs nil)

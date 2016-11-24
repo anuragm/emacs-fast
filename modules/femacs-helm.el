@@ -38,6 +38,7 @@
 ;;; Code:
 
 (use-package helm
+  :ensure t
   :diminish helm-mode
   :bind (("C-x b"     . helm-mini)
          ("C-x C-b"   . helm-buffers-list)
@@ -59,6 +60,7 @@
   :config
   (progn
     (use-package helm-flx
+      :ensure t
       :init
       (helm-flx-mode +1))
     (helm-mode 1)))

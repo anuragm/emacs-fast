@@ -77,6 +77,7 @@
   (load-theme 'material t))
 
 (use-package spaceline
+  :ensure t
   :init
   (require 'spaceline-config)
   (setq powerline-default-separator 'wave)
@@ -85,6 +86,7 @@
 
 ;; Show key config for shortcuts.
 (use-package which-key
+  :ensure t
   :diminish which-key-mode
   :init
   (setq which-key-idle-delay 0.5)
@@ -92,6 +94,7 @@
 
 ;; Add Beacon mode for highlighted cursor
 (use-package beacon
+  :ensure t
   :diminish beacon-mode
   :init
   (beacon-mode 1))

@@ -39,6 +39,7 @@
 
 ;; Install Magit with sensible defaults.
 (use-package magit
+  :ensure t
   :bind ("C-x g" . magit-status)
   :init
   (progn

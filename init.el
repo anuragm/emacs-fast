@@ -51,7 +51,8 @@
 (setq package-enable-at-startup nil)
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
-	("melpa-stable" . "https://stable.melpa.org/packages/")))
+	("melpa-stable" . "https://stable.melpa.org/packages/")
+	("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;; Bootstrap use-package
@@ -60,11 +61,9 @@
   (package-install 'use-package))
 (eval-when-compile
 (require 'use-package))
-(setq use-package-always-ensure t)
 
 ;; Bootstrap QELPA.
-(if (require 'quelpa nil t)
-    (quelpa-self-upgrade)
+(unless (require 'quelpa nil t)
   (with-temp-buffer
     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
     (eval-buffer)))

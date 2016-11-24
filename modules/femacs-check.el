@@ -58,7 +58,9 @@
 
 ;; Initialize flycheck mode for modes that need it.
 (use-package flycheck
+  :ensure t
   :pin melpa-stable
+  :commands (flycheck-mode)
   :defer t
   :config
   (diminish 'flycheck-mode "Ⓕ"))
