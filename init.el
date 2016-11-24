@@ -35,7 +35,7 @@
 ;; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
- 
+
 ;;; Code:
 
 ;; Get the location of init.el. Rest of the paths flow from this.
@@ -54,7 +54,7 @@
 	("melpa-stable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
-;; Bootstrap `use-package'
+;; Bootstrap use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -86,9 +86,10 @@
 
 ;; And import the required stuff.
 (require 'femacs-core)
+(require 'femacs-ui)
 (require 'femacs-check)
 (require 'femacs-autocomplete)
-(require 'femacs-ui)
+(require 'femacs-editor)
 (require 'femacs-helm)
 (require 'femacs-scm)
 

@@ -42,11 +42,11 @@
   :ensure t)
 
 ;; Remove various cruft from UI.
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(line-number-mode 1)
-(column-number-mode 1)
-(blink-cursor-mode -1)
+(tool-bar-mode      -1)
+(scroll-bar-mode    -1)
+(line-number-mode    1)
+(column-number-mode  1)
+(blink-cursor-mode  -1)
 (setq read-file-name-completion-ignore-case t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-hl-line-mode +1)
@@ -66,7 +66,7 @@
 (setq visible-bell 1)
 (setq ring-bell-function
       (lambda ()
-	(unless (memq this-command
+        (unless (memq this-command
                       '(isearch-abort abort-recursive-edit exit-minibuffer keyboard-quit ))
           (ding))))
 
@@ -96,18 +96,5 @@
   :init
   (beacon-mode 1))
 
-;; Fix Linum mode in terminal.
-(unless window-system
-  (defun linum-format-func (line)
-    (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
-      (propertize (format (format "%%%dd " w) line) 'face 'linum)))
-  (setq linum-format 'linum-format-func))
-
-;; Use rainbow delimiter mode
-(use-package rainbow-delimiters
-  :commands (rainbow-delimiters-mode)
-  :init
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-  
 (provide 'femacs-ui)
 ;; femacs-ui.el ends here
