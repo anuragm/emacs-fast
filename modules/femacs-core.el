@@ -71,6 +71,8 @@
         recentf-max-saved-items 500
         recentf-auto-cleanup 'never)
   :config
+  (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
+  (add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
   (recentf-mode 1))
 
 ;; Keep recent list of commands persistent across sessions
