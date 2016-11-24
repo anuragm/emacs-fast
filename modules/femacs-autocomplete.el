@@ -48,6 +48,9 @@
   ("s-<tab>" . company-complete)
   :init
   (progn
+    (setq company-dabbrev-ignore-case nil)
+    (setq company-dabbrev-code-ignore-case nil)
+    (setq company-dabbrev-downcase nil)
     (add-hook 'prog-mode-hook 'company-mode))
   :config
   (progn
