@@ -59,6 +59,29 @@
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
+;; Useful misc keybindings
+(global-set-key (kbd "C-x \\") 'align-regexp)
+
+;; Save a recent list of files, always
+(use-package recentf
+  :ensure nil
+  :demand
+  :init
+  (setq recentf-max-menu-items 25
+        recentf-max-saved-items 500
+        recentf-auto-cleanup 'never)
+  :config
+  (recentf-mode 1))
+
+;; Keep recent list of commands persistent across sessions
+(use-package savehist
+  :ensure nil
+  :demand
+  :init
+  (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
+        savehist-autosave-interval 60)
+  :config
+  (savehist-mode 1))
 
 (provide 'femacs-core)
 ;;; femacs-core.el ends here

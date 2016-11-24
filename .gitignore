@@ -3,3 +3,5 @@ quelpa/
 custom.el
 *~
 /recentf
+/history
+/srecode-map.el
