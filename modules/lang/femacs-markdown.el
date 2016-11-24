@@ -1,4 +1,4 @@
-;;; markdown.el --- Markdown mode setup
+;;; femacs-markdown.el --- Markdown mode setup
 ;;
 ;; Copyright © 2016 Anurag Mishra
 ;;
@@ -50,5 +50,5 @@
   (diminish 'markdown-live-preview-mode "lp")
   (yas-minor-mode))
 
-(provide 'markdown)
-;;; markdown.el ends here
+(provide 'femacs-markdown)
+;;; femacs-markdown.el ends here
