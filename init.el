@@ -62,6 +62,19 @@
 (require 'use-package))
 (setq use-package-always-ensure t)
 
+;; Bootstrap QELPA.
+(if (require 'quelpa nil t)
+    (quelpa-self-upgrade)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
+
+;; Bootstrap quelpa-use-package
+(use-package quelpa-use-package
+  :ensure t
+  :init
+  (require 'quelpa-use-package))
+
 ;; Store custom configuration in custom.el
 (setq custom-file (expand-file-name "custom.el" femacs-dir))
 (unless (file-exists-p custom-file)
