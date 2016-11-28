@@ -61,5 +61,8 @@
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (diminish 'whitespace-mode "ⓦ"))
 
+;; Show matching braces and parenthesis.
+(add-hook 'prog-mode-hook 'show-paren-mode)
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
