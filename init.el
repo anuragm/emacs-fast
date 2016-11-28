@@ -46,6 +46,12 @@
 (setq user-init-file femacs-init-file)
 (setq user-emacs-directory femacs-dir)
 
+;; Store custom configuration in custom.el
+(setq custom-file (expand-file-name "custom.el" femacs-dir))
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+(load custom-file)
+
 ;; Initialize MELPA
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -73,12 +79,6 @@
   :ensure t
   :init
   (require 'quelpa-use-package))
-
-;; Store custom configuration in custom.el
-(setq custom-file (expand-file-name "custom.el" femacs-dir))
-(unless (file-exists-p custom-file)
-  (write-region "" nil custom-file))
-(load custom-file)
 
 ;; Other default options.
 (setq gc-cons-threshold 50000000) ;Increase garbage collector threshold
