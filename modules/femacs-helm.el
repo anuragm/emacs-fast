@@ -49,7 +49,6 @@
          ("C-c h"     . helm-command-prefix))
   :init
   (progn
-    (require 'helm-config)
     (setq helm-split-window-in-side-p t) ; Split in current window
     (setq helm-move-to-line-cycle-in-source t)
     (setq helm-ff-candidate-number-limit 500) ; Limit candidates.
@@ -59,6 +58,7 @@
     (global-unset-key (kbd "C-x c"))) ; Remove the default key prefix.
   :config
   (progn
+    (require 'helm-config)
     (use-package helm-flx
       :ensure t
       :init

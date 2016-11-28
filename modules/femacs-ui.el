@@ -60,6 +60,7 @@
 
 ;; Give a visual representation to switch windows
 (use-package switch-window
+  :ensure t
   :bind ("C-x o" . switch-window))
 
 ;; Remove the annoying bell sound.
@@ -99,5 +100,8 @@
   :init
   (beacon-mode 1))
 
+;; Diminish other modes
+(diminish 'auto-fill-mode "ⓐ")
+
 (provide 'femacs-ui)
-;; femacs-ui.el ends here
+;;; femacs-ui.el ends here

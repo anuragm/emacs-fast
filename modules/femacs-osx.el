@@ -46,7 +46,8 @@
 ;; Read path variable from command line
 (use-package exec-path-from-shell
   :ensure t
-  :init
+  :demand
+  :config
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
 

@@ -44,6 +44,7 @@
 ;; Company, an auto-completion framework awesome!
 (use-package company
   :ensure t
+  :commands (company-mode company-complete)
   :bind
   ("s-<tab>" . company-complete)
   :init
@@ -66,6 +67,7 @@
 (use-package company-quickhelp
   :ensure t
   :diminish company-quickhelp-mode
+  :commands company-quickhelp-mode
   :bind
   ("s-h" . company-quickhelp-manual-begin)
   :init
