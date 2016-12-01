@@ -83,7 +83,8 @@
   (require 'spaceline-config)
   (setq powerline-default-separator 'wave)
   :config
-  (spaceline-emacs-theme))
+  (spaceline-emacs-theme)
+  (spaceline-helm-mode +1))
 
 ;; Show key config for shortcuts.
 (use-package which-key
@@ -102,6 +103,7 @@
 
 ;; Diminish other modes
 (diminish 'auto-fill-mode "ⓐ")
+(diminish 'abbrev-mode "Ab")
 
 (provide 'femacs-ui)
 ;;; femacs-ui.el ends here
