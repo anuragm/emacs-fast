@@ -38,6 +38,9 @@
 
 ;;; Code:
 
+;;Start with a large GC, and then narrow it at the end
+(setq gc-cons-threshold most-positive-fixnum)
+
 ;; Get the location of init.el. Rest of the paths flow from this.
 (defvar femacs-init-file (or buffer-file-name load-file-name))
 (defvar femacs-dir (file-name-directory femacs-init-file))
@@ -81,7 +84,6 @@
   (require 'quelpa-use-package))
 
 ;; Other default options.
-(setq gc-cons-threshold 50000000) ;Increase garbage collector threshold
 (setq large-file-warning-threshold 10000000) ;Warn on large files, 1 MB
 (setq load-prefer-newer t) ;Prefer new byte code
 
@@ -107,6 +109,9 @@
 
 ;;Additional language support.
 (require 'femacs-lang)
+
+;;Restore garbage size
+(setq gc-cons-threshold 800000)
 
 (message "Fast Emacs! It took us %s to start!" (emacs-init-time))
 ;; init.el ends here.
