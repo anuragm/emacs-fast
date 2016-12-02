@@ -69,7 +69,8 @@
   :init
   (setq recentf-max-menu-items 25
         recentf-max-saved-items 500
-        recentf-auto-cleanup 'never)
+        recentf-auto-cleanup 'never
+        recentf-save-file (concat user-emacs-directory "private/recentf"))
   :config
   (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
@@ -81,7 +82,8 @@
   :demand
   :init
   (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
-        savehist-autosave-interval 60)
+        savehist-autosave-interval 60
+        savehist-file (concat user-emacs-directory "private/history"))
   :config
   (savehist-mode 1))
 
