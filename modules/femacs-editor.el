@@ -69,5 +69,12 @@
 ;; Show matching braces and parenthesis.
 (add-hook 'prog-mode-hook 'show-paren-mode)
 
+;; Show diffs in frindge
+(use-package diff-hl
+  :ensure t
+  :commands (diff-hl-mode diff-hl-dired-mode-unless-remote)
+  :init
+  (add-hook 'prog-mode-hook 'diff-hl-mode))
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
