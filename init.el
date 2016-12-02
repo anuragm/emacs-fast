@@ -41,6 +41,10 @@
 ;;Start with a large GC, and then narrow it at the end
 (setq gc-cons-threshold most-positive-fixnum)
 
+;; Always prefer new version of code, compiled or not.
+;; Always load newest byte code
+(setq load-prefer-newer t)
+
 ;; Get the location of init.el. Rest of the paths flow from this.
 (defvar femacs-init-file (or buffer-file-name load-file-name))
 (defvar femacs-dir (file-name-directory femacs-init-file))
