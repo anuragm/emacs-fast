@@ -54,7 +54,7 @@
 (setq user-emacs-directory femacs-dir)
 
 ;; Store custom configuration in custom.el
-(setq custom-file (expand-file-name "custom.el" femacs-dir))
+(setq custom-file (expand-file-name "private/custom.el" femacs-dir))
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
