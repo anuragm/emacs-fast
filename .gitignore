@@ -6,3 +6,4 @@ custom.el
 /history
 /srecode-map.el
 *.elc
+/irony/bin/irony-server

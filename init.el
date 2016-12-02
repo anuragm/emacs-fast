@@ -111,7 +111,7 @@
 (require 'femacs-lang)
 
 ;;Restore garbage size
-(setq gc-cons-threshold 800000)
+(setq gc-cons-threshold (* 80 1024 1024)) ;80 MB
 
 (message "Fast Emacs! It took us %s to start!" (emacs-init-time))
 ;; init.el ends here.

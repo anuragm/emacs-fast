@@ -51,12 +51,10 @@
   (progn
     (setq company-dabbrev-ignore-case nil)
     (setq company-dabbrev-code-ignore-case nil)
-    (setq company-dabbrev-downcase nil)
-    (add-hook 'prog-mode-hook 'company-mode))
+    (setq company-dabbrev-downcase nil))
   :config
   (progn
-    (diminish 'company-mode "ⓒ")
-    (company-mode)))
+    (diminish 'company-mode "ⓒ")))
 
 ;; Helm company, using helm for auto-complete suggestions
 (use-package helm-company

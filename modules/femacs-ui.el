@@ -102,8 +102,9 @@
   (beacon-mode 1))
 
 ;; Diminish other modes
-(diminish 'auto-fill-mode "ⓐ")
+(diminish 'auto-fill-function "ⓐ")
 (diminish 'abbrev-mode "Ab")
+(diminish 'eldoc-mode)
 
 (provide 'femacs-ui)
 ;;; femacs-ui.el ends here

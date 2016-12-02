@@ -85,5 +85,11 @@
   :config
   (savehist-mode 1))
 
+;; Let flycheck.el see loaded paths.
+(setq-default flycheck-emacs-lisp-load-path 'inherit)
+
+;; Don't warn about the commands
+(put 'erase-buffer 'disabled nil)
+
 (provide 'femacs-core)
 ;;; femacs-core.el ends here

@@ -51,6 +51,11 @@
       (propertize (format (format "%%%dd " w) line) 'face 'linum)))
   (setq linum-format 'linum-format-func))
 
+;; Use nlinum mode, a faster alternative to linum mode
+(use-package nlinum
+  :ensure t
+  :commands (nlinum-mode))
+
 ;;Whitespace mode.
 (use-package whitespace
   :ensure nil
