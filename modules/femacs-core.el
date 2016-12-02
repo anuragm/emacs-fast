@@ -91,5 +91,23 @@
 ;; Don't warn about the commands
 (put 'erase-buffer 'disabled nil)
 
+;; Backup options
+(setq make-backup-files    t ;Enable file backup
+      vc-make-backup-files t ; and also backup version controlled files
+      version-control      t ; Store multiple named backups
+      kept-new-versions   10 ; Store 10 new backups
+      kept-old-versions    3 ; And 3 of the very original ones
+      delete-old-versions  t ; Delete without asking
+      backup-by-copying-when-linked t ; Don't clobber hard links
+      backup-by-copying-when-privileged-mismatch t ; Nor root files
+      backup-directory-alist ; Location of backup
+      `(("." . ,(concat user-emacs-directory "private/backups"))))
+
+;; Auto file save options
+(setq auto-save-file-name-transforms ; Location of auto save files.
+      `((".*" ,temporary-file-directory t))
+      auto-save-list-file-prefix     ; Location of session recovery file
+      (concat user-emacs-directory "private/auto-save-list"))
+
 (provide 'femacs-core)
 ;;; femacs-core.el ends here

@@ -3,6 +3,4 @@
 
 # ... except for these one.
 !.gitignore
-!snippets/
-!backups/
-!auto-save-list/
+
