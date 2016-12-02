@@ -54,7 +54,7 @@
     (setq helm-ff-candidate-number-limit 500) ; Limit candidates.
     (setq helm-ff-file-name-history-use-recentf t) ; Use standard file history.
     (when (executable-find "curl")
-      (setq helm-google-suggest-use-curl-p t))
+      (setq helm-net-prefer-curl t))
     (global-unset-key (kbd "C-x c"))) ; Remove the default key prefix.
   :config
   (progn

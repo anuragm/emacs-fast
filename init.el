@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-;; Initializes use-package for use. Other packages are installed with
+;; Initializes use-package for use.  Other packages are installed with
 ;; use-package macros.
 
 ;;; License:
@@ -76,6 +76,8 @@
 (require 'use-package))
 
 ;; Bootstrap QELPA.
+(defvar quelpa-checkout-melpa-p)
+(setq quelpa-checkout-melpa-p nil)
 (unless (require 'quelpa nil t)
   (with-temp-buffer
     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
@@ -99,8 +101,7 @@
 (use-package femacs-osx
   :if (eq system-type 'darwin)
   :ensure nil
-  :load-path "modules/"
-  )
+  :load-path "modules/")
 
 ;; And import the required stuff.
 (require 'femacs-core)
@@ -118,4 +119,7 @@
 (setq gc-cons-threshold (* 80 1024 1024)) ;80 MB
 
 (message "Fast Emacs! It took us %s to start!" (emacs-init-time))
-;; init.el ends here.
+
+(provide 'init)
+;;; init.el ends here
+

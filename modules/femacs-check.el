@@ -42,11 +42,10 @@
   :ensure nil
   :defer t
   :init
-  (progn
-    (if
-        (executable-find "hunspell")
-        (setq ispell-program-name "hunspell")
-      (setq ispell-program-name "aspell"))))
+  (defvar ispell-program-name)
+  (if (executable-find "hunspell")
+      (setq ispell-program-name "hunspell")
+      (setq ispell-program-name "aspell")))
 
 (use-package flyspell
   :ensure nil
