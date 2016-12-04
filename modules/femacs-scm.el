@@ -50,5 +50,10 @@
     (magit-auto-revert-mode)
     (diminish 'auto-revert-mode "ar")))
 
+;; Add git time machine
+(use-package git-timemachine
+  :ensure t
+  :commands (git-timemachine))
+
 (provide 'femacs-scm)
 ;;; femacs-scm.el ends here
