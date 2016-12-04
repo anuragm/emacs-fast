@@ -36,7 +36,9 @@
 ;; SOFTWARE.
 
 ;;; Code:
-
+(defvar helm-ff-candidate-number-limit)
+(defvar helm-ff-file-name-history-use-recentf)
+(defvar helm-net-prefer-curl)
 (use-package helm
   :ensure t
   :diminish helm-mode

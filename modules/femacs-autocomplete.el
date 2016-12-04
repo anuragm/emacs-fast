@@ -13,7 +13,7 @@
 
 ;; While EMacs provides for some in-build auto-completion, other
 ;; packages like Company, Yasnippets, etc provide much better
-;; frameworks. This file provides and configures these frameworks with
+;; frameworks.  This file provides and configures these frameworks with
 ;; reasonable default, and then they can be used in each mode as
 ;; needed.
 
@@ -42,6 +42,9 @@
 ;;; Code:
 
 ;; Company, an auto-completion framework awesome!
+(defvar company-dabbrev-code-ignore-case)
+(defvar company-dabbrev-ignore-case)
+(defvar company-dabbrev-downcase)
 (use-package company
   :ensure t
   :commands (company-mode company-complete)

@@ -37,6 +37,7 @@
 
 ;;; Code:
 
+(defvar femacs-module-path)
 (defvar femacs-lang-dir (expand-file-name "lang" femacs-module-path))
 (push femacs-lang-dir load-path)
 

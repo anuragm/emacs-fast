@@ -39,7 +39,7 @@
 
 ;; Add a way to multiple align
 (defun align-repeat (start end regexp)
-  "Repeat alignment with respect to the given regular expression."
+  "Repeat alignment with respect START and END of region to the given REGEXP."
   (interactive "r\nsAlign regexp: ")
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
@@ -63,6 +63,11 @@
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
 ;; Save a recent list of files, always
+(defvar recentf-max-menu-items)
+(defvar recentf-max-saved-items)
+(defvar recentf-auto-cleanup)
+(defvar recentf-save-file)
+
 (use-package recentf
   :ensure nil
   :demand
@@ -77,6 +82,9 @@
   (recentf-mode 1))
 
 ;; Keep recent list of commands persistent across sessions
+(defvar savehist-additional-variables)
+(defvar savehist-autosave-interval)
+(defvar savehist-file)
 (use-package savehist
   :ensure nil
   :demand

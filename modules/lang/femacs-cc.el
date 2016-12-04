@@ -3,7 +3,7 @@
 ;; Copyright © 2016 Anurag Mishra
 ;;
 ;; Author: Anurag Mishra
-;; URL: https://github.com/anuragm/matlab-mode
+;; URL: https://github.com/anuragm/emacs-fast
 ;; Version: 1.0.0
 ;; Keywords: programming, convenience
 
@@ -11,7 +11,8 @@
 
 ;;; Commentary:
 
-;; Contains various configurations for C++/C mode, especially using Irony mode as completion engine.
+;; Contains various configurations for C++/C mode, especially using Irony mode as
+;; completion engine.
 
 ;;; License:
 

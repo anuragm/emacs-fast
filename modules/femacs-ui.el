@@ -77,6 +77,7 @@
   :config
   (load-theme 'material t))
 
+(defvar powerline-default-separator)
 (use-package spaceline
   :ensure t
   :init
@@ -87,6 +88,7 @@
   (spaceline-helm-mode +1))
 
 ;; Show key config for shortcuts.
+(defvar which-key-idle-delay)
 (use-package which-key
   :ensure t
   :diminish which-key-mode
