@@ -59,6 +59,16 @@
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
+(defun sort-minor-mode-list ()
+  "Sort the minor mode list in alphabetical order by mode name."
+  (interactive)
+  (let ((templist (copy-tree minor-mode-alist)))
+    (setq minor-mode-alist
+          (copy-tree
+           (sort templist
+                 (lambda (arg1 arg2)
+                   (string< (car arg1) (car arg2))))))))
+
 ;; Useful misc keybindings
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
