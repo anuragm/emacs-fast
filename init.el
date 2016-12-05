@@ -115,8 +115,9 @@
 ;;Additional language support.
 (require 'femacs-lang)
 
-;;Restore garbage size
-(setq gc-cons-threshold (* 80 1024 1024)) ;80 MB
+;;Restore garbage size and collect it on idle.
+(setq gc-cons-threshold (* 400 1024 1024)) ;400 MB
+(run-with-idle-timer 10 t 'garbage-collect)
 
 (message "Fast Emacs! It took us %s to start!" (emacs-init-time))
 
