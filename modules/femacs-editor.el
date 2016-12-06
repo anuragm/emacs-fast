@@ -70,12 +70,13 @@
 ;; Show matching braces and parenthesis.
 (add-hook 'prog-mode-hook 'show-paren-mode)
 
-;; Show diffs in frindge
+;; Show diffs in fringe
 (use-package diff-hl
   :ensure t
   :commands (diff-hl-mode diff-hl-dired-mode-unless-remote)
   :init
-  (add-hook 'prog-mode-hook 'diff-hl-mode))
+  (add-hook 'prog-mode-hook 'diff-hl-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 ;; Use CUA mode for rectangular sections.
 (setq cua-enable-cua-keys nil)
