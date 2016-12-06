@@ -44,7 +44,7 @@
   :diminish helm-mode
   :bind (("C-x b"     . helm-mini)
          ("C-x C-b"   . helm-buffers-list)
-	 ("C-x C-f"   . helm-find-files)
+         ("C-x C-f"   . helm-find-files)
          ("M-y"       . helm-show-kill-ring)
          ("M-x"       . helm-M-x)
          ("C-c f"     . helm-recentf)

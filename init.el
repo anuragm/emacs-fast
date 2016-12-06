@@ -58,8 +58,8 @@
 (setq package-enable-at-startup nil)
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
-	("melpa-stable" . "https://stable.melpa.org/packages/")
-	("gnu" . "https://elpa.gnu.org/packages/")))
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;; Store custom configuration in custom.el
