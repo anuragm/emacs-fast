@@ -77,5 +77,9 @@
   :init
   (add-hook 'prog-mode-hook 'diff-hl-mode))
 
+;; Use CUA mode for rectangular sections.
+(setq cua-enable-cua-keys nil)
+(cua-mode 1)
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
