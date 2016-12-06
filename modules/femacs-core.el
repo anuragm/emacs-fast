@@ -37,6 +37,13 @@
 
 ;;; Code:
 
+;; Add a group for custom user options.
+(defgroup emacs-fast
+  nil
+  "A Emacs customization package focused on fast load speeds."
+  :prefix "emacs-fast/"
+  :group 'convenience)
+
 ;; Add a way to multiple align
 (defun align-repeat (start end regexp)
   "Repeat alignment with respect START and END of region to the given REGEXP."

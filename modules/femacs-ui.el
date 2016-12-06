@@ -71,18 +71,40 @@
                       '(isearch-abort abort-recursive-edit exit-minibuffer keyboard-quit ))
           (ding))))
 
-;; Add material theme.
-(use-package material-theme
-  :ensure t
-  :config
-  (load-theme 'material t))
+;; Add user specified theme.
+(defcustom emacs-fast/theme '(material-theme . material)
+  "The theme for Emacs-fast.
+First argument is the name of theme package, which is downloaded
+and installed.  Second argument is the name of the theme which
+can be loaded with `load-theme'.  Some packages might installed
+multiple usable themes."
+  :group 'emacs-fast
+  :type '(cons
+          (symbol :tag "Theme Package " :value 'material-theme)
+          (symbol :tag "Theme name    " :value 'material)))
+
+(defun emacs-fast/install-and-load-theme (package-name theme-name)
+  "Install PACKAGE-NAME and load THEME-NAME from it."
+  (eval `(use-package ,package-name
+           :ensure t
+           :config
+           (load-theme ',theme-name t))))
+
+;; Don't load the theme if user has predefined a theme.
+(unless custom-enabled-themes
+  (emacs-fast/install-and-load-theme
+   (car emacs-fast/theme)
+   (cdr emacs-fast/theme)))
 
 (defvar powerline-default-separator)
 (use-package spaceline
   :ensure t
+  :commands (spaceline-emacs-theme spaceline-helm-mode)
   :init
   (require 'spaceline-config)
   (setq powerline-default-separator 'wave)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified)
+  (setq spaceline-buffer-modified-p nil)
   :config
   (spaceline-emacs-theme)
   (spaceline-helm-mode +1))
