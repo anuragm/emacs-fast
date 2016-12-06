@@ -53,12 +53,6 @@
 (setq user-init-file femacs-init-file)
 (setq user-emacs-directory femacs-dir)
 
-;; Store custom configuration in custom.el
-(setq custom-file (expand-file-name "private/custom.el" femacs-dir))
-(unless (file-exists-p custom-file)
-  (write-region "" nil custom-file))
-(load custom-file)
-
 ;; Initialize MELPA
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -67,6 +61,12 @@
 	("melpa-stable" . "https://stable.melpa.org/packages/")
 	("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
+
+;; Store custom configuration in custom.el
+(setq custom-file (expand-file-name "private/custom.el" femacs-dir))
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+(load custom-file)
 
 ;; Bootstrap use-package
 (unless (package-installed-p 'use-package)
