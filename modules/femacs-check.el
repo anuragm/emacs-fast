@@ -49,10 +49,16 @@
 
 (use-package flyspell
   :ensure nil
+  :defer t
   :init
   (add-hook 'text-mode-hook 'flyspell-mode)
   (add-hook 'prog-mode-hook 'flyspell-prog-mode)
   :config
+  (diminish 'flyspell-mode "ⓕ")
+  (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
+  (define-key flyspell-mouse-map [mouse-3] #'undefined)
+  (define-key flyspell-mouse-map [down-mouse-2] nil)
+  (define-key flyspell-mouse-map [mouse-2] nil)
   (diminish 'flyspell-mode "ⓕ"))
 
 ;; Initialize flycheck mode for modes that need it.

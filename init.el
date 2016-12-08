@@ -98,10 +98,8 @@
 (push femacs-module-path load-path)
 
 ;; Import OS related stuff.
-(use-package femacs-osx
-  :if (eq system-type 'darwin)
-  :ensure nil
-  :load-path "modules/")
+;;(when (eq system-type 'darwin)
+(require 'femacs-osx)
 
 ;; And import the required stuff.
 (require 'femacs-core)
@@ -116,7 +114,7 @@
 (require 'femacs-lang)
 
 ;;Restore garbage size and collect it on idle.
-(setq gc-cons-threshold (* 400 1024 1024)) ;400 MB
+(setq gc-cons-threshold (* 200 1024 1024)) ;200 MB
 (run-with-idle-timer 10 t 'garbage-collect)
 
 (message "Fast Emacs! It took us %s to start!" (emacs-init-time))

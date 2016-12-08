@@ -48,8 +48,7 @@
 (use-package company
   :ensure t
   :commands (company-mode company-complete)
-  :bind
-  ("s-<tab>" . company-complete)
+  :defer t
   :init
   (progn
     (setq company-dabbrev-ignore-case nil)

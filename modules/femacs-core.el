@@ -87,7 +87,7 @@
 
 (use-package recentf
   :ensure nil
-  :demand
+  :defer 1
   :init
   (setq recentf-max-menu-items 25
         recentf-max-saved-items 500
@@ -104,7 +104,7 @@
 (defvar savehist-file)
 (use-package savehist
   :ensure nil
-  :demand
+  :defer 1
   :init
   (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
         savehist-autosave-interval 60
