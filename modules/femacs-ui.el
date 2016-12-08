@@ -42,7 +42,14 @@
   :ensure t)
 
 ;; Remove various cruft from UI.
-(tool-bar-mode      -1)
+
+;; Users are encouraged to disable these cruft by using system configuration. Example,
+;; took bar can be turned off on X by setting `emacs.Toolbar: 0' in ~/.Xresources file,
+;; and same can be done on MaxOS by the command
+;; `defaults write org.gnu.Emacs Emacs.toolBar -bool false'
+
+(when tool-bar-mode
+  (tool-bar-mode -1))
 (scroll-bar-mode    -1)
 (line-number-mode    1)
 (column-number-mode  1)
@@ -90,7 +97,7 @@ multiple usable themes."
            :config
            (load-theme ',theme-name t))))
 
-;; Don't load the theme if user has predefined a theme.
+;; Don't load the theme if user has a predefined theme.
 (unless custom-enabled-themes
   (emacs-fast/install-and-load-theme
    (car emacs-fast/theme)
@@ -129,6 +136,7 @@ multiple usable themes."
 (diminish 'auto-fill-function "ⓐ")
 (diminish 'abbrev-mode "Ab")
 (diminish 'eldoc-mode)
+(diminish 'visual-line-mode "⒱")
 
 (provide 'femacs-ui)
 ;;; femacs-ui.el ends here
