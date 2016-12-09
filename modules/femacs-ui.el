@@ -48,9 +48,11 @@
 ;; and same can be done on MaxOS by the command
 ;; `defaults write org.gnu.Emacs Emacs.toolBar -bool false'
 
-(when tool-bar-mode
-  (tool-bar-mode -1))
-(scroll-bar-mode    -1)
+(when (display-graphic-p)
+  (when tool-bar-mode
+    (tool-bar-mode -1))
+  (scroll-bar-mode    -1))
+
 (line-number-mode    1)
 (column-number-mode  1)
 (blink-cursor-mode  -1)

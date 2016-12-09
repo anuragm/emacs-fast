@@ -78,6 +78,7 @@
 ;; Bootstrap QELPA.
 (defvar quelpa-checkout-melpa-p)
 (setq quelpa-checkout-melpa-p nil)
+(setq quelpa-melpa-recipe-stores nil)
 (unless (require 'quelpa nil t)
   (with-temp-buffer
     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
@@ -98,8 +99,8 @@
 (push femacs-module-path load-path)
 
 ;; Import OS related stuff.
-;;(when (eq system-type 'darwin)
-(require 'femacs-osx)
+(when (eq system-type 'darwin)
+  (require 'femacs-osx))
 
 ;; And import the required stuff.
 (require 'femacs-core)
