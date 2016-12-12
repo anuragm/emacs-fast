@@ -75,5 +75,15 @@
 (when (executable-find "gls")
   (setq insert-directory-program (executable-find "gls")))
 
+;; Use Skim.app to view PDFs when available.
+(with-eval-after-load "tex"
+  (when (file-exists-p "/Applications/Skim.app")
+    ;; Add Skim as a PDF viewer to AucTeX list.
+    (push
+     '("Skim"
+       "/Applications/Skim.app/Contents/SharedSupport/displayline -r -b %n %o %b")
+     TeX-view-program-list)
+    (push '(output-pdf "Skim") TeX-view-program-selection)))
+
 (provide 'femacs-osx)
 ;;; femacs-osx.el ends here

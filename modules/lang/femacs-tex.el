@@ -95,7 +95,8 @@
   (nlinum-mode 1)
   (turn-on-reftex)
   (prettify-symbols-mode)
-  (auctex-latexmk-setup))
+  (auctex-latexmk-setup)
+  (TeX-source-correlate-mode))
 
 ;; Add auctex for editing
 (use-package latex
