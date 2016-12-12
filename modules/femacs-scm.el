@@ -50,6 +50,14 @@
     (magit-auto-revert-mode)
     (diminish 'auto-revert-mode "ar")))
 
+;; And git modes
+(use-package gitconfig-mode
+  :ensure t)
+(use-package gitignore-mode
+  :ensure t)
+(use-package gitattributes-mode
+  :ensure t)
+
 ;; Add git time machine
 (use-package git-timemachine
   :ensure t
