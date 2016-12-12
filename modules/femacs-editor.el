@@ -85,5 +85,8 @@
 (setq cua-enable-cua-keys nil)
 (cua-mode 1)
 
+;; When in prettify-symbol-mode, expand when point is at the symbol.
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
