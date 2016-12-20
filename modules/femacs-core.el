@@ -76,6 +76,18 @@
                  (lambda (arg1 arg2)
                    (string< (car arg1) (car arg2))))))))
 
+;;Kill everything except current buffer, *scratch* and *Messages*
+(defun kill-rest-buffers ()
+  "Kill all the other buffers except this buffer, *scratch* and *Messages*."
+  (interactive)
+  (dolist (currentb (buffer-list) nil)
+    (let ((bufname (buffer-name currentb)))
+      (unless (or (string= bufname "*scratch*")
+                  (string= bufname "*Messages*")
+                  (equal currentb (current-buffer))
+                  (= (aref bufname 0) 32))
+        (kill-buffer currentb)))))
+
 ;; Useful misc keybindings
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
