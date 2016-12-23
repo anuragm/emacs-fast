@@ -85,6 +85,7 @@
 
 (defun emacs-fast/latex-mode-hook ()
   "Settings for LaTeX mode."
+  (defvar whitespace-line-column)
   (setq fill-column 90)
   (setq whitespace-line-column 90)
   (setq-local company-backends emacs-fast/tex-mode-backends)
@@ -95,6 +96,7 @@
   (nlinum-mode 1)
   (turn-on-reftex)
   (prettify-symbols-mode)
+  (whitespace-mode)
   (auctex-latexmk-setup)
   (TeX-source-correlate-mode))
 
@@ -102,7 +104,8 @@
 (use-package latex
   :ensure auctex
   :commands (TeX-mode LaTeX-mode LaTeX-mode-hook math-minor-mode)
-  :mode     ("\\.[tT]e[xX]\\'" . LaTeX-mode)
+  :mode     (("\\.[tT]e[xX]\\'" . LaTeX-mode)
+             ("\\.tikz\\'" . LaTeX-mode))
   :bind (:map LaTeX-mode-map
               ("`e" . LaTeX-environment)
               ("`s" . LaTeX-section)
@@ -116,6 +119,7 @@
   (setq TeX-PDF-mode t)
   (setq TeX-electric-sub-and-superscript t)
   (setq TeX-insert-braces nil)
+  (setq TeX-electric-math '("$" . "$"))
   (add-hook 'LaTeX-mode-hook 'emacs-fast/latex-mode-hook))
 
 ;;;; ---------------- Other packages to manage LaTeX related stuff -----------------------
