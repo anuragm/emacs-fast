@@ -118,7 +118,8 @@
 (setq gc-cons-threshold (* 200 1024 1024)) ;200 MB
 (run-with-idle-timer 10 t 'garbage-collect)
 
-(message "Fast Emacs! It took us %s to start!" (emacs-init-time))
+;; Maximize the initial frame.
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 (provide 'init)
 ;;; init.el ends here
