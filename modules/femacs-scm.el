@@ -48,7 +48,7 @@
   :config
   (progn
     (magit-auto-revert-mode)
-    (diminish 'auto-revert-mode "ar")))
+    (diminish 'auto-revert-mode)))
 
 ;; And git modes
 (use-package gitconfig-mode

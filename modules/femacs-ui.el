@@ -136,7 +136,7 @@ multiple usable themes."
 
 ;; Diminish other modes
 (diminish 'auto-fill-function "ⓐ")
-(diminish 'abbrev-mode "Ab")
+(diminish 'abbrev-mode)
 (diminish 'eldoc-mode)
 (diminish 'visual-line-mode "⒱")
 
