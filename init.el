@@ -110,6 +110,7 @@
 (require 'femacs-autocomplete)
 (require 'femacs-helm)
 (require 'femacs-scm)
+(require 'femacs-helm-ag)
 
 ;;Additional language support.
 (require 'femacs-lang)
