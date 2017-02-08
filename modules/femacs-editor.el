@@ -81,6 +81,9 @@
   (add-hook 'prog-mode-hook 'diff-hl-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
+;; Add the current working directory to frame title.
+(setq frame-title-format '((:eval default-directory)))
+
 ;; Use CUA mode for rectangular sections.
 (setq cua-enable-cua-keys nil)
 (cua-mode 1)
