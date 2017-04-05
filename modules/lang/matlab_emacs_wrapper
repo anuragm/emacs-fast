@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#Description of problem. http://archive.is/c6ZrR
+
+shell_stack_size=$(ulimit -s)
+
+#round stack size to next 4K boundary:
+adjusted_stack_size=$[4*((($shell_stack_size-1)/4)+1)]
+ulimit -s $adjusted_stack_size && matlab $@

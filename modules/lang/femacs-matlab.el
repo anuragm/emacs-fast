@@ -44,17 +44,25 @@
   (nlinum-mode t)
   (company-mode t)
   (yas-minor-mode)
-  (flycheck-mode)
+  (flyspell-prog-mode)
+  (mlint-minor-mode)
+  (rainbow-delimiters-mode)
+  (ggtags-mode)
   (whitespace-mode))
 
 (use-package matlab-load
   :ensure matlab-mode
-  :commands (matlab-mode matlab-shell company-matlab matlab-mode-common-setup)
+  :diminish (mlint-minor-mode)
+  :commands
+  (matlab-mode matlab-shell company-matlab matlab-mode-common-setup mlint-minor-mode)
   :mode ("\\.m\\'" . matlab-mode)
   :init
   (setq matlab-shell-command-switches '("-nodesktop" "-nosplash"))
-  (setq matlab-server-executable "/Applications/MATLAB_R2015b.app/bin/matlab")
+  (setq matlab-server-executable "/Applications/MATLAB_R2016.app/bin/matlab")
   (setq matlab-server-buffer "*matlab-server*")
+  (customize-set-variable
+   'matlab-shell-command
+   (expand-file-name "matlab_emacs_wrapper" femacs-lang-dir))
   (add-hook 'matlab-mode-hook 'matlab-mode-features)
   :config
   (with-eval-after-load 'company-dabbrev-code
