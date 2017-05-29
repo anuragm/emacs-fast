@@ -91,5 +91,15 @@
 ;; When in prettify-symbol-mode, expand when point is at the symbol.
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
+;; Use Smooth scroll for editor.
+(use-package smooth-scrolling
+  :ensure t
+  :commands (smooth-scrolling-mode)
+  :init
+  (setq mac-mouse-wheel-smooth-scroll nil) ; Disable YAMAMOTO Mitsuharu port's pixel scroll.
+  :config
+  (smooth-scrolling-mode 1)
+  :diminish "")
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
