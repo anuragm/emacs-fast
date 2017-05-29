@@ -44,7 +44,7 @@
 ;; Remove various cruft from UI.
 
 ;; Users are encouraged to disable these cruft by using system configuration. Example,
-;; took bar can be turned off on X by setting `emacs.Toolbar: 0' in ~/.Xresources file,
+;; tool bar can be turned off on X by setting `emacs.Toolbar: 0' in ~/.Xresources file,
 ;; and same can be done on MaxOS by the command
 ;; `defaults write org.gnu.Emacs Emacs.toolBar -bool false'
 

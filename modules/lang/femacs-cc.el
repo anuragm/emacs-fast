@@ -33,6 +33,14 @@
 
 ;;; Code:
 
+;; Update CC mode if required. Emacs might bundle old CC modes.
+;; Always pulls the latest alpha version. Specifying branch for hg is not support by
+;; melpa.
+(use-package cc-mode
+  :quelpa
+  (cc-mode :fetcher hg
+           :url "http://hg.code.sf.net/p/cc-mode/cc-mode"))
+
 ;; Use Irony mode for auto-completion of code and header files.
 (use-package irony
   :ensure t
