@@ -101,5 +101,23 @@
   (smooth-scrolling-mode 1)
   :diminish "")
 
+;; Integrate ANZU, which gives number of total matches.
+(use-package anzu
+  :ensure t
+  :diminish anzu-mode
+  :init
+  (setq anzu-cons-mode-line-p nil) ; Let Spaceline show anzu count.
+  :commands (anzu-query-replace anzu-mode)
+  :bind (("M-%" . anzu-query-replace)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :config
+  (global-anzu-mode))
+
+;; Add Ace-jump mode for quick navigation.
+(use-package ace-jump-mode
+  :ensure t
+  :commands (ace-jump-mode)
+  :bind (("C-c SPC" . ace-jump-mode)))
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
