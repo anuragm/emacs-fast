@@ -130,7 +130,7 @@ buffer is not visiting a file."
 (defvar savehist-file)
 (use-package savehist
   :ensure nil
-  :defer 1
+  :defer 2
   :init
   (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
         savehist-autosave-interval 60

@@ -95,6 +95,7 @@
 (use-package smooth-scrolling
   :ensure t
   :commands (smooth-scrolling-mode)
+  :defer 5
   :init
   (setq mac-mouse-wheel-smooth-scroll nil) ; Disable YAMAMOTO Mitsuharu port's pixel scroll.
   :config
@@ -105,6 +106,7 @@
 (use-package anzu
   :ensure t
   :diminish anzu-mode
+  :defer 1
   :init
   (setq anzu-cons-mode-line-p nil) ; Let Spaceline show anzu count.
   :commands (anzu-query-replace anzu-mode)
