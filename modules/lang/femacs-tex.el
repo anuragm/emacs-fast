@@ -14,7 +14,7 @@
 ;; Configures Latex with Auctex, helm-bibtex and other packages.
 
 ;;LaTeX is a typesetting language which can be used for writing letters, reports and
-;;manuscripts.  AucTeX servers as the fundamental mode for editing latex
+;;manuscripts.  AucTeX serves as the fundamental mode for editing latex
 ;;documents.  Additionally, following features are provided
 ;;
 ;; - Auto-completion of commands and math markers.
