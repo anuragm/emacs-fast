@@ -95,6 +95,7 @@
 (use-package smooth-scrolling
   :ensure t
   :commands (smooth-scrolling-mode)
+  :if (display-graphic-p)
   :defer 5
   :init
   (setq mac-mouse-wheel-smooth-scroll nil) ; Disable YAMAMOTO Mitsuharu port's pixel scroll.
