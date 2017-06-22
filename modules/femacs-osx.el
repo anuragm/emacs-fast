@@ -43,6 +43,11 @@
 (setq mac-function-modifier 'hyper)
 (setq mac-control-modifier  'control)
 
+;; Helper function to check if we are using EMacs mac port.
+(defun emacs-mac-p ()
+  "Return t if we are running emacs-mac port, return nil otherwise."
+  (fboundp 'mac-file-alias-p))
+
 ;; Read path variable from command line
 (use-package exec-path-from-shell
   :ensure t
