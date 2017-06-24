@@ -111,11 +111,11 @@ multiple usable themes."
   :commands (spaceline-emacs-theme spaceline-helm-mode)
   :init
   (require 'spaceline-config)
-  (if (and (eq system-type 'darwin) (not (emacs-mac-p))) ; Wave does not look good on OSX.
-      (setq powerline-default-separator 'utf-8)
-      (setq powerline-default-separator 'wave))
+  (setq powerline-default-separator 'wave)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified)
   (setq spaceline-buffer-modified-p nil)
+  (if (and (eq system-type 'darwin) (not (emacs-mac-p)))
+      (setq powerline-image-apple-rgb t))
   :config
   (spaceline-emacs-theme)
   (spaceline-helm-mode +1))
