@@ -44,8 +44,12 @@
   :init
   (defvar ispell-program-name)
   (if (executable-find "hunspell")
-      (setq ispell-program-name "hunspell")
-      (setq ispell-program-name "aspell")))
+      (progn
+        (setq ispell-program-name "hunspell")
+        (setq ispell-extra-args '("-d en_US")))
+    (progn
+      (setq ispell-program-name "aspell")
+      (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_US")))))
 
 (use-package flyspell
   :ensure nil

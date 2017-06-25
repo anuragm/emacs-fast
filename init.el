@@ -98,7 +98,7 @@
 (defvar femacs-module-path (expand-file-name "modules" femacs-dir))
 (push femacs-module-path load-path)
 
-;; Import OS related stuff.
+;; Import OS related stuff.first.
 (when (eq system-type 'darwin)
   (require 'femacs-osx))
 
