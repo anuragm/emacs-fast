@@ -37,10 +37,6 @@
 
 ;;; Code:
 
-;; Use diminish package to clean up the bar
-(use-package diminish
-  :ensure t)
-
 ;; Remove various cruft from UI.
 
 ;; Users are encouraged to disable these cruft by using system configuration. Example,

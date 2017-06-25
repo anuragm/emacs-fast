@@ -43,6 +43,7 @@
   :defer t
   :init
   (defvar ispell-program-name)
+  (defvar ispell-extra-args)
   (if (executable-find "hunspell")
       (progn
         (setq ispell-program-name "hunspell")
@@ -54,6 +55,7 @@
 (use-package flyspell
   :ensure nil
   :defer t
+  :commands (flyspell-correct-word)
   :init
   (add-hook 'text-mode-hook 'flyspell-mode)
   (add-hook 'prog-mode-hook 'flyspell-prog-mode)

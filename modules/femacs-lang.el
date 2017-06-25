@@ -37,13 +37,13 @@
 
 ;;; Code:
 
-(defvar femacs-module-path)
-(defvar femacs-lang-dir (expand-file-name "lang" femacs-module-path))
-(push femacs-lang-dir load-path)
+(when (and (boundp 'femacs-module-path) femacs-module-path)
+  (defvar femacs-lang-dir (expand-file-name "lang" femacs-module-path))
+  (push femacs-lang-dir load-path)
 
-(mapc (lambda (name)
-        (require (intern (file-name-sans-extension name))))
-      (directory-files femacs-lang-dir nil "\\.el$"))
+  (mapc (lambda (name)
+          (require (intern (file-name-sans-extension name))))
+        (directory-files femacs-lang-dir nil "\\.el$")))
 
 (provide 'femacs-lang)
 ;;; femacs-lang.el ends here

@@ -78,9 +78,12 @@
   (package-install 'use-package))
 (eval-when-compile
 (require 'use-package))
+(require 'bind-key)
+(require 'diminish)
 
 ;; Bootstrap QELPA.
 (defvar quelpa-checkout-melpa-p)
+(defvar quelpa-melpa-recipe-stores)
 (setq quelpa-checkout-melpa-p nil)
 (setq quelpa-melpa-recipe-stores nil)
 (unless (require 'quelpa nil t)
