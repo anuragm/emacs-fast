@@ -53,13 +53,17 @@
 (setq user-init-file femacs-init-file)
 (setq user-emacs-directory femacs-dir)
 
-;; Initialize MELPA
+;; Initialize packages.
 (require 'package)
 (setq package-enable-at-startup nil)
-(setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-        ("melpa-stable" . "https://stable.melpa.org/packages/")
-        ("gnu" . "https://elpa.gnu.org/packages/")))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("elpy" . "https://jorgenschaefer.github.io/packages/")))
+;; Due to bug in use-package, pinning packages doesn't works exactly. Thus, we need to
+;; specify the pinned packages here before package-initialize is called.
+(setq package-pinned-packages '((flycheck . "melpa-stable")))
 (package-initialize)
 
 ;; Store custom configuration in custom.el
