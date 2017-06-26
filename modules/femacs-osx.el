@@ -46,15 +46,28 @@
 ;; Helper function to check if we are using EMacs mac port.
 (defun emacs-mac-p ()
   "Return t if we are running emacs-mac port, return nil otherwise."
-  (fboundp 'mac-file-alias-p))
+  (featurep 'mac))
 
-;; Read path variable from command line
-(use-package exec-path-from-shell
-  :ensure t
-  :demand
-  :config
-  (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)))
+;; Read path variable from command line, if not manually customized.
+(defcustom emacs-fast/exec-path nil
+  "Custom exec path for Emacs.
+
+When not called from shell, Emacs does not inherits $PATH from shell.  When nil,
+paths are read by launching a login shell, which might be slow with complicated
+configuration.  Manually specifying the path will make the process faster."
+  :group 'emacs-fast
+  :type '(repeat directory))
+
+(if emacs-fast/exec-path
+    (progn
+      (setq exec-path emacs-fast/exec-path)
+      (setenv "PATH" (mapconcat 'identity exec-path ":")))
+  (use-package exec-path-from-shell
+    :ensure t
+    :demand
+    :config
+    (when (memq window-system '(mac ns))
+      (exec-path-from-shell-initialize))))
 
 ;; Don't delete directly, use Trash
 (setq delete-by-moving-to-trash t)
