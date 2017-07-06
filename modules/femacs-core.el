@@ -102,6 +102,13 @@ buffer is not visiting a file."
                   (= (aref bufname 0) 32))
         (kill-buffer currentb)))))
 
+;; Create a new scratch buffer, in text mode.
+(defun create-scratch-buffer nil
+  "Create a new scratch buffer, or switch to existing one."
+       (interactive)
+       (switch-to-buffer (get-buffer-create "*scratch*"))
+       (text-mode))
+
 ;; Useful misc keybindings
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
