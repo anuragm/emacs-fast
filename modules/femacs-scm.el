@@ -44,7 +44,8 @@
   :init
   (progn
     (add-hook 'git-commit-setup-hook 'whitespace-mode)
-    (setq magit-delete-by-moving-to-trash t))
+    (setq magit-delete-by-moving-to-trash t)
+    (setq magit-diff-refine-hunk t))
   :config
   (progn
     (magit-auto-revert-mode)

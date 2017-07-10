@@ -167,7 +167,7 @@ buffer is not visiting a file."
 (setq auto-save-file-name-transforms ; Location of auto save files.
       `((".*" ,temporary-file-directory t))
       auto-save-list-file-prefix     ; Location of session recovery file
-      (concat user-emacs-directory "private/auto-save-list")
+      (concat user-emacs-directory "private/auto-save-list/auto-save-list.saves-")
       tramp-auto-save-directory ;Location of tramp auto-save files.
       (concat user-emacs-directory "private/auto-save-list"))
 

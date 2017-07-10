@@ -84,12 +84,14 @@
 ;; Bootstrap QELPA.
 (defvar quelpa-checkout-melpa-p)
 (defvar quelpa-melpa-recipe-stores)
+(defvar quelpa-self-upgrade-p)
 (setq quelpa-checkout-melpa-p nil)
 (setq quelpa-melpa-recipe-stores nil)
-(unless (require 'quelpa nil t)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
+(setq quelpa-self-upgrade-p nil)
+(use-package quelpa
+  :ensure t
+  :init
+  (require 'quelpa))
 
 ;; Bootstrap quelpa-use-package
 (use-package quelpa-use-package
