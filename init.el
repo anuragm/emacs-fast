@@ -118,6 +118,7 @@
 (require 'femacs-helm)
 (require 'femacs-scm)
 (require 'femacs-helm-ag)
+(require 'femacs-misc)
 
 ;;Additional language support.
 (require 'femacs-lang)
