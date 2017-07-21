@@ -42,11 +42,17 @@
            :url "http://hg.code.sf.net/p/cc-mode/cc-mode"))
 
 ;; Use Irony mode for auto-completion of code and header files.
+(defvar custom-irony-directory
+  (file-name-as-directory (expand-file-name "private/irony" femacs-dir))
+  "Custom directory location for Irony files.")
+
 (use-package irony
   :ensure t
   :commands (irony-mode company-irony irony-mode-hook)
   :init
   ;;Configure compilation options for irony mode
+  (setq irony-server-install-prefix custom-irony-directory)
+  (setq irony-user-dir custom-irony-directory)
   (add-hook 'irony-mode-hook
             '(lambda ()
                (define-key irony-mode-map [remap completion-at-point]
@@ -84,9 +90,6 @@
   :commands (irony-eldoc)
   :init
   (add-hook 'irony-mode-hook 'irony-eldoc))
-
-;;----- Various settings for cc modes
-(setq flycheck-clang-language-standard "c++14")
 
 ;; Keep company-dabbrev at end since it can always complete some stupid thing.
 (defvar cc-mode-backends
