@@ -98,7 +98,8 @@
   (prettify-symbols-mode)
   (whitespace-mode)
   (auctex-latexmk-setup)
-  (TeX-source-correlate-mode))
+  (TeX-source-correlate-mode)
+  (diff-hl-mode))
 
 ;; Add auctex for editing
 (use-package latex
