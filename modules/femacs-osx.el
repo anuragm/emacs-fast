@@ -103,5 +103,8 @@ configuration.  Manually specifying the path will make the process faster."
      TeX-view-program-list)
     (push '(output-pdf "Skim") TeX-view-program-selection)))
 
+(with-eval-after-load "helm"
+  (setq helm-locate-command "mdfind %s %s"))
+
 (provide 'femacs-osx)
 ;;; femacs-osx.el ends here
