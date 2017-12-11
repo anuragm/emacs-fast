@@ -51,7 +51,7 @@
          ("C-c h"     . helm-command-prefix))
   :init
   (progn
-    (setq helm-split-window-in-side-p t) ; Split in current window
+    (setq helm-split-window-inside-p t) ; Split in current window
     (setq helm-move-to-line-cycle-in-source t)
     (setq helm-ff-candidate-number-limit 500) ; Limit candidates.
     (setq helm-ff-file-name-history-use-recentf t) ; Use standard file history.

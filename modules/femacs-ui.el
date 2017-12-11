@@ -42,7 +42,8 @@
 ;; Users are encouraged to disable these cruft by using system configuration. Example,
 ;; tool bar can be turned off on X by setting `emacs.Toolbar: 0' in ~/.Xresources file,
 ;; and same can be done on MaxOS by the command
-;; `defaults write org.gnu.Emacs Emacs.toolBar -bool false'
+;; defaults write org.gnu.Emacs ToolBar -string no
+;; defaults write org.gnu.Emacs ScrollBar -string no
 
 (when (display-graphic-p)
   (when tool-bar-mode
