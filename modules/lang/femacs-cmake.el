@@ -47,6 +47,7 @@
 (add-hook
  'cmake-mode-hook
  '(lambda()
+    (nlinum-mode)
     (company-mode)
     (yas-minor-mode)
     (whitespace-mode)
