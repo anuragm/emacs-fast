@@ -77,9 +77,9 @@
 
 ;; Set variables first before loading modes
 (defvar emacs-fast/tex-mode-backends
-  '(company-files
+  '(company-capf
+    company-files
     (company-math-symbols-latex company-latex-commands)
-    company-capf
     company-dabbrev)
   "Company mode backends in LaTeX mode.")
 
@@ -121,6 +121,7 @@
   (setq TeX-electric-sub-and-superscript t)
   (setq TeX-insert-braces nil)
   (setq TeX-electric-math '("$" . "$"))
+  (setq TeX-auto-local ".auto") ;; Store parsed information in .auto directory.
   (add-hook 'LaTeX-mode-hook 'emacs-fast/latex-mode-hook))
 
 ;;;; ---------------- Other packages to manage LaTeX related stuff -----------------------
