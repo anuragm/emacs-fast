@@ -84,6 +84,14 @@
   :config
   (diminish 'ggtags-mode "Ⓖ"))
 
+;; Use flycheck-irony in CC mode.
+(use-package flycheck-irony
+  :ensure t
+  :commands (flycheck-irony-setup)
+  :after (flycheck)
+  :init
+  (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
 ;; Set irony-eldoc for function signatures in mini-buffer.
 (use-package irony-eldoc
   :quelpa (irony-eldoc :fetcher github :repo "josteink/irony-eldoc")
