@@ -122,17 +122,16 @@
  'c-mode-common-hook
  '(lambda ()
     (when (derived-mode-p 'c-mode 'c++-mode)
+      (run-hooks 'prog-mode-hook) ; Run prog-mode hook since cc-mode does not derives from it.
       (setq-local company-backends cc-mode-backends)
       (setq-local fill-column 90)
       (setq-local whitespace-line-column 90)
-      (flyspell-prog-mode)
       (auto-fill-mode)
       (flycheck-mode 1)
       (yas-minor-mode 1)
       (irony-mode 1)
       (ggtags-mode 1)
       (whitespace-mode)
-      (nlinum-mode 1)
       (company-mode)
       (eldoc-mode)
       (dtrt-indent-mode))))

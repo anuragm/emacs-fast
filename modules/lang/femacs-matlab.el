@@ -38,15 +38,13 @@
 ;;; Code:
 
 (defun matlab-mode-features()
+  (run-hooks 'prog-mode-hook) ; Run prog-mode hook since MATLAB mode does not derives from it.
   (setq-local fill-column 95)
   (setq-local whitespace-line-column 95)
   (setq-local company-backends '(company-files (company-matlab company-dabbrev-code)))
-  (nlinum-mode t)
   (company-mode t)
   (yas-minor-mode)
-  (flyspell-prog-mode)
   (mlint-minor-mode)
-  (rainbow-delimiters-mode)
   (ggtags-mode)
   (whitespace-mode))
 

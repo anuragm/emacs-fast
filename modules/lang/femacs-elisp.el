@@ -43,7 +43,6 @@
       (flycheck-mode 1)
       (yas-minor-mode 1)
       (whitespace-mode)
-      (nlinum-mode 1)
       (company-mode)
       (eldoc-mode))))
 

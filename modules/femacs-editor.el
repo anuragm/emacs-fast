@@ -58,7 +58,9 @@
 ;; Use nlinum mode, a faster alternative to linum mode
 (use-package nlinum
   :ensure t
-  :commands (nlinum-mode))
+  :commands (nlinum-mode)
+  :init
+  (add-hook 'prog-mode-hook 'nlinum-mode))
 
 ;;Whitespace mode.
 (use-package whitespace

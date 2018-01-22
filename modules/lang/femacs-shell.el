@@ -35,7 +35,6 @@
 (defun emacs-fast/sh-mode-hook ()
   "Settings for shell mode."
   (yas-minor-mode)
-  (nlinum-mode)
   (auto-fill-mode)
   (flycheck-mode 1)
   (company-mode))
