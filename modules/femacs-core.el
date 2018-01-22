@@ -171,5 +171,21 @@ buffer is not visiting a file."
       tramp-auto-save-directory ;Location of tramp auto-save files.
       (concat user-emacs-directory "private/auto-save-list"))
 
+;; Move tramp persistent file.
+(setq-default tramp-persistency-file-name
+              (concat user-emacs-directory "private/tramp-connection-history"))
+
+;; Move default location of network security file.
+(setq-default nsm-settings-file
+              (concat user-emacs-directory "private/network-security.data"))
+
+;; Move default bookmark file.
+(setq-default bookmark-default-file
+              (concat user-emacs-directory "private/bookmarks"))
+
+;; Move Eshell temporary file directory
+(setq-default eshell-directory-name
+              (concat user-emacs-directory "private/eshell"))
+
 (provide 'femacs-core)
 ;;; femacs-core.el ends here
