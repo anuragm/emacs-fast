@@ -67,6 +67,14 @@
   (define-key flyspell-mouse-map [mouse-2] nil)
   (diminish 'flyspell-mode "ⓕ"))
 
+;; Describe word looks up an English dictionary online.
+(use-package define-word
+  :ensure t
+  :commands (define-word-at-point)
+  :bind
+  (("C-c d". define-word-at-point)
+   ("C-c D" . define-word)))
+
 ;; Initialize flycheck mode for modes that need it.
 (use-package flycheck
   :ensure t
