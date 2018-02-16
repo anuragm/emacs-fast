@@ -76,12 +76,15 @@
   (add-hook 'prog-mode-hook 'company-quickhelp-mode))
 
 ;; Add Yasnippet for expanding useful snippets.
+(use-package yasnippet-snippets
+  :ensure t
+  :commands (yasnippet-snippets-initialize))
+
 (use-package yasnippet
   :ensure t
   :commands (yas-minor-mode yas-global-mode)
   :init
   (setq yas-snippet-dirs nil)
-  (push 'yas-installed-snippets-dir yas-snippet-dirs)
   (push (concat user-emacs-directory "private/snippets") yas-snippet-dirs)
   :config
   (yas-reload-all)
