@@ -41,30 +41,35 @@
   (run-hooks 'prog-mode-hook) ; Run prog-mode hook since MATLAB mode does not derives from it.
   (setq-local fill-column 95)
   (setq-local whitespace-line-column 95)
-  (setq-local company-backends '(company-files (company-matlab company-dabbrev-code)))
+  (setq-local company-backends '(company-files (company-dabbrev-code company-gtags)))
+  (matlab-functions-have-end-minor-mode)
   (company-mode t)
   (yas-minor-mode)
   (mlint-minor-mode)
   (ggtags-mode)
   (whitespace-mode))
 
-(use-package matlab-load
+(defun femacs/matlab-shell-features()
+  (company-mode t)
+  (yas-minor-mode))
+
+(use-package matlab
   :ensure matlab-mode
-  :diminish (mlint-minor-mode)
   :commands
-  (matlab-mode matlab-shell company-matlab matlab-mode-common-setup mlint-minor-mode)
+  (matlab-mode matlab-shell matlab-mode-common-setup mlint-minor-mode)
   :mode ("\\.m\\'" . matlab-mode)
   :init
   (setq matlab-shell-command-switches '("-nodesktop" "-nosplash"))
-  (setq matlab-server-executable "/Applications/MATLAB_R2016.app/bin/matlab")
-  (setq matlab-server-buffer "*matlab-server*")
   (customize-set-variable
    'matlab-shell-command
    (expand-file-name "matlab_emacs_wrapper" femacs-lang-dir))
-  (add-hook 'matlab-mode-hook 'matlab-mode-features)
   :config
+  (add-hook 'mlint-minor-mode-hook
+            (lambda () (diminish 'mlint-minor-mode)))
   (with-eval-after-load 'company-dabbrev-code
-    (push 'matlab-mode company-dabbrev-code-modes)))
+    (push 'matlab-mode company-dabbrev-code-modes))
+  (add-hook 'matlab-mode-hook 'matlab-mode-features)
+  (add-hook 'matlab-shell-mode-hook 'femacs/matlab-shell-features))
 
 (provide 'femacs-matlab)
 ;;; femacs-matlab.el ends here
