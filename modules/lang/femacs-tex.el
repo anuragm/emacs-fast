@@ -130,10 +130,7 @@
   :ensure t
   :commands (helm-bibtex)
   :init
-  (defcustom bibtex-completion-bibliography nil
-    "List of Bibtex files."
-    :type '(repeat file)
-    :group 'helm-bibtex))
+  (setq bibtex-completion-pdf-field "File"))
 
 (use-package ebib
   :ensure t
