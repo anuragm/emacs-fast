@@ -64,5 +64,11 @@
   :ensure t
   :commands (git-timemachine))
 
+;; Add helm package for listing git files
+(use-package helm-ls-git
+  :ensure t
+  :commands (helm-ls-git-ls)
+  :bind ("C-x C-d" . helm-browse-project))
+
 (provide 'femacs-scm)
 ;;; femacs-scm.el ends here

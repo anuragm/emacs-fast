@@ -82,7 +82,7 @@
   "The theme for Emacs-fast.
 First argument is the name of theme package, which is downloaded
 and installed.  Second argument is the name of the theme which
-can be loaded with `load-theme'.  Some packages might installed
+can be loaded with `load-theme'.  Some packages might install
 multiple usable themes."
   :group 'emacs-fast
   :type '(cons
