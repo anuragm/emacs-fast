@@ -60,6 +60,7 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")
                          ("elpy" . "https://jorgenschaefer.github.io/packages/")))
 ;; Due to bug in use-package, pinning packages doesn't works exactly. Thus, we need to
 ;; specify the pinned packages here before package-initialize is called.
@@ -121,6 +122,7 @@
 (require 'femacs-scm)
 (require 'femacs-helm-ag)
 (require 'femacs-misc)
+(require 'femacs-org)
 
 ;;Additional language support.
 (require 'femacs-lang)
