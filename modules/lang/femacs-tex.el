@@ -89,6 +89,7 @@
   (setq fill-column 90)
   (setq whitespace-line-column 90)
   (setq-local company-backends emacs-fast/tex-mode-backends)
+  (rainbow-delimiters-mode-enable)
   (visual-line-mode 1)
   (latex-extra-mode)
   (auto-fill-mode 1)
@@ -100,6 +101,57 @@
   (auctex-latexmk-setup)
   (TeX-source-correlate-mode)
   (diff-hl-mode))
+
+;; Add support for clever ref package to Reftex.
+(defun emacs-fast/add-cref-support()
+  (TeX-add-style-hook
+   "cleveref"
+   (lambda ()
+     (if (boundp 'reftex-ref-style-alist)
+         (add-to-list
+          'reftex-ref-style-alist
+          '("Cleveref" "cleveref"
+            (("\\cref" ?c) ("\\Cref" ?C) ("\\cpageref" ?d) ("\\Cpageref" ?D)))))
+     (reftex-ref-style-activate "Cleveref")
+     (TeX-add-symbols
+      '("cref" TeX-arg-ref)
+      '("Cref" TeX-arg-ref)
+      '("cpageref" TeX-arg-ref)
+      '("Cpageref" TeX-arg-ref)))))
+
+;; Add additional keyword highlighting. Taken from tex.stackexchange.com/questions/85849/
+(defvar font-latex-match-reference-keywords)
+(setq font-latex-match-reference-keywords
+      '(
+        ;; cleveref
+        ("cref" "{")
+        ("Cref" "{")
+        ("cpageref" "{")
+        ("Cpageref" "{")
+        ("cpagerefrange" "{")
+        ("Cpagerefrange" "{")
+        ("crefrange" "{")
+        ("Crefrange" "{")
+        ("labelcref" "{")))
+(defvar font-latex-match-textual-keywords)
+(setq font-latex-match-textual-keywords
+      '(
+        ;; subcaption
+        ("subcaption" "[{")))
+
+(defvar font-latex-match-variable-keywords)
+(setq font-latex-match-variable-keywords
+      '(
+        ;; amsmath
+        ("numberwithin" "{")
+        ;; enumitem
+        ("setlist" "[{")
+        ("setlist*" "[{")
+        ("newlist" "{")
+        ("renewlist" "{")
+        ("setlistdepth" "{")
+        ("restartlist" "{")
+        ("crefname" "{")))
 
 ;; Add auctex for editing
 (use-package latex
@@ -122,7 +174,9 @@
   (setq TeX-insert-braces nil)
   (setq TeX-electric-math '("$" . "$"))
   (setq TeX-auto-local ".auto") ;; Store parsed information in .auto directory.
-  (add-hook 'LaTeX-mode-hook 'emacs-fast/latex-mode-hook))
+  (add-hook 'LaTeX-mode-hook 'emacs-fast/latex-mode-hook)
+  :config
+  (emacs-fast/add-cref-support))
 
 ;;;; ---------------- Other packages to manage LaTeX related stuff -----------------------
 
