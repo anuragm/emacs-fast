@@ -75,12 +75,24 @@
   :config
   (diminish 'reftex-mode "ⓡ"))
 
+;; Use company auctex for better completion.
+(use-package company-auctex
+  :ensure t
+  :commands
+  (company-auctex-labels company-auctex-bibs company-auctex-macros
+   company-auctex-symbols company-auctex-environments))
+
+;; Use company reftex for citations and reference
+(use-package company-reftex
+  :ensure t
+  :commands (company-reftex-labels company-reftex-citations))
+
 ;; Set variables first before loading modes
 (defvar emacs-fast/tex-mode-backends
-  '(company-capf
-    company-files
+  '(company-reftex-labels company-reftex-citations
     (company-math-symbols-latex company-latex-commands)
-    company-dabbrev)
+    (company-auctex-macros company-auctex-symbols company-auctex-environments)
+    company-dabbrev company-files company-capf)
   "Company mode backends in LaTeX mode.")
 
 (defun emacs-fast/latex-mode-hook ()
