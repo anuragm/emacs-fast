@@ -93,6 +93,7 @@ multiple usable themes."
   "Install PACKAGE-NAME and load THEME-NAME from it."
   (eval `(use-package ,package-name
            :ensure t
+           :no-require t
            :config
            (load-theme ',theme-name t))))
 
