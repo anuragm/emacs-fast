@@ -80,7 +80,9 @@
 (eval-when-compile
 (require 'use-package))
 (require 'bind-key)
-(require 'diminish)
+(use-package diminish
+  :ensure t
+  :commands (diminish))
 
 ;; Bootstrap QELPA.
 (defvar quelpa-checkout-melpa-p)
