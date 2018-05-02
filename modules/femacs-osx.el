@@ -43,6 +43,11 @@
 (setq mac-function-modifier 'hyper)
 (setq mac-control-modifier  'control)
 
+;; Use dark theme for title bar. This works only on Emacs 26.1 and above.
+(when (not (version< emacs-version "26.1"))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+
 ;; Helper function to check if we are using EMacs mac port.
 (defun emacs-mac-p ()
   "Return t if we are running emacs-mac port, return nil otherwise."
