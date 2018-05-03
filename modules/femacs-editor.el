@@ -55,20 +55,22 @@
   (defvar nlinum-format)
   (setq nlinum-format "%d "))
 
-
 ;; For newer emacs, use the built-in display line number mode.
 ;; Else use nlinum mode, a faster alternative to linum mode
-(if (version< emacs-version "26.1")
-    (progn
-      (use-package nlinum
-        :ensure t
-        :commands (nlinum-mode)
-        :init
-        (add-hook 'prog-mode-hook 'nlinum-mode)))
-  (progn
-    (defalias 'nlinum-mode 'display-line-numbers-mode)
-    (defalias 'global-nlinum-mode 'global-display-line-numbers-mode)
-    (add-hook 'prog-mode-hook 'display-line-numbers-mode)))
+(when (version< emacs-version "26.1")
+  (use-package nlinum
+    :ensure t
+    :commands (nlinum-mode)
+    :init
+    (add-hook 'prog-mode-hook 'nlinum-mode)))
+
+(use-package display-line-numbers
+  :ensure nil
+  :if (not (version< emacs-version "26.1"))
+  :init
+  (defalias 'nlinum-mode 'display-line-numbers-mode)
+  (defalias 'global-nlinum-mode 'global-display-line-numbers-mode)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 ;;Whitespace mode.
 (use-package whitespace
