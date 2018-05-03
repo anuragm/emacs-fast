@@ -59,7 +59,8 @@
   (auto-fill-mode))
 
 (use-package org
-  :ensure org-plus-contrib ;; Download additional org mode packages
+  :ensure org-plus-contrib ;; Download newer Org and extra pacakges.
+  :mode (("\\.org$" . org-mode))
   :init
   (setq org-src-tab-acts-natively t) ;; Indent naturally in code blocks
   (add-hook 'org-mode-hook 'femacs/org-mode-hook)

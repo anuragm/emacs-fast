@@ -57,11 +57,15 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")
-                         ("elpy" . "https://jorgenschaefer.github.io/packages/")))
+                         ("org" . "http://orgmode.org/elpa/")))
+(setq package-archive-priorities '(("gnu"          . 11)
+                                   ("built-in"     . 10)
+                                   ("org"          . 9)
+                                   ("melpa-stable" . 0)
+                                   ("melpa"        . 0)))
+
 ;; Due to bug in use-package, pinning packages doesn't works exactly. Thus, we need to
 ;; specify the pinned packages here before package-initialize is called.
 (setq package-pinned-packages '((flycheck . "melpa-stable")))
