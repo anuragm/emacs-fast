@@ -66,10 +66,6 @@
                                    ("org"          . 9)
                                    ("melpa-stable" . 0)
                                    ("melpa"        . 0)))
-
-;; Due to bug in use-package, pinning packages doesn't works exactly. Thus, we need to
-;; specify the pinned packages here before package-initialize is called.
-(setq package-pinned-packages '((flycheck . "melpa-stable")))
 (package-initialize)
 
 ;; Store custom configuration in custom.el
