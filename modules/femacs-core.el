@@ -109,6 +109,13 @@ buffer is not visiting a file."
        (switch-to-buffer (get-buffer-create "*scratch*"))
        (text-mode))
 
+;; Convert dos mode files to unix
+(defun dos2unix ()
+    "Convert DOS mode file to UNIX and save the buffer."
+    (interactive)
+    (set-buffer-file-coding-system 'undecided-unix)
+    (save-buffer))
+
 ;; Useful misc keybindings
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
