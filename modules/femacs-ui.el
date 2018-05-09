@@ -63,7 +63,7 @@
 
 ;;Use shift-<left/right/up/down> to change windows
 (when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+  (windmove-default-keybindings 'super))
 
 ;; Give a visual representation to switch windows
 (use-package switch-window
