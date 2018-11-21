@@ -120,6 +120,7 @@
 
 ;; Add support for clever ref package to Reftex.
 (defun emacs-fast/add-cref-support()
+  "Add support for Cref labels to TeX mode."
   (TeX-add-style-hook
    "cleveref"
    (lambda ()
@@ -205,6 +206,23 @@
 (use-package ebib
   :ensure t
   :commands (ebib))
+
+;; ----------------- Functions for useful transformation -------------------------------
+
+;; Convert from Subfigure to subcaption package.
+(defun femacs/subfigure-to-subcaption ()
+  "Convert subfigure package notation to subcaption package notations."
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward
+     "^\s*\\\\subfigure\\[\\(.*?\\)]{.*\\includegraphics\\[width=\\(.+?\\)]{\\(.+?\\)}\\(.*?}?\\)}"
+          nil t)
+    (replace-match
+     "\\\\begin{subfigure}[t]{\\2}
+ \\\\includegraphics[width=\\\\columnwidth]{\\3}
+ \\\\caption{\\1}
+ \\4
+\\\\end{subfigure}")))
 
 (provide 'femacs-tex)
 ;;; femacs-tex.el ends here
