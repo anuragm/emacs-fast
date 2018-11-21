@@ -69,5 +69,8 @@
   (add-to-list 'org-export-backends 'md) ;; Add Markdown to export back ends.
   (require 'ox-bibtex)) ; Enable BibTex export in HTML
 
+(use-package ox-slack ;; Add slack exporter for Org mode.
+  :quelpa (ox-slack :fetcher github :repo "titaniumbones/ox-slack"))
+
 (provide 'femacs-org)
 ;;; femacs-org.el ends here
