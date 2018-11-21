@@ -93,7 +93,7 @@ configuration.  Manually specifying the path will make the process faster."
 (defun iterm-here ()
   "Opens current buffer's directory in iTerm."
   (interactive)
-  (dired-smart-shell-command "open -a iTerm2 \"$PWD\"" nil nil))
+  (dired-smart-shell-command "open -a iTerm \"$PWD\"" nil nil))
 
 ;; Use gls for dired mode if installed.
 (when (executable-find "gls")
