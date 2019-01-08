@@ -49,12 +49,14 @@
 
 (use-package persistent-scratch
   :ensure t
-  :commands (persistent-scratch-setup-default persistent-scratch-autosave-mode)
+  :commands
+  (persistent-scratch-restore)
   :init
   (setq persistent-scratch-autosave-interval 30)
   (setq persistent-scratch-save-file
         (expand-file-name "last-scratch" femacs/persistent-scratch-dir))
-  (persistent-scratch-setup-default))
+  :config
+  (persistent-scratch-autosave-mode +1))
 
 (provide 'femacs-misc)
 ;;; femacs-misc.el ends here
