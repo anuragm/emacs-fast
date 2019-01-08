@@ -60,17 +60,18 @@
   (auto-fill-mode))
 
 (use-package org
-  :ensure org-plus-contrib ;; Download newer Org and extra pacakges.
+  :ensure t
   :mode (("\\.org$" . org-mode))
+  :defer t
   :init
   (setq org-src-tab-acts-natively t) ;; Indent naturally in code blocks
   (add-hook 'org-mode-hook 'femacs/org-mode-hook)
   :config
-  (add-to-list 'org-export-backends 'md) ;; Add Markdown to export back ends.
-  (require 'ox-bibtex)) ; Enable BibTex export in HTML
+  (add-to-list 'org-export-backends 'md)) ;; Add Markdown to export back ends.
 
 (use-package ox-slack ;; Add slack exporter for Org mode.
-  :quelpa (ox-slack :fetcher github :repo "titaniumbones/ox-slack"))
+  :quelpa (ox-slack :fetcher github :repo "titaniumbones/ox-slack")
+  :requires org)
 
 (provide 'femacs-org)
 ;;; femacs-org.el ends here
