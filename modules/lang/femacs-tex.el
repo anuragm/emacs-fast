@@ -1,6 +1,6 @@
 ;;; femacs-tex.el --- Configuration for LaTeX mode
 ;;
-;; Copyright © 2016 Anurag Mishra
+;; Copyright © 2016-2018 Anurag Mishra
 ;;
 ;; Author: Anurag Mishra
 ;; URL: https://github.com/anuragm/emacs-fast
@@ -22,7 +22,7 @@
 ;; - Use LaTeXMK to do all stages of compilation auto-magically.
 ;; - Helm-bibtex and ebib for managing bibliographies.
 
-;; Copyright (c) 2016 Anurag Mishra, MIT License.
+;; Copyright (c) 2016-2018 Anurag Mishra, MIT License.
 
 ;; Permission is hereby granted, free of charge, to any person obtaining
 ;; a copy of this software and associated documentation files (the
