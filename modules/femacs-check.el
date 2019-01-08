@@ -48,7 +48,10 @@
   (if (executable-find "hunspell")
       (progn
         (setq ispell-program-name "hunspell")
-        (setq ispell-extra-args '("-d en_US")))
+        (setq ispell-local-dictionary "en_US")
+        (setq ispell-local-dictionary-alist
+              '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']"
+                 nil ("-d" "en_US") nil utf-8))))
     (progn
       (setq ispell-program-name "aspell")
       (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_US")))))
