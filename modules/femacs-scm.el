@@ -46,7 +46,8 @@
   (progn
     (add-hook 'git-commit-setup-hook 'whitespace-mode)
     (setq magit-delete-by-moving-to-trash t)
-    (setq magit-diff-refine-hunk t))
+    (setq magit-diff-refine-hunk t)
+    (setq magit-section-visibility-indicator nil))
   :config
   (progn
     (magit-auto-revert-mode)
