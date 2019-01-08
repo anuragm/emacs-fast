@@ -1,3 +1,4 @@
+/.DS_Store
 elpa/
 quelpa/
 custom.el
@@ -7,3 +8,5 @@ custom.el
 /srecode-map.el
 *.elc
 /irony/bin/irony-server
+request/
+url/
