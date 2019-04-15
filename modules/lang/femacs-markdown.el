@@ -51,5 +51,13 @@
   (diminish 'markdown-live-preview-mode "lp")
   (yas-minor-mode))
 
+(use-package yaml-mode
+  :ensure t
+  :mode
+  (("\\.yml$" . yaml-mode)
+   ("\\.yaml$" . yaml-mode))
+  :bind (:map yaml-mode-map
+  ("\C-m" . 'newline-and-indent)))
+
 (provide 'femacs-markdown)
 ;;; femacs-markdown.el ends here
