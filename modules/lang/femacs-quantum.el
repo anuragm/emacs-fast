@@ -54,5 +54,19 @@
   :config
   (add-hook 'qsharp-mode-hook #'femacs/qsharp-mode-hook))
 
+;; Microsoft Q# also requires C# mode
+(defun femacs/csharp-mode-hook ()
+  "Custom hook for C# mode."
+  (electric-pair-local-mode 1)
+  (setq-local fill-column 95)
+  (setq-local whitespace-line-column 95))
+
+(use-package csharp-mode
+  :ensure t
+  :commands csharp-mode
+  :mode (("\\.cs$" . csharp-mode))
+  :config
+  (add-hook 'csharp-mode-hook #'femacs/csharp-mode-hook))
+
 (provide 'femacs-quantum)
 ;;; femacs-quantum.el ends here
