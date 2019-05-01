@@ -135,5 +135,16 @@
   :commands (ace-jump-mode)
   :bind (("C-c SPC" . ace-jump-mode)))
 
+;; Use dtrt-indent to auto-detect indentation style in a file for all programming
+;; languages.
+(use-package dtrt-indent
+  :ensure t
+  :commands (dtrt-indent-mode)
+  :init
+  (setq dtrt-indent-active-mode-line-info nil)
+  (add-hook 'prog-mode-hook 'dtrt-indent-mode)
+  :config
+  (diminish 'dtrt-indent-mode))
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here

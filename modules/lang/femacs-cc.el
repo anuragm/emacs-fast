@@ -105,15 +105,6 @@
   :init
   (add-hook 'irony-mode-hook 'irony-eldoc))
 
-;; Use dtrt-indent to auto-detect indentation style in a file.
-(use-package dtrt-indent
-  :ensure t
-  :commands (dtrt-indent-mode)
-  :init
-  (setq dtrt-indent-active-mode-line-info nil)
-  :config
-  (diminish 'dtrt-indent-mode))
-
 ;; Keep company-dabbrev at end since it can always complete some stupid thing.
 (defvar cc-mode-backends
   '(company-files
