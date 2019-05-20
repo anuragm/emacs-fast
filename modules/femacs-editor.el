@@ -146,5 +146,14 @@
   :config
   (diminish 'dtrt-indent-mode))
 
+;; Use Move buffer to swap windows.
+(use-package buffer-move
+  :ensure t
+  :commands (buf-move buf-move-up buf-move-down buf-move-right buf-move-left)
+  :bind (("<C-s-up>" . buf-move-up)
+         ("<C-s-down>" . buf-move-down)
+         ("<C-s-left>" . buf-move-left)
+         ("<C-s-right>" . buf-move-right)))
+
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
