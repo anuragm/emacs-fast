@@ -106,7 +106,7 @@
   (add-hook 'irony-mode-hook 'irony-eldoc))
 
 ;; Keep company-dabbrev at end since it can always complete some stupid thing.
-(defvar cc-mode-backends
+(defvar femacs/cc-mode-backends
   '(company-files
     company-c-headers
     company-irony
@@ -120,7 +120,7 @@
  '(lambda ()
     (when (derived-mode-p 'c-mode 'c++-mode)
       (run-hooks 'prog-mode-hook) ; Run prog-mode hook since cc-mode does not derives from it.
-      (setq-local company-backends cc-mode-backends)
+      (setq-local company-backends femacs/cc-mode-backends)
       (setq-local fill-column 90)
       (setq-local whitespace-line-column 90)
       (auto-fill-mode)
