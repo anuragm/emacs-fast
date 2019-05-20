@@ -57,6 +57,7 @@
 (defun femacs/python-mode-hook()
   "Custom bindings for python mode."
   (setq-local fill-column 90)
+  (electric-indent-mode)
   (nlinum-mode)
   (auto-fill-mode)
   (company-mode)
@@ -64,6 +65,14 @@
   (dtrt-indent-mode))
 
 (add-hook 'python-mode-hook #'femacs/python-mode-hook)
+
+;; Use ELPY for Python programming. https://github.com/jorgenschaefer/elpy
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable)
+  :diminish "")
 
 (provide 'femacs-python)
 ;;; femacs-python.el ends here
