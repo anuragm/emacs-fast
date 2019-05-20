@@ -57,9 +57,14 @@
 ;; Microsoft Q# also requires C# mode
 (defun femacs/csharp-mode-hook ()
   "Custom hook for C# mode."
+  (run-hooks 'prog-mode-hook)
+  (yas-minor-mode-on)
+  (company-mode-on)
+  (auto-fill-mode)
   (electric-pair-local-mode 1)
   (setq-local fill-column 95)
-  (setq-local whitespace-line-column 95))
+  (setq-local whitespace-line-column 95)
+  (setq-local c-basic-offset 2)) ;; Indent with two spaces.
 
 (use-package csharp-mode
   :ensure t
