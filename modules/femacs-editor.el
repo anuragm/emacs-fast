@@ -105,16 +105,16 @@
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
 ;; Use Smooth scroll for editor.
-(use-package smooth-scrolling
-  :ensure t
-  :commands (smooth-scrolling-mode)
-  :if (display-graphic-p)
-  :defer 5
-  :init
-  (setq mac-mouse-wheel-smooth-scroll nil) ; Disable YAMAMOTO Mitsuharu port's pixel scroll.
-  :config
-  (smooth-scrolling-mode 1)
-  :diminish "")
+;; (use-package smooth-scrolling
+;;   :ensure t
+;;   :commands (smooth-scrolling-mode)
+;;   :if (display-graphic-p)
+;;   :defer 5
+;;   :init
+;;   (setq mac-mouse-wheel-smooth-scroll nil) ; Disable YAMAMOTO Mitsuharu port's pixel scroll.
+;;   :config
+;;   (smooth-scrolling-mode 1)
+;;   :diminish "")
 
 ;; Integrate ANZU, which gives number of total matches.
 (use-package anzu
