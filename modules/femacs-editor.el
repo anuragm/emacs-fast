@@ -104,18 +104,6 @@
 ;; When in prettify-symbol-mode, expand when point is at the symbol.
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
-;; Use Smooth scroll for editor.
-;; (use-package smooth-scrolling
-;;   :ensure t
-;;   :commands (smooth-scrolling-mode)
-;;   :if (display-graphic-p)
-;;   :defer 5
-;;   :init
-;;   (setq mac-mouse-wheel-smooth-scroll nil) ; Disable YAMAMOTO Mitsuharu port's pixel scroll.
-;;   :config
-;;   (smooth-scrolling-mode 1)
-;;   :diminish "")
-
 ;; Integrate ANZU, which gives number of total matches.
 (use-package anzu
   :ensure t
@@ -154,6 +142,15 @@
          ("<C-s-down>" . buf-move-down)
          ("<C-s-left>" . buf-move-left)
          ("<C-s-right>" . buf-move-right)))
+
+;; Add Word count minor mode to text modes
+(use-package wc-mode
+  :ensure t
+  :init
+  (add-hook 'find-file-hook
+   (lambda ()
+     (when (string= (file-name-extension buffer-file-name) "txt")
+       (wc-mode)))))
 
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
