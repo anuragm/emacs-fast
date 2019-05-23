@@ -41,6 +41,7 @@
 ;; Install Magit with sensible defaults.
 (use-package magit
   :ensure t
+  :pin melpa-stable
   :bind ("C-x g" . magit-status)
   :init
   (progn
