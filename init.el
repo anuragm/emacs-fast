@@ -111,6 +111,7 @@
 ;; Other default options.
 (setq large-file-warning-threshold 10000000) ;Warn on large files, 1 MB
 (setq load-prefer-newer t) ;Prefer new byte code
+(setq confirm-kill-emacs 'yes-or-no-p) ; Ask before exiting Emacs
 
 ;; Now start loading rest of the system.
 (defvar femacs-module-path (expand-file-name "modules" femacs-dir))
