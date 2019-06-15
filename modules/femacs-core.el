@@ -161,7 +161,7 @@ buffer is not visiting a file."
 (put 'erase-buffer 'disabled nil)
 
 ;; Backup options
-(setq make-backup-files    t ;Enable file backup
+(setq make-backup-files    t ; Enable file backup
       vc-make-backup-files t ; and also backup version controlled files
       version-control      t ; Store multiple named backups
       kept-new-versions   10 ; Store 10 new backups

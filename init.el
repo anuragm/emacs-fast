@@ -122,6 +122,7 @@
   (require 'femacs-osx))
 
 ;; And import the required stuff.
+(require 'femacs-hydra)
 (require 'femacs-core)
 (require 'femacs-ui)
 (require 'femacs-editor)
