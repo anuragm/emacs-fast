@@ -63,10 +63,25 @@
 (use-package gitattributes-mode
   :ensure t)
 
-;; Add git time machine
+;; Add git time machine with its Hydra menu
 (use-package git-timemachine
   :ensure t
-  :commands (git-timemachine))
+  :after hydra
+  :commands (git-timemachine)
+  :bind (:map git-timemachine-mode-map ("`" . hydra-git-timemachine/body))
+  :init
+  (add-hook 'git-timemachine-mode-hook #'hydra-git-timemachine/body)
+  :hydra (hydra-git-timemachine (:hint nil)
+  "
+               Git time-machine
+_p_: previous  _n_: next _b_: blame _c_: show commit
+"
+  ("p" git-timemachine-show-previous-revision)
+  ("n" git-timemachine-show-next-revision)
+  ("b" git-timemachine-blame)
+  ("c" git-timemachine-show-commit)
+  ("." nil "cancel" :color blue)
+  ("q" git-timemachine-quit "quit" :color blue)))
 
 ;; Add helm package for listing git files
 (use-package helm-ls-git
