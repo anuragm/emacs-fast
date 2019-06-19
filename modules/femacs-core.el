@@ -196,5 +196,9 @@ buffer is not visiting a file."
 (setq-default eshell-directory-name
               (concat user-emacs-directory "private/eshell"))
 
+;; Move the default location of abbreviation file.
+(setq-default abbrev-file-name
+              (concat user-emacs-directory "private/abbrev_defs"))
+
 (provide 'femacs-core)
 ;;; femacs-core.el ends here

@@ -36,6 +36,7 @@
 ;;; Code:
 
 (add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
+(define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
 
 (defhydra hydra-ibuffer-main (:color pink :hint nil)
   "

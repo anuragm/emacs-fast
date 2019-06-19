@@ -41,9 +41,9 @@
 
 (defvar femacs-dir)
 (defvar femacs/persistent-scratch-dir
-        (file-name-as-directory
-         (expand-file-name "private/persistent-scratch" femacs-dir))
-        "Location for saving persistent scratch files.")
+  (file-name-as-directory
+   (expand-file-name "private/persistent-scratch" femacs-dir))
+  "Location for saving persistent scratch files.")
 (unless (file-directory-p femacs/persistent-scratch-dir)
   (make-directory femacs/persistent-scratch-dir))
 
