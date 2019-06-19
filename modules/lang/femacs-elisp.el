@@ -38,6 +38,12 @@
 
 ;;; Code:
 
+;; Display form feed character (^L) as a line.
+(use-package page-break-lines
+  :ensure t
+  :delight
+  :commands (page-break-lines-mode))
+
 ;; CAUTION : Set variables first before loading modes.
 (add-hook
  'emacs-lisp-mode-hook
@@ -51,6 +57,7 @@
       (yas-minor-mode 1)
       (whitespace-mode)
       (company-mode)
+      (page-break-lines-mode)
       (eldoc-mode))))
 
 (provide 'femacs-elisp)

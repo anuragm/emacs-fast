@@ -45,6 +45,9 @@
 
 ;;; Code:
 
+
+;; Helper packages
+
 ;; Compile with Latexmk
 (use-package auctex-latexmk
   :ensure t
@@ -65,6 +68,7 @@
 ;; Use latex extra for better indentation and auto fill.
 (use-package latex-extra
   :ensure t
+  :custom (latex/override-font-map nil "Don't hijack C-c f")
   :commands (latex-extra-mode)
   :diminish latex-extra-mode)
 
@@ -79,7 +83,9 @@
   :config
   (diminish 'reftex-mode "ⓡ"))
 
+
 ;; Use company auctex for better completion.
+
 (use-package company-auctex
   :ensure t
   :commands
@@ -99,26 +105,9 @@
     company-dabbrev company-files company-capf)
   "Company mode backends in LaTeX mode.")
 
-(defun emacs-fast/latex-mode-hook ()
-  "Settings for LaTeX mode."
-  (defvar whitespace-line-column)
-  (setq fill-column 90)
-  (setq whitespace-line-column 90)
-  (setq-local company-backends emacs-fast/tex-mode-backends)
-  (rainbow-delimiters-mode-enable)
-  (visual-line-mode 1)
-  (latex-extra-mode)
-  (auto-fill-mode 1)
-  (company-mode 1)
-  (nlinum-mode 1)
-  (turn-on-reftex)
-  (prettify-symbols-mode)
-  (whitespace-mode)
-  (auctex-latexmk-setup)
-  (TeX-source-correlate-mode)
-  (diff-hl-mode))
-
+
 ;; Add support for clever ref package to Reftex.
+
 (defun emacs-fast/add-cref-support()
   "Add support for Cref labels to TeX mode."
   (TeX-add-style-hook
@@ -136,7 +125,10 @@
       '("cpageref" TeX-arg-ref)
       '("Cpageref" TeX-arg-ref)))))
 
-;; Add additional keyword highlighting. Taken from tex.stackexchange.com/questions/85849/
+
+;; Add additional keyword highlighting.
+;; Taken from tex.stackexchange.com/questions/85849/
+
 (defvar font-latex-match-reference-keywords)
 (setq font-latex-match-reference-keywords
       '(
@@ -170,7 +162,28 @@
         ("restartlist" "{")
         ("crefname" "{")))
 
-;; Add auctex for editing
+
+;; AUCTeX for editing
+
+(defun emacs-fast/latex-mode-hook ()
+  "Settings for LaTeX mode."
+  (defvar whitespace-line-column)
+  (setq fill-column 90)
+  (setq whitespace-line-column 90)
+  (setq-local company-backends emacs-fast/tex-mode-backends)
+  (rainbow-delimiters-mode-enable)
+  (visual-line-mode 1)
+  (latex-extra-mode)
+  (auto-fill-mode 1)
+  (company-mode 1)
+  (nlinum-mode 1)
+  (turn-on-reftex)
+  (prettify-symbols-mode)
+  (whitespace-mode)
+  (auctex-latexmk-setup)
+  (TeX-source-correlate-mode)
+  (diff-hl-mode))
+
 (use-package latex
   :ensure auctex
   :commands (TeX-mode LaTeX-mode LaTeX-mode-hook math-minor-mode)
@@ -195,7 +208,8 @@
   :config
   (emacs-fast/add-cref-support))
 
-;;;; ---------------- Other packages to manage LaTeX related stuff -----------------------
+
+;;;; Other packages to manage LaTeX related stuff.
 
 (use-package helm-bibtex
   :ensure t
@@ -207,7 +221,8 @@
   :ensure t
   :commands (ebib))
 
-;; ----------------- Functions for useful transformation -------------------------------
+
+;; Functions for useful transformation.
 
 ;; Convert from Subfigure to subcaption package.
 (defun femacs/subfigure-to-subcaption ()
