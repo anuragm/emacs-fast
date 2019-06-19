@@ -41,7 +41,7 @@
 ;; Display form feed character (^L) as a line.
 (use-package page-break-lines
   :ensure t
-  :delight
+  :diminish page-break-lines-mode
   :commands (page-break-lines-mode))
 
 ;; CAUTION : Set variables first before loading modes.
