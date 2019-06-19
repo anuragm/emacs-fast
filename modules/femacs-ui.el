@@ -114,6 +114,7 @@ multiple usable themes."
 (use-package all-the-icons
   :ensure t
   :demand t
+  :if window-system
   :config
   (unless (member "all-the-icons" (font-family-list))
     (all-the-icons-install-fonts t)))
@@ -121,14 +122,17 @@ multiple usable themes."
 (use-package doom-modeline
   :ensure t
   :custom
-  (doom-modeline-icon t)                  ; Show Icons
+  (doom-modeline-icon nil)                ; Turn off icons by default.
   (doom-modeline-minor-modes nil)         ; Minor modes
   (doom-modeline-env-version nil)         ; Environment details
   (doom-modeline-buffer-file-name-style 'truncate-with-project) ; Truncate file names
   (doom-modeline-buffer-encoding nil)     ; Buffer encoding
   (doom-modeline-checker-simple-format t) ; Single number for errors/warnings
   :hook
-  (after-init . doom-modeline-mode))
+  (after-init . doom-modeline-mode)
+  :config
+  (when (display-graphic-p)               ; Show icons on window systems.
+    (setq doom-modeline-icon t)))
 
 
 ;; Other niceties
