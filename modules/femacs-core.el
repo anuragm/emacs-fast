@@ -138,7 +138,10 @@ buffer is not visiting a file."
   (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
   (recentf-mode 1)
-  (run-at-time nil (* 30 60) 'recentf-save-list)) ; Save recent list every 30 minutes.
+  (run-at-time nil (* 30 60 ) ; Save recent list every 30 minutes.
+               (lambda ()
+                 (let ((inhibit-message t)) ; Suppress save message.
+                   (recentf-save-list)))))
 
 ;; Keep recent list of commands persistent across sessions
 (defvar savehist-additional-variables)
