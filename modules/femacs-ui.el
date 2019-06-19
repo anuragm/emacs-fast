@@ -38,6 +38,7 @@
 
 ;;; Code:
 
+
 ;; Remove various cruft from UI.
 
 ;; Users are encouraged to disable these cruft by using system configuration. Example,
@@ -45,7 +46,6 @@
 ;; and same can be done on MaxOS by the command
 ;; defaults write org.gnu.Emacs ToolBar -string no
 ;; defaults write org.gnu.Emacs ScrollBar -string no
-
 (when (display-graphic-p)
   (when tool-bar-mode
     (tool-bar-mode -1))
@@ -60,6 +60,9 @@
 
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
+
+
+;; Window management
 
 ;;Use shift-<left/right/up/down> to change windows
 (when (fboundp 'windmove-default-keybindings)
@@ -77,6 +80,9 @@
         (unless (memq this-command
                       '(isearch-abort abort-recursive-edit exit-minibuffer keyboard-quit ))
           (ding))))
+
+
+;; Theming
 
 ;; Add user specified theme.
 (defcustom emacs-fast/theme '(material-theme . material)
@@ -104,20 +110,28 @@ multiple usable themes."
    (car emacs-fast/theme)
    (cdr emacs-fast/theme)))
 
-(defvar powerline-default-separator)
-(use-package spaceline
+;; Modeline
+(use-package all-the-icons
   :ensure t
-  :commands (spaceline-emacs-theme spaceline-helm-mode)
-  :init
-  (require 'spaceline-config)
-  (setq powerline-default-separator 'wave)
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified)
-  (setq spaceline-buffer-modified-p nil)
-  (if (and (eq system-type 'darwin) (not (emacs-mac-p)))
-      (setq powerline-image-apple-rgb t))
+  :demand t
   :config
-  (spaceline-emacs-theme)
-  (spaceline-helm-mode +1))
+  (unless (member "all-the-icons" (font-family-list))
+    (all-the-icons-install-fonts t)))
+
+(use-package doom-modeline
+  :ensure t
+  :custom
+  (doom-modeline-icon t)                  ; Show Icons
+  (doom-modeline-minor-modes nil)         ; Minor modes
+  (doom-modeline-env-version nil)         ; Environment details
+  (doom-modeline-buffer-file-name-style 'truncate-with-project) ; Truncate file names
+  (doom-modeline-buffer-encoding nil)     ; Buffer encoding
+  (doom-modeline-checker-simple-format t) ; Single number for errors/warnings
+  :hook
+  (after-init . doom-modeline-mode))
+
+
+;; Other niceties
 
 ;; Show key config for shortcuts.
 (defvar which-key-idle-delay)
