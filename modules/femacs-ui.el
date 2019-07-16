@@ -119,11 +119,17 @@ multiple usable themes."
   (unless (member "all-the-icons" (font-family-list))
     (all-the-icons-install-fonts t)))
 
+(use-package minions
+  :ensure t
+  :custom
+  (minions-mode-line-lighter (all-the-icons-faicon "clipboard" :v-adjust 0 :height 0.83))
+  :commands minions-mode)
+
 (use-package doom-modeline
   :ensure t
   :custom
   (doom-modeline-icon nil)                ; Turn off icons by default.
-  (doom-modeline-minor-modes nil)         ; Minor modes
+  (doom-modeline-minor-modes t)           ; Minor modes
   (doom-modeline-env-version nil)         ; Environment details
   (doom-modeline-buffer-file-name-style 'truncate-with-project) ; Truncate file names
   (doom-modeline-buffer-encoding nil)     ; Buffer encoding
@@ -131,6 +137,9 @@ multiple usable themes."
   :hook
   (after-init . doom-modeline-mode)
   :config
+  (set-face-attribute
+   'doom-modeline-panel nil :inverse-video t)
+  (minions-mode 1)                        ; Minion mode for minor modes.
   (when (display-graphic-p)               ; Show icons on window systems.
     (setq doom-modeline-icon t)))
 
