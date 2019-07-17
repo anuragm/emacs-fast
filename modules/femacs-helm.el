@@ -49,7 +49,14 @@
          ("M-y"       . helm-show-kill-ring)
          ("M-x"       . helm-M-x)
          ("C-c f"     . helm-recentf)
-         ("C-c h"     . helm-command-prefix))
+         ("C-c h"     . helm-command-prefix)
+         :map helm-map
+         ("<left>"  . helm-previous-source)
+         ("<right>" . helm-next-source))
+  :custom
+  (helm-ff-lynx-style-map t)       ; Use left/right for navigation in helm-files
+  (helm-imenu-lynx-style-map t)    ; Use left/right for navigation in helm-imenu
+  (helm-semantic-lynx-style-map t) ; Use left/right for navigation in helm-semantic
   :init
   (progn
     (setq helm-split-window-inside-p t) ; Split in current window
