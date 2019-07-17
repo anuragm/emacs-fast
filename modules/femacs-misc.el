@@ -44,9 +44,17 @@
   (file-name-as-directory
    (expand-file-name "private/persistent-scratch" femacs-dir))
   "Location for saving persistent scratch files.")
-(unless (file-directory-p femacs/persistent-scratch-dir)
-  (make-directory femacs/persistent-scratch-dir))
+(make-directory femacs/persistent-scratch-dir t)
 
+(defvar femacs/persistent-scratch-backup-dir
+  (file-name-as-directory
+   (expand-file-name "backup" femacs/persistent-scratch-dir))
+  "Location for saving backups of persistent scratch file.")
+(make-directory femacs/persistent-scratch-backup-dir t)
+
+;; Auto save persistent scratch every 30 seconds
+;; Create new backup every 12 hours and whenever Emacs starts
+;; Delete backups older than 7 days
 (use-package persistent-scratch
   :ensure t
   :commands
@@ -55,8 +63,12 @@
   (setq persistent-scratch-autosave-interval 30)
   (setq persistent-scratch-save-file
         (expand-file-name "last-scratch" femacs/persistent-scratch-dir))
+  (setq persistent-scratch-backup-directory femacs/persistent-scratch-backup-dir)
   :config
-  (persistent-scratch-autosave-mode +1))
+  (persistent-scratch-autosave-mode +1)
+  (run-with-timer 20 (* 12 3600) 'persistent-scratch-new-backup)
+  (setq persistent-scratch-backup-filter
+        (persistent-scratch-keep-backups-not-older-than (* 7 86400))))
 
 (provide 'femacs-misc)
 ;;; femacs-misc.el ends here
