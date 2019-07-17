@@ -37,6 +37,8 @@
 
 ;;; Code:
 
+(defvar whitespace-line-column)
+(defvar c-basic-offset)
 (defun femacs/csharp-mode-hook ()
   "Custom hook for C# mode."
   (run-hooks 'prog-mode-hook)

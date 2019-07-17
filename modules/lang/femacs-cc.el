@@ -50,23 +50,20 @@
              :url "http://hg.code.sf.net/p/cc-mode/cc-mode")))
 
 ;; Use Irony mode for auto-completion of code and header files.
-(defvar custom-irony-directory
-  (file-name-as-directory (expand-file-name "private/irony" femacs-dir))
+(defvar femacs/custom-irony-directory
+  (file-name-as-directory (expand-file-name "private/irony" user-emacs-directory))
   "Custom directory location for Irony files.")
 
 (use-package irony
   :ensure t
   :commands (irony-mode company-irony irony-mode-hook)
+  :custom
+  (irony-server-install-prefix femacs/custom-irony-directory)
+  (irony-user-dir femacs/custom-irony-directory)
+  :bind (:map irony-mode-map
+         ([remap completion-at-point] . irony-completion-at-point-async)
+         ([remap complete-symbol]     . irony-completion-at-point-async))
   :init
-  ;;Configure compilation options for irony mode
-  (setq irony-server-install-prefix custom-irony-directory)
-  (setq irony-user-dir custom-irony-directory)
-  (add-hook 'irony-mode-hook
-            '(lambda ()
-               (define-key irony-mode-map [remap completion-at-point]
-                 'irony-completion-at-point-async)
-               (define-key irony-mode-map [remap complete-symbol]
-                 'irony-completion-at-point-async)))
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   :config
   (diminish 'irony-mode "Ⓘ"))

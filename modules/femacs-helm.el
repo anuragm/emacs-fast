@@ -37,12 +37,10 @@
 ;; SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ;;; Code:
-(defvar helm-ff-candidate-number-limit)
-(defvar helm-ff-file-name-history-use-recentf)
-(defvar helm-net-prefer-curl)
 (use-package helm
   :ensure t
   :diminish helm-mode
+  :defines helm-net-prefer-curl
   :bind (("C-x b"     . helm-mini)
          ("C-x C-b"   . helm-buffers-list)
          ("C-x C-f"   . helm-find-files)
@@ -57,15 +55,14 @@
   (helm-ff-lynx-style-map t)       ; Use left/right for navigation in helm-files
   (helm-imenu-lynx-style-map t)    ; Use left/right for navigation in helm-imenu
   (helm-semantic-lynx-style-map t) ; Use left/right for navigation in helm-semantic
+  (helm-split-window-inside-p t)   ; Split in current window
+  (helm-move-to-line-cycle-in-source t)
+  (helm-ff-candidate-number-limit 500)      ; Limit candidates.
+  (helm-ff-file-name-history-use-recentf t) ; Use standard file history.
   :init
-  (progn
-    (setq helm-split-window-inside-p t) ; Split in current window
-    (setq helm-move-to-line-cycle-in-source t)
-    (setq helm-ff-candidate-number-limit 500) ; Limit candidates.
-    (setq helm-ff-file-name-history-use-recentf t) ; Use standard file history.
-    (when (executable-find "curl")
-      (setq helm-net-prefer-curl t))
-    (global-unset-key (kbd "C-x c"))) ; Remove the default key prefix.
+  (when (executable-find "curl")
+    (setq helm-net-prefer-curl t))
+  (global-unset-key (kbd "C-x c")) ; Remove the default key prefix.
   :config
   (progn
     (require 'helm-config)

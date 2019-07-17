@@ -44,6 +44,7 @@
 (setq mac-function-modifier 'hyper)
 (setq mac-control-modifier  'control)
 
+
 ;; Use dark theme for title bar. This works only on Emacs 26.1 and above.
 (when (not (version< emacs-version "26.1"))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
@@ -54,6 +55,7 @@
   "Return t if we are running emacs-mac port, return nil otherwise."
   (featurep 'mac))
 
+
 ;; Read path variable from command line, if not manually customized.
 (defcustom emacs-fast/exec-path nil
   "Custom exec path for Emacs.
@@ -71,10 +73,12 @@ configuration.  Manually specifying the path will make the process faster."
   (use-package exec-path-from-shell
     :ensure t
     :demand
+    :functions exec-path-from-shell-initialize
     :config
     (when (memq window-system '(mac ns))
       (exec-path-from-shell-initialize))))
 
+
 ;; Don't delete directly, use Trash
 (setq delete-by-moving-to-trash t)
 (defun system-move-file-to-trash (file)
@@ -85,9 +89,11 @@ When using Homebrew, install it using \"brew install trash\"."
 ;; Use system browser
 (setq browse-url-browser-function 'browse-url-default-macosx-browser)
 
+
 ;; Some helper functions.
 (use-package dired-x
-  :ensure nil)
+  :ensure nil
+  :commands dired-smart-shell-command)
 
 (defun finder-here ()
   "Opens current buffer's directory in Finder."
@@ -99,11 +105,17 @@ When using Homebrew, install it using \"brew install trash\"."
   (interactive)
   (dired-smart-shell-command "open -a iTerm \"$PWD\"" nil nil))
 
+
 ;; Use gls for dired mode if installed.
 (when (executable-find "gls")
   (setq insert-directory-program (executable-find "gls")))
 
 ;; Use Skim.app to view PDFs when available.
+(defvar TeX-view-program-list)
+(defvar TeX-view-program-selection)
+(defvar TeX-view-program-selection)
+(defvar helm-locate-command)
+
 (with-eval-after-load "tex"
   (when (file-exists-p "/Applications/Skim.app")
     ;; Add Skim as a PDF viewer to AucTeX list.

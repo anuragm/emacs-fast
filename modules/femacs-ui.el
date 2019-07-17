@@ -61,6 +61,9 @@
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+;; Add the current working directory to frame title.
+(setq frame-title-format '((:eval default-directory)))
+
 
 ;; Window management
 
@@ -110,10 +113,12 @@ multiple usable themes."
    (car emacs-fast/theme)
    (cdr emacs-fast/theme)))
 
+
 ;; Modeline
 (use-package all-the-icons
   :ensure t
   :demand t
+  :commands all-the-icons-faicon
   :if window-system
   :config
   (unless (member "all-the-icons" (font-family-list))
@@ -147,12 +152,11 @@ multiple usable themes."
 ;; Other niceties
 
 ;; Show key config for shortcuts.
-(defvar which-key-idle-delay)
 (use-package which-key
   :ensure t
   :diminish which-key-mode
-  :init
-  (setq which-key-idle-delay 0.5)
+  :custom
+  (which-key-idle-delay 0.5)
   :config (which-key-mode))
 
 ;; Add Beacon mode for highlighted cursor

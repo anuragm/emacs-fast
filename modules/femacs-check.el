@@ -58,7 +58,6 @@
 
 (use-package flyspell
   :ensure nil
-  :defer t
   :commands (flyspell-correct-word)
   :init
   (add-hook 'text-mode-hook 'flyspell-mode)
@@ -84,6 +83,8 @@
   :ensure t
   :pin melpa-stable
   :commands (flycheck-mode)
+  :custom
+  (flycheck-emacs-lisp-load-path 'inherit)   ; Let flycheck.el see loaded paths.
   :defer t
   :config
   (diminish 'flycheck-mode "Ⓕ"))

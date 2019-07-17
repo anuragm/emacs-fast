@@ -43,17 +43,16 @@
   :ensure t
   :pin melpa-stable
   :bind ("C-x g" . magit-status)
+  :custom
+  (magit-delete-by-moving-to-trash t)
+  (magit-diff-refine-hunk t)
+  (magit-diff-highlight-hunk-body nil)
+  (magit-section-visibility-indicator nil)
   :init
-  (progn
-    (add-hook 'git-commit-setup-hook 'whitespace-mode)
-    (setq magit-delete-by-moving-to-trash t)
-    (setq magit-diff-refine-hunk t)
-    (setq magit-diff-highlight-hunk-body nil)
-    (setq magit-section-visibility-indicator nil))
+  (add-hook 'git-commit-setup-hook 'whitespace-mode)
   :config
-  (progn
-    (magit-auto-revert-mode)
-    (diminish 'auto-revert-mode)))
+  (magit-auto-revert-mode)
+  (diminish 'auto-revert-mode))
 
 ;; And git modes
 (use-package gitconfig-mode
@@ -88,6 +87,14 @@ _p_: previous  _n_: next _b_: blame _c_: show commit
   :ensure t
   :commands (helm-ls-git-ls)
   :bind ("C-x C-d" . helm-browse-project))
+
+;; Show diffs in fringe
+(use-package diff-hl
+  :ensure t
+  :commands (diff-hl-mode diff-hl-dired-mode-unless-remote diff-hl-magit-post-refresh)
+  :init
+  (add-hook 'prog-mode-hook 'diff-hl-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 (provide 'femacs-scm)
 ;;; femacs-scm.el ends here

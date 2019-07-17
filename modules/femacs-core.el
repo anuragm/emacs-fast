@@ -38,6 +38,7 @@
 
 ;;; Code:
 
+
 ;; Add a group for custom user options.
 (defgroup emacs-fast
   nil
@@ -51,6 +52,10 @@
   (interactive "r\nsAlign regexp: ")
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
+
+
+
+;; Useful functions
 
 (defun rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
@@ -117,23 +122,21 @@ buffer is not visiting a file."
     (set-buffer-file-coding-system 'undecided-unix)
     (save-buffer))
 
+
 ;; Useful misc keybindings
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
-;; Save a recent list of files, always
-(defvar recentf-max-menu-items)
-(defvar recentf-max-saved-items)
-(defvar recentf-auto-cleanup)
-(defvar recentf-save-file)
-
+
+;; Save recent list of files
 (use-package recentf
   :ensure nil
   :defer 1
-  :init
-  (setq recentf-max-menu-items 25
-        recentf-max-saved-items 500
-        recentf-auto-cleanup 'never
-        recentf-save-file (concat user-emacs-directory "private/recentf"))
+  :commands (recentf-save-list)
+  :custom
+  (recentf-max-menu-items 25)
+  (recentf-max-saved-items 500)
+  (recentf-auto-cleanup 'never)
+  (recentf-save-file (concat user-emacs-directory "private/recentf"))
   :config
   (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
@@ -144,24 +147,22 @@ buffer is not visiting a file."
                    (recentf-save-list)))))
 
 ;; Keep recent list of commands persistent across sessions
-(defvar savehist-additional-variables)
-(defvar savehist-autosave-interval)
-(defvar savehist-file)
 (use-package savehist
   :ensure nil
   :defer 2
-  :init
-  (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
-        savehist-autosave-interval 60
-        savehist-file (concat user-emacs-directory "private/history"))
+  :custom
+  (savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+  (savehist-autosave-interval 60)
+  (savehist-file (concat user-emacs-directory "private/history"))
   :config
   (savehist-mode 1))
 
-;; Let flycheck.el see loaded paths.
-(setq-default flycheck-emacs-lisp-load-path 'inherit)
-
-;; Don't warn about the commands
+
+;; Don't warn about these commands
 (put 'erase-buffer 'disabled nil)
+
+
+;; Backup and auto save
 
 ;; Backup options
 (setq make-backup-files    t ; Enable file backup
@@ -176,12 +177,16 @@ buffer is not visiting a file."
       `(("." . ,(concat user-emacs-directory "private/backups"))))
 
 ;; Auto file save options
+(defvar tramp-auto-save-directory)
 (setq auto-save-file-name-transforms ; Location of auto save files.
       `((".*" ,temporary-file-directory t))
       auto-save-list-file-prefix     ; Location of session recovery file
       (concat user-emacs-directory "private/auto-save-list/auto-save-list.saves-")
-      tramp-auto-save-directory ;Location of tramp auto-save files.
+      tramp-auto-save-directory      ; Location of tramp auto-save files.
       (concat user-emacs-directory "private/auto-save-list"))
+
+
+;; File Locations
 
 ;; Move tramp persistent file.
 (setq-default tramp-persistency-file-name

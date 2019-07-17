@@ -38,6 +38,11 @@
 
 ;;; Code:
 
+(defvar whitespace-line-column)
+(defvar company-backends)
+(defvar femacs-lang-dir)
+(defvar company-dabbrev-code-modes)
+
 (defun matlab-mode-features()
   "Custom features for MATLAB mode."
   ;Run prog-mode hook since MATLAB mode does not derives from it.
@@ -61,6 +66,7 @@
   :ensure matlab-mode
   :commands
   (matlab-mode matlab-shell matlab-mode-common-setup mlint-minor-mode)
+  :functions (matlab-functions-have-end-minor-mode)
   :mode ("\\.m\\'" . matlab-mode)
   :init
   (setq matlab-shell-command-switches '("-nodesktop" "-nosplash"))

@@ -38,12 +38,8 @@
 
 ;;; Code:
 
-;; Use rainbow delimiter mode
-(use-package rainbow-delimiters
-  :ensure t
-  :commands (rainbow-delimiters-mode)
-  :init
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+;; Line numbers
 
 ;; Add additional space to (n)Linum mode in terminal.
 (defun linum-format-func (line)
@@ -73,6 +69,16 @@
   (defalias 'global-nlinum-mode 'global-display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
+
+;; Formatting modes
+
+;; Use rainbow delimiter mode
+(use-package rainbow-delimiters
+  :ensure t
+  :commands (rainbow-delimiters-mode)
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 ;;Whitespace mode.
 (use-package whitespace
   :ensure nil
@@ -82,46 +88,6 @@
   :config
   (add-hook 'before-save-hook 'whitespace-cleanup)
   (diminish 'whitespace-mode "ⓦ"))
-
-;; Show matching braces and parenthesis.
-(add-hook 'prog-mode-hook 'show-paren-mode)
-
-;; Show diffs in fringe
-(use-package diff-hl
-  :ensure t
-  :commands (diff-hl-mode diff-hl-dired-mode-unless-remote diff-hl-magit-post-refresh)
-  :init
-  (add-hook 'prog-mode-hook 'diff-hl-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
-
-;; Add the current working directory to frame title.
-(setq frame-title-format '((:eval default-directory)))
-
-;; Use CUA mode for rectangular sections.
-(setq cua-enable-cua-keys nil)
-(cua-mode 1)
-
-;; When in prettify-symbol-mode, expand when point is at the symbol.
-(setq prettify-symbols-unprettify-at-point 'right-edge)
-
-;; Integrate ANZU, which gives number of total matches.
-(use-package anzu
-  :ensure t
-  :diminish anzu-mode
-  :defer 1
-  :init
-  (setq anzu-cons-mode-line-p nil) ; Let Spaceline show anzu count.
-  :commands (anzu-query-replace anzu-mode)
-  :bind (("M-%" . anzu-query-replace)
-         ("C-M-%" . anzu-query-replace-regexp))
-  :config
-  (global-anzu-mode))
-
-;; Add Ace-jump mode for quick navigation.
-(use-package ace-jump-mode
-  :ensure t
-  :commands (ace-jump-mode)
-  :bind (("C-c SPC" . ace-jump-mode)))
 
 ;; Use dtrt-indent to auto-detect indentation style in a file for all programming
 ;; languages.
@@ -134,6 +100,25 @@
   :config
   (diminish 'dtrt-indent-mode))
 
+;; Show matching braces and parenthesis.
+(add-hook 'prog-mode-hook 'show-paren-mode)
+
+;; Use CUA mode for rectangular sections.
+(setq cua-enable-cua-keys nil)
+(cua-mode 1)
+
+;; When in prettify-symbol-mode, expand when point is at the symbol.
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+
+
+;; Navigation
+
+;; Add Ace-jump mode for quick navigation.
+(use-package ace-jump-mode
+  :ensure t
+  :commands (ace-jump-mode)
+  :bind (("C-c SPC" . ace-jump-mode)))
+
 ;; Use Move buffer to swap windows.
 (use-package buffer-move
   :ensure t
@@ -143,6 +128,9 @@
          ("<C-s-left>" . buf-move-left)
          ("<C-s-right>" . buf-move-right)))
 
+
+;; Mode line
+
 ;; Add Word count minor mode to text modes
 (use-package wc-mode
   :ensure t
@@ -151,6 +139,19 @@
    (lambda ()
      (when (string= (file-name-extension buffer-file-name) "txt")
        (wc-mode)))))
+
+;; Integrate ANZU, which gives number of total matches.
+(use-package anzu
+  :ensure t
+  :diminish anzu-mode
+  :defer 1
+  :init
+  (setq anzu-cons-mode-line-p nil) ; Let Doomline show Anzu count.
+  :commands (anzu-query-replace anzu-mode)
+  :bind (("M-%" . anzu-query-replace)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :config
+  (global-anzu-mode))
 
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here

@@ -125,10 +125,6 @@
       '("cpageref" TeX-arg-ref)
       '("Cpageref" TeX-arg-ref)))))
 
-
-;; Add additional keyword highlighting.
-;; Taken from tex.stackexchange.com/questions/85849/
-
 (defvar font-latex-match-reference-keywords)
 (setq font-latex-match-reference-keywords
       '(
@@ -142,6 +138,11 @@
         ("crefrange" "{")
         ("Crefrange" "{")
         ("labelcref" "{")))
+
+
+;; Add additional keyword highlighting.
+;; Taken from tex.stackexchange.com/questions/85849/
+
 (defvar font-latex-match-textual-keywords)
 (setq font-latex-match-textual-keywords
       '(
@@ -194,16 +195,18 @@
               ("`s" . LaTeX-section)
               ("`r" . reftex-reference)
               ("`c" . reftex-citation))
+  :functions (TeX-add-style-hook TeX-add-symbols TeX-source-correlate-mode)
+  :custom
+  (TeX-auto-save t)
+  (TeX-parse-self t)
+  (TeX-master nil)
+  (reftex-plug-into-AUCTeX t)
+  (TeX-PDF-mode t)
+  (TeX-electric-sub-and-superscript t)
+  (TeX-insert-braces nil)
+  (TeX-electric-math '("$" . "$"))
+  (TeX-auto-local ".auto") ;; Store parsed information in .auto directory.
   :init
-  (setq TeX-auto-save t)
-  (setq TeX-parse-self t)
-  (setq-default TeX-master nil)
-  (setq reftex-plug-into-AUCTeX t)
-  (setq TeX-PDF-mode t)
-  (setq TeX-electric-sub-and-superscript t)
-  (setq TeX-insert-braces nil)
-  (setq TeX-electric-math '("$" . "$"))
-  (setq TeX-auto-local ".auto") ;; Store parsed information in .auto directory.
   (add-hook 'LaTeX-mode-hook 'emacs-fast/latex-mode-hook)
   :config
   (emacs-fast/add-cref-support))

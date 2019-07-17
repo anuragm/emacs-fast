@@ -43,21 +43,16 @@
 ;;; Code:
 
 ;; Company, an auto-completion framework awesome!
-(defvar company-dabbrev-code-ignore-case)
-(defvar company-dabbrev-ignore-case)
-(defvar company-dabbrev-downcase)
 (use-package company
   :ensure t
   :commands (company-mode company-complete)
   :defer t
-  :init
-  (progn
-    (setq company-dabbrev-ignore-case nil)
-    (setq company-dabbrev-code-ignore-case nil)
-    (setq company-dabbrev-downcase nil))
+  :custom
+  (company-dabbrev-ignore-case nil)
+  (company-dabbrev-code-ignore-case nil)
+  (company-dabbrev-downcase nil)
   :config
-  (progn
-    (diminish 'company-mode "ⓒ")))
+  (diminish 'company-mode "ⓒ"))
 
 ;; Helm company, using helm for auto-complete suggestions
 (use-package helm-company
