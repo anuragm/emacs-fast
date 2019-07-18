@@ -78,9 +78,10 @@
 
 (use-package yasnippet
   :ensure t
-  :commands (yas-minor-mode yas-global-mode)
+  :commands (yas-minor-mode yas-global-mode yas-reload-all)
   :init
   (setq yas-snippet-dirs nil)
+  (push (concat user-emacs-directory "snippets") yas-snippet-dirs)
   (push (concat user-emacs-directory "private/snippets") yas-snippet-dirs)
   :config
   (yas-reload-all)

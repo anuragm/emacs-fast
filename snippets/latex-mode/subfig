@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: subfig
+# key: subfig
+# --
+\begin{subfigure}[${1:b}]{${2:0.45}\textwidth}
+\includegraphics[width=\textwidth]{plots/${3:fileName}.${4:pdf}}
+\caption{${5}}
+\end{subfigure}
+$0
