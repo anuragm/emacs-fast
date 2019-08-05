@@ -94,8 +94,8 @@
 (use-package dtrt-indent
   :ensure t
   :commands (dtrt-indent-mode)
+  :custom (dtrt-indent-active-mode-line-info nil)
   :init
-  (setq dtrt-indent-active-mode-line-info nil)
   (add-hook 'prog-mode-hook 'dtrt-indent-mode)
   :config
   (diminish 'dtrt-indent-mode))
@@ -104,8 +104,11 @@
 (add-hook 'prog-mode-hook 'show-paren-mode)
 
 ;; Use CUA mode for rectangular sections.
-(setq cua-enable-cua-keys nil)
-(cua-mode 1)
+(use-package cua-base
+  :ensure nil
+  :custom (cua-enable-cua-keys nil)
+  :init
+  (cua-mode 1))
 
 ;; When in prettify-symbol-mode, expand when point is at the symbol.
 (setq prettify-symbols-unprettify-at-point 'right-edge)
@@ -152,6 +155,14 @@
          ("C-M-%" . anzu-query-replace-regexp))
   :config
   (global-anzu-mode))
+
+
+;; EDiff customization
+(use-package ediff
+  :ensure nil
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain) ; Don't use new frame for Ediff
+  (ediff-split-window-function 'split-window-vertically))  ; Split vertically always
 
 (provide 'femacs-editor)
 ;;; femacs-editor.el ends here
