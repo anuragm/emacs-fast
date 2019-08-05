@@ -220,9 +220,10 @@
   :init
   (setq bibtex-completion-pdf-field "File"))
 
-(use-package ebib
+(when (version< "25.3" emacs-version)
+  (use-package ebib
   :ensure t
-  :commands (ebib))
+  :commands (ebib)))
 
 
 ;; Functions for useful transformation.
