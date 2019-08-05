@@ -53,6 +53,7 @@
 ;;    (org-open-file (org-org-export-to-org)))
 ;;  (add-hook 'org-export-before-parsing-hook 'orcp-citeproc))
 
+(defvar whitespace-line-column)
 (defun femacs/org-mode-hook ()
   "Custom hook for ORG MODE."
   (setq-local fill-column 95)
@@ -63,15 +64,19 @@
   :ensure t
   :mode (("\\.org$" . org-mode))
   :defer t
+  :custom
+  (org-id-locations-file (concat user-emacs-directory "private/org-id-locations"))
+  (org-src-tab-acts-natively t) ;; Indent naturally in code blocks
   :init
-  (setq org-src-tab-acts-natively t) ;; Indent naturally in code blocks
-  (add-hook 'org-mode-hook 'femacs/org-mode-hook)
-  :config
-  (add-to-list 'org-export-backends 'md)) ;; Add Markdown to export back ends.
+  (add-hook 'org-mode-hook 'femacs/org-mode-hook))
 
 (use-package ox-slack ;; Add slack exporter for Org mode.
   :quelpa (ox-slack :fetcher github :repo "titaniumbones/ox-slack")
-  :requires org)
+  :after org)
+
+(use-package ox-gfm
+  :ensure t
+  :after org)
 
 (provide 'femacs-org)
 ;;; femacs-org.el ends here
