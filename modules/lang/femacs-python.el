@@ -37,22 +37,17 @@
 
 ;;; Code:
 
-(defun femacs/ein-mode-hook()
-  "Custom setup for EIN mode."
-  (setq-local fill-column 90)
-  (auto-fill-mode)
-  (whitespace-mode))
-
-;; Add iPython support
+;; Add iPython support from http://millejoh.github.io/emacs-ipython-notebook/
 ;; Ensure that iPython and Jupyter binaries are in Emacs path.
 (use-package ein
   :ensure t
+  :pin melpa-stable
   :diminish ein:notebook-mode
-  :init
-  (setq ein:completion-backend 'ein:use-company-backend)
-  (add-hook 'ein:notebook-multilang-mode-hook #'femacs/ein-mode-hook)
   :commands
-  (ein:jupyter-server-start ein:notebooklist-login))
+  (ein:jupyter-server-start ein:notebooklist-login ein:login)
+  :config
+  (require 'ein-notebook)
+  (require 'ein-subpackages))
 
 (defun femacs/python-mode-hook()
   "Custom bindings for python mode."
