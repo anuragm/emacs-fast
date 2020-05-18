@@ -144,5 +144,8 @@
 ;; Maximize the initial frame.
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;;Inhibit startup screen
+(setq-default inhibit-startup-screen t)
+
 (provide 'init)
 ;;; init.el ends here
