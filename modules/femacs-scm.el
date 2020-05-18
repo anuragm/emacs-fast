@@ -54,6 +54,26 @@
   (magit-auto-revert-mode)
   (diminish 'auto-revert-mode))
 
+;; Manage identities using git-identities
+(use-package git-identity
+  :ensure t
+  :after magit
+  :config
+  (git-identity-magit-mode 1)
+  ;; Bind I to git-identity-info in magit-status
+  (define-key magit-status-mode-map (kbd "I") 'git-identity-info)
+  :custom
+  ;; Warn if the global identity setting violates your policy
+  (git-identity-verify t)
+  ;; The default user name
+  (git-identity-default-username "Anurag Mishra"))
+
+;; Set git-identity-list with my emails
+(setq git-identity-list
+      '(("anurag@mishra.xyz")
+        ("mishra.anurag07@gmail.com")
+        ("anurag.mishra@q-ctrl.com")))
+
 ;; And git modes
 (use-package gitconfig-mode
   :ensure t)
