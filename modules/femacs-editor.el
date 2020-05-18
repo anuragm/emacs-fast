@@ -86,8 +86,18 @@
   :init
   (setq whitespace-style '(face tabs empty trailing lines-tail))
   :config
-  (add-hook 'before-save-hook 'whitespace-cleanup)
   (diminish 'whitespace-mode "ⓦ"))
+
+;; Use separate whitespace cleanup mode. This mode cleans space iff the original files had
+;; no trailing whitespace, etc. This is handy when collaborating with other people.
+;; https://github.com/purcell/whitespace-cleanup-mode
+(use-package whitespace-cleanup-mode
+  :ensure t
+  :commands (whitespace-cleanup-mode global-whitespace-cleanup-mode)
+  :init
+  (global-whitespace-cleanup-mode)
+  :config
+  (diminish 'whitespace-cleanup-mode))
 
 ;; Use dtrt-indent to auto-detect indentation style in a file for all programming
 ;; languages.
