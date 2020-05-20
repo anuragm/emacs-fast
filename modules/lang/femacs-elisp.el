@@ -50,7 +50,6 @@
  '(lambda ()
     (unless (string= "*scratch*" (buffer-name))
       (setq-local fill-column 90)
-      (setq-local whitespace-line-column 90)
       (electric-pair-local-mode)
       (auto-fill-mode)
       (flycheck-mode 1)

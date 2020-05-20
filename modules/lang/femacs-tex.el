@@ -168,9 +168,7 @@
 
 (defun emacs-fast/latex-mode-hook ()
   "Settings for LaTeX mode."
-  (defvar whitespace-line-column)
   (setq fill-column 90)
-  (setq whitespace-line-column 90)
   (setq-local company-backends emacs-fast/tex-mode-backends)
   (rainbow-delimiters-mode-enable)
   (visual-line-mode 1)

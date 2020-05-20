@@ -53,11 +53,9 @@
 ;;    (org-open-file (org-org-export-to-org)))
 ;;  (add-hook 'org-export-before-parsing-hook 'orcp-citeproc))
 
-(defvar whitespace-line-column)
 (defun femacs/org-mode-hook ()
   "Custom hook for ORG MODE."
   (setq-local fill-column 95)
-  (setq-local whitespace-line-column 95)
   (auto-fill-mode))
 
 (use-package org

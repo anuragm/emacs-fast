@@ -79,12 +79,23 @@
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
-;;Whitespace mode.
+;; Whitespace mode.
 (use-package whitespace
   :ensure nil
   :commands (whitespace-mode)
   :init
   (setq whitespace-style '(face tabs empty trailing lines-tail))
+  (setq whitespace-line-column nil) ; Let white space follow fill-column
+  ; White space mode doesn't reset highlighting when variables are changed after loading
+  ; the mode. We want to reload the mode every time local variable change
+  ; after the mode is loaded, for eg, when a .dir-local.el file is used to specify
+  ; directory local variables. See emacs.stackexchange.com/questions/7743
+  (add-hook 'before-hack-local-variables-hook
+            (lambda()
+              (whitespace-mode -1)))
+  (add-hook 'hack-local-variables-hook
+            (lambda()
+              (whitespace-mode +1)))
   :config
   (diminish 'whitespace-mode "ⓦ"))
 

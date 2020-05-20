@@ -121,7 +121,6 @@
       (run-hooks 'prog-mode-hook) ; Run prog-mode hook since cc-mode does not derives from it.
       (setq-local company-backends femacs/cc-mode-backends)
       (setq-local fill-column 90)
-      (setq-local whitespace-line-column 90)
       (auto-fill-mode)
       (flycheck-mode 1)
       (yas-minor-mode 1)

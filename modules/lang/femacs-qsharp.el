@@ -41,7 +41,6 @@
 (defun femacs/qsharp-mode-hook ()
   "Custom hook for Q# mode."
   (setq-local fill-column 95)
-  (setq-local whitespace-line-column 95)
   (yas-minor-mode)
   (linum-mode))
 

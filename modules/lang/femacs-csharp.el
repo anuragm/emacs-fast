@@ -37,7 +37,6 @@
 
 ;;; Code:
 
-(defvar whitespace-line-column)
 (defvar c-basic-offset)
 (defun femacs/csharp-mode-hook ()
   "Custom hook for C# mode."
@@ -47,7 +46,6 @@
   (auto-fill-mode)
   (electric-pair-local-mode 1)
   (setq-local fill-column 90)
-  (setq-local whitespace-line-column 90)
   (setq-local c-basic-offset 2)) ;; Indent with two spaces.
 
 (use-package csharp-mode

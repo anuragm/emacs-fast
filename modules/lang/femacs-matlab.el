@@ -38,7 +38,6 @@
 
 ;;; Code:
 
-(defvar whitespace-line-column)
 (defvar company-backends)
 (defvar femacs-lang-dir)
 (defvar company-dabbrev-code-modes)
@@ -48,7 +47,6 @@
   ;Run prog-mode hook since MATLAB mode does not derives from it.
   (run-hooks 'prog-mode-hook) ;
   (setq-local fill-column 95)
-  (setq-local whitespace-line-column 95)
   (setq-local company-backends '(company-files (company-dabbrev-code company-gtags)))
   (matlab-functions-have-end-minor-mode)
   (company-mode t)
