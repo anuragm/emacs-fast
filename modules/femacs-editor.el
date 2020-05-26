@@ -92,10 +92,14 @@
   ; directory local variables. See emacs.stackexchange.com/questions/7743
   (add-hook 'before-hack-local-variables-hook
             (lambda()
-              (whitespace-mode -1)))
+              (when whitespace-mode
+                (whitespace-mode -1)
+                (defvar-local emacs-fast--reenable-whitespace-mode t))))
   (add-hook 'hack-local-variables-hook
             (lambda()
-              (whitespace-mode +1)))
+              (when (boundp 'emacs-fast--reenable-whitespace-mode)
+                (makunbound 'emacs-fast--reenable-whitespace-mode)
+                (whitespace-mode +1))))
   :config
   (diminish 'whitespace-mode "ⓦ"))
 
@@ -106,7 +110,7 @@
   :ensure t
   :commands (whitespace-cleanup-mode global-whitespace-cleanup-mode)
   :init
-  (global-whitespace-cleanup-mode)
+  (add-hook 'prog-mode-hook 'whitespace-cleanup-mode)
   :config
   (diminish 'whitespace-cleanup-mode))
 
