@@ -58,21 +58,18 @@
 (use-package git-identity
   :ensure t
   :after magit
-  :config
-  (git-identity-magit-mode 1)
-  ;; Bind I to git-identity-info in magit-status
-  (define-key magit-status-mode-map (kbd "I") 'git-identity-info)
   :custom
-  ;; Warn if the global identity setting violates your policy
-  (git-identity-verify t)
-  ;; The default user name
-  (git-identity-default-username "Anurag Mishra"))
-
-;; Set git-identity-list with my emails
-(setq git-identity-list
-      '(("anurag@mishra.xyz")
-        ("mishra.anurag07@gmail.com")
-        ("anurag.mishra@q-ctrl.com")))
+  (git-identity-verify t)  ;Warn if the global identity setting violates policy
+  (git-identity-default-username "Anurag Mishra")
+  :config
+  ;; Set git-identity-list with my emails
+  (require 'git-identity-magit)
+  (setq git-identity-list
+        '(("anurag@mishra.xyz")
+          ("mishra.anurag07@gmail.com")
+          ("anurag.mishra@q-ctrl.com")))
+  (git-identity-magit-mode 1)
+  (define-key magit-status-mode-map (kbd "I") 'git-identity-info))
 
 ;; And git modes
 (use-package gitconfig-mode
