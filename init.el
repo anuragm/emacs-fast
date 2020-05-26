@@ -43,7 +43,6 @@
 (setq gc-cons-threshold most-positive-fixnum)
 
 ;; Always prefer new version of code, compiled or not.
-;; Always load newest byte code
 (setq load-prefer-newer t)
 
 ;; Get the location of init.el. Rest of the paths flow from this.
@@ -138,7 +137,7 @@
 (require 'femacs-lang)
 
 ;;Restore garbage size and collect it on idle.
-(setq gc-cons-threshold (* 200 1024 1024)) ;200 MB
+(setq gc-cons-threshold (* 200 1024 1024)) ; 200 MB
 (run-with-idle-timer 10 t 'garbage-collect)
 
 ;; Maximize the initial frame.
