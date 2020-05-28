@@ -67,6 +67,10 @@
   :defer t
   :init
   (advice-add 'python-mode :before 'elpy-enable)
+  :config
+  ; Disable flymake and use flycheck mode.
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode)
   :diminish "")
 
 ;; Provide an customization option to set the virtualenvs WORKON_HOME directory.
