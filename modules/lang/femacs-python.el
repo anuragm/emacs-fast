@@ -69,5 +69,34 @@
   (advice-add 'python-mode :before 'elpy-enable)
   :diminish "")
 
+;; Provide an customization option to set the virtualenvs WORKON_HOME directory.
+(defcustom emacs-fast/workon-home nil
+  "The default WORKON directory for the `pyvenv-workon' command.
+
+The default WORKON directory for the `pyeven-workon' command is read from the
+$WORKON_HOME shell variable.  When set to automatic and WORKON_HOME variable is
+not inherited by Emacs, WORKON_HOME is set to the default Conda environemnt
+folder, if any."
+  :group 'emacs-fast
+  :type '(choice
+          (const :tag "Automatic" nil)
+          (directory :tag "Manual")))
+
+; If a location is specified, use it,
+; else find and set to default Conda environment
+; folder, if any.
+(if emacs-fast/workon-home
+    (setenv "WORKON_HOME" emacs-fast/workon-home)
+  (unless (getenv "WORKON_HOME")
+    (setenv "WORKON_HOME"
+            (when (executable-find "conda")
+              (require 'json)
+              (let* ((json-object-type 'hash-table)
+                     (json-array-type 'list)
+                     (json-key-type 'string)
+                     (data (json-read-from-string
+                            (shell-command-to-string "conda info --json 2> /dev/null"))))
+                (car (gethash "envs_dirs" data)))))))
+
 (provide 'femacs-python)
 ;;; femacs-python.el ends here
