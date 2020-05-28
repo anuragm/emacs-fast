@@ -70,7 +70,10 @@
   (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 
-;; Formatting modes
+;; Formatting modes and settings
+
+;; Set default fill-column to 80 instead of 70.
+(setq-default fill-column 80)
 
 ;; Use rainbow delimiter mode
 (use-package rainbow-delimiters
