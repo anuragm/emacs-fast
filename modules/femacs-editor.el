@@ -83,6 +83,7 @@
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 ;; Whitespace mode.
+(defvar emacs-fast--reenable-whitespace-mode)
 (use-package whitespace
   :ensure nil
   :commands (whitespace-mode)
@@ -97,11 +98,11 @@
             (lambda()
               (when whitespace-mode
                 (whitespace-mode -1)
-                (defvar-local emacs-fast--reenable-whitespace-mode t))))
+                (setq emacs-fast--reenable-whitespace-mode t))))
   (add-hook 'hack-local-variables-hook
             (lambda()
-              (when (boundp 'emacs-fast--reenable-whitespace-mode)
-                (makunbound 'emacs-fast--reenable-whitespace-mode)
+              (when emacs-fast--reenable-whitespace-mode
+                (setq emacs-fast--reenable-whitespace-mode nil)
                 (whitespace-mode +1))))
   :config
   (diminish 'whitespace-mode "ⓦ"))
