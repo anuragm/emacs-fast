@@ -56,7 +56,8 @@
 (defun femacs/org-mode-hook ()
   "Custom hook for ORG MODE."
   (setq-local fill-column 95)
-  (auto-fill-mode))
+  (auto-fill-mode)
+  (whitespace-cleanup-mode))
 
 (use-package org
   :ensure t
