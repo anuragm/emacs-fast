@@ -79,7 +79,9 @@ configuration.  Manually specifying the path will make the process faster."
       (exec-path-from-shell-initialize))))
 
 
-;; Don't delete directly, use Trash
+;; Don't delete directly, use Trash. Inform if 'trash' utility has not been installed.
+(unless (executable-find "trash")
+  (message "Please install `trash` utility using Homebrew, `brew install trash`"))
 (setq delete-by-moving-to-trash t)
 (defun system-move-file-to-trash (file)
   "Use \"trash\" to move FILE to the system trash.
