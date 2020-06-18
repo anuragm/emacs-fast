@@ -83,7 +83,7 @@
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 ;; Whitespace mode.
-(defvar emacs-fast--reenable-whitespace-mode)
+(defvar emacs-fast--reenable-whitespace-mode nil)
 (use-package whitespace
   :ensure nil
   :commands (whitespace-mode)
