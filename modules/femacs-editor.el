@@ -145,11 +145,11 @@
 
 ;; Navigation
 
-;; Add Ace-jump mode for quick navigation.
-(use-package ace-jump-mode
+;; Add Avy for quick navigation. https://github.com/abo-abo/avy
+(use-package avy
   :ensure t
-  :commands (ace-jump-mode)
-  :bind (("C-c SPC" . ace-jump-mode)))
+  :commands (avy-goto-char-2)
+  :bind (("C-c SPC" . avy-goto-char-2)))
 
 ;; Use Move buffer to swap windows.
 (use-package buffer-move
