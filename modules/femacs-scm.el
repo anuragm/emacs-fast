@@ -45,7 +45,7 @@
   :bind ("C-x g" . magit-status)
   :custom
   (magit-delete-by-moving-to-trash t)
-  (magit-diff-refine-hunk t)
+  (magit-diff-refine-hunk nil)
   (magit-diff-highlight-hunk-body nil)
   (magit-section-visibility-indicator nil)
   :init
