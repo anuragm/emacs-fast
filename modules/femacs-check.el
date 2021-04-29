@@ -81,7 +81,6 @@
 ;; Initialize flycheck mode for modes that need it.
 (use-package flycheck
   :ensure t
-  :pin melpa-stable
   :commands (flycheck-mode)
   :custom
   (flycheck-emacs-lisp-load-path 'inherit)   ; Let flycheck.el see loaded paths.
