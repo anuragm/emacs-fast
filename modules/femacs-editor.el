@@ -194,4 +194,14 @@
   (ediff-split-window-function 'split-window-vertically))  ; Split vertically always
 
 (provide 'femacs-editor)
+
+
+;; Code folding
+
+;; hideshow-org mode intelligently folds code with <TAB> key. We won't globally enable
+;; this mode, since not all languages might support it properly.
+(use-package hideshow-org
+  :ensure t
+  :commands (hs-org/minor-mode))
+
 ;;; femacs-editor.el ends here
