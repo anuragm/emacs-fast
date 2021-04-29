@@ -70,6 +70,7 @@
   :config
   ; Disable flymake and use flycheck mode.
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (setq flycheck-check-syntax-automatically '(mode-enabled save))
   (add-hook 'elpy-mode-hook 'flycheck-mode)
   :diminish "")
 
