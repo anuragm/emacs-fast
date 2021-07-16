@@ -1,6 +1,6 @@
 ;;; hydra-ibuffer.el --- Hydra IBuffer
 ;;
-;; Copyright © 2016-2019 Anurag Mishra
+;; Copyright © 2016-2021 Anurag Mishra
 ;;
 ;; Author: Anurag Mishra
 ;; URL: https://github.com/anuragm/emacs-fast
@@ -15,7 +15,7 @@
 
 ;;; License:
 
-;; Copyright (c) 2016-2019 Anurag Mishra
+;; Copyright (c) 2016-2021 Anurag Mishra
 
 ;; This code has been adapted from Hydra Wiki,
 ;; <https://github.com/abo-abo/hydra/wiki/Ibuffer>

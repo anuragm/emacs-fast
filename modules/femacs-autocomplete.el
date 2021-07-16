@@ -1,6 +1,6 @@
 ;;; femacs-autocomplete.el --- Adds auto-completion packages to EMacs
 ;;
-;; Copyright © 2016-2018 Anurag Mishra
+;; Copyright © 2016-2021 Anurag Mishra
 ;;
 ;; Author: Anurag Mishra
 ;; URL: https://github.com/anuragm/emacs-fast
@@ -19,7 +19,7 @@
 
 ;;; License:
 
-;; Copyright (c) 2016-2018 Anurag Mishra, MIT License.
+;; Copyright (c) 2016-2021 Anurag Mishra, MIT License.
 
 ;; Permission is hereby granted, free of charge, to any person obtaining
 ;; a copy of this software and associated documentation files (the

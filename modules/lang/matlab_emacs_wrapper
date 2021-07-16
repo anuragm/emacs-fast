@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2016 Anurag Mishra, MIT License.
+# Copyright (c) 2016-2021 Anurag Mishra, MIT License.
 
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,7 +21,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#Description of problem. http://archive.is/c6ZrR
+# Description of problem. http://archive.is/c6ZrR
 
 shell_stack_size=$(ulimit -s)
 
