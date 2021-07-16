@@ -77,5 +77,9 @@
   :ensure t
   :after org)
 
+(use-package ox-rst
+  :ensure t
+  :after org)
+
 (provide 'femacs-org)
 ;;; femacs-org.el ends here
