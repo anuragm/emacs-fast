@@ -61,6 +61,27 @@
 (use-package gitattributes-mode
   :ensure t)
 
+;; Use Magit forge to deal with Github pull requests, etc
+;; See https://magit.vc/manual/ghub/Storing-a-Token.html
+;;   To use forge, setup your Github username to gitconfig, such as
+;;   git config --global github.user USERNAME
+;;   Create an authentication token here
+;;   https://github.com/settings/tokens
+;;   And then save the results in ~/.authinfo as
+;;   machine api.github.com login USERNAME^forge password TOKEN
+(use-package forge
+  :ensure t
+  :after magit
+  :custom
+  (forge-database-file
+           (expand-file-name "private/forge-database.sqlite" femacs-dir)))
+
+;; Git-Link. Create the Github/forge URL for a buffer location.
+(use-package git-link
+  :ensure t
+  :after magit)
+
+
 ;; Add git time machine with its Hydra menu
 (use-package git-timemachine
   :ensure t
