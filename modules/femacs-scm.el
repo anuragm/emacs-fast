@@ -54,11 +54,7 @@
   (diminish 'auto-revert-mode))
 
 ;; And git modes
-(use-package gitconfig-mode
-  :ensure t)
-(use-package gitignore-mode
-  :ensure t)
-(use-package gitattributes-mode
+(use-package git-modes
   :ensure t)
 
 ;; Use Magit forge to deal with Github pull requests, etc
