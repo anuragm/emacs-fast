@@ -59,6 +59,7 @@
   (helm-move-to-line-cycle-in-source t)
   (helm-ff-candidate-number-limit 500)      ; Limit candidates.
   (helm-ff-file-name-history-use-recentf t) ; Use standard file history.
+  (helm-M-x-fuzzy-match nil)       ; Turn off fuzzy match for M-x
   :init
   (when (executable-find "curl")
     (setq helm-net-prefer-curl t))
@@ -66,10 +67,6 @@
   :config
   (progn
     (require 'helm-config)
-    (use-package helm-flx
-      :ensure t
-      :init
-      (helm-flx-mode +1))
     (helm-mode 1)))
 
 (provide 'femacs-helm)
