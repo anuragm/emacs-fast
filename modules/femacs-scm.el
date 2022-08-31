@@ -101,7 +101,7 @@ _p_: previous  _n_: next _b_: blame _c_: show commit
 ;; Add helm package for listing git files
 (use-package helm-ls-git
   :ensure t
-  :commands (helm-ls-git-ls)
+  :commands (helm-ls-git)
   :bind ("C-x C-d" . helm-browse-project))
 
 ;; Show diffs in fringe
