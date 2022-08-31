@@ -103,8 +103,8 @@ _p_: previous  _n_: next _b_: blame _c_: show commit
   :ensure t
   :commands (helm-ls-git)
   :bind ("C-x C-d" . helm-browse-project)
-  :config ; Do not overload git rebase mode
-  (defalias 'helm-ls-git-rebase-todo-mode 'git-rebase-mode))
+  :init ; Do not overload git rebase mode
+  (delete '("/git-rebase-todo$" . helm-ls-git-rebase-todo-mode) auto-mode-alist))
 
 ;; Show diffs in fringe
 (use-package diff-hl
