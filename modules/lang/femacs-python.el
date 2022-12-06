@@ -62,6 +62,11 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode)
   :diminish "")
 
+;; Elpy support black but lacks isort support
+(use-package python-isort
+  :ensure t
+  :after python)
+
 ;; Provide an customization option to set the virtualenvs WORKON_HOME directory.
 (defcustom emacs-fast/workon-home nil
   "The default WORKON directory for the `pyvenv-workon' command.
