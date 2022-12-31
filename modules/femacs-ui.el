@@ -56,7 +56,11 @@
 (blink-cursor-mode  -1)
 (setq read-file-name-completion-ignore-case t)
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Highlight the current line in all buffers
+(require 'hl-line)
 (global-hl-line-mode +1)
+(setq global-hl-line-sticky-flag t)
 
 ;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
