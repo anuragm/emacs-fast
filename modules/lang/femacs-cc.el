@@ -49,30 +49,6 @@
     (cc-mode :fetcher hg
              :url "http://hg.code.sf.net/p/cc-mode/cc-mode")))
 
-;; Use Irony mode for auto-completion of code and header files.
-(defvar femacs/custom-irony-directory
-  (file-name-as-directory (expand-file-name "private/irony" user-emacs-directory))
-  "Custom directory location for Irony files.")
-
-(use-package irony
-  :ensure t
-  :commands (irony-mode company-irony irony-mode-hook)
-  :custom
-  (irony-server-install-prefix femacs/custom-irony-directory)
-  (irony-user-dir femacs/custom-irony-directory)
-  :bind (:map irony-mode-map
-         ([remap completion-at-point] . irony-completion-at-point-async)
-         ([remap complete-symbol]     . irony-completion-at-point-async))
-  :init
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  :config
-  (diminish 'irony-mode "Ⓘ"))
-
-;; Use company-irony as company mode back-end.
-(use-package company-irony
-  :ensure t
-  :commands (company-irony))
-
 ;; Use company-c-headers to complete header files.
 (use-package company-c-headers
   :ensure t
@@ -89,26 +65,10 @@
   :config
   (diminish 'ggtags-mode "Ⓖ"))
 
-;; Use flycheck-irony in CC mode.
-(use-package flycheck-irony
-  :ensure t
-  :commands (flycheck-irony-setup)
-  :after (flycheck)
-  :init
-  (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-
-;; Set irony-eldoc for function signatures in mini-buffer.
-(use-package irony-eldoc
-  :quelpa (irony-eldoc :fetcher github :repo "josteink/irony-eldoc")
-  :commands (irony-eldoc)
-  :init
-  (add-hook 'irony-mode-hook 'irony-eldoc))
-
 ;; Keep company-dabbrev at end since it can always complete some stupid thing.
 (defvar femacs/cc-mode-backends
   '(company-files
     company-c-headers
-    company-irony
     company-gtags
     company-dabbrev-code)
   "Company back-ends to be used in CC mode.")
@@ -116,7 +76,7 @@
 ;; Set variables first before loading modes.
 (add-hook
  'c-mode-common-hook
- '(lambda ()
+ #'(lambda ()
     (when (derived-mode-p 'c-mode 'c++-mode)
       (run-hooks 'prog-mode-hook) ; Run prog-mode hook since cc-mode does not derives from it.
       (setq-local company-backends femacs/cc-mode-backends)
@@ -124,7 +84,6 @@
       (auto-fill-mode)
       (flycheck-mode 1)
       (yas-minor-mode 1)
-      (irony-mode 1)
       (ggtags-mode 1)
       (whitespace-mode)
       (company-mode)
