@@ -66,7 +66,7 @@
   (global-unset-key (kbd "C-x c")) ; Remove the default key prefix.
   :config
   (progn
-    (require 'helm-config)
+    (load "helm-autoloads" nil t)
     (helm-mode 1)))
 
 (provide 'femacs-helm)
