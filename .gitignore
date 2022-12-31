@@ -10,3 +10,4 @@ custom.el
 /irony/bin/irony-server
 request/
 url/
+/elpy/
