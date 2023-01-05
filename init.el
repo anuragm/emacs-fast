@@ -132,6 +132,7 @@
 (require 'femacs-helm-ag)
 (require 'femacs-misc)
 (require 'femacs-org)
+(require 'femacs-lsp)
 
 ;;Additional language support.
 (require 'femacs-lang)
