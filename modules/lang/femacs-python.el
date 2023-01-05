@@ -37,35 +37,27 @@
 
 ;;; Code:
 
-(defun femacs/python-mode-hook()
-  "Custom bindings for python mode."
-  (setq-local fill-column 90)
-  (electric-indent-mode)
-  (nlinum-mode)
-  (auto-fill-mode)
-  (company-mode)
-  (whitespace-mode)
-  (dtrt-indent-mode))
+;; Use LSP Pyright for IDE features.
+(use-package lsp-pyright
+  :ensure t)
 
-(add-hook 'python-mode-hook #'femacs/python-mode-hook)
+;; Shows indentation lines for code.
+(use-package highlight-indentation
+  :ensure t)
 
-;; Use ELPY for Python programming. https://github.com/jorgenschaefer/elpy
-(use-package elpy
-  :ensure t
-  :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable)
-  :config
-  ; Disable flymake and use flycheck mode.
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (setq flycheck-check-syntax-automatically '(mode-enabled save))
-  (add-hook 'elpy-mode-hook 'flycheck-mode)
-  :diminish "")
-
-;; Elpy support black but lacks isort support
+;; isort mode automatically sorts headers.
 (use-package python-isort
   :ensure t
   :after python)
+
+;; black to reformat python code
+(use-package python-black
+  :ensure t
+  :after python)
+
+;; Pyvenv mode to change virtual environments.
+(use-package pyvenv
+  :ensure t)
 
 ;; Provide an customization option to set the virtualenvs WORKON_HOME directory.
 (defcustom emacs-fast/workon-home nil
@@ -80,9 +72,8 @@ folder, if any."
           (const :tag "Automatic" nil)
           (directory :tag "Manual")))
 
-; If a location is specified, use it,
-; else find and set to default Conda environment
-; folder, if any.
+;; If a location is specified, use it, else find and set to default Conda environment
+;; folder, if any.
 (if emacs-fast/workon-home
     (setenv "WORKON_HOME" emacs-fast/workon-home)
   (unless (getenv "WORKON_HOME")
@@ -95,6 +86,23 @@ folder, if any."
                      (data (json-read-from-string
                             (shell-command-to-string "conda info --json 2> /dev/null"))))
                 (car (gethash "envs_dirs" data)))))))
+
+;; Setup the python mode.
+(defun femacs/python-mode-hook()
+  "Custom bindings for python mode."
+  (setq-local fill-column 90)
+  (electric-indent-mode)
+  (nlinum-mode)
+  ; (auto-fill-mode) Autofill is broken; linter can take care of long lines
+  (company-mode)
+  (whitespace-mode)
+  (dtrt-indent-mode)
+  (highlight-indentation-mode)
+  (python-isort-on-save-mode)
+  (require 'lsp-pyright)
+  (lsp))
+
+(add-hook 'python-mode-hook #'femacs/python-mode-hook)
 
 (provide 'femacs-python)
 ;;; femacs-python.el ends here
