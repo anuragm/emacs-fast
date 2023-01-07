@@ -37,28 +37,6 @@
 
 ;;; Code:
 
-;; Use LSP Pyright for IDE features.
-(use-package lsp-pyright
-  :ensure t)
-
-;; Shows indentation lines for code.
-(use-package highlight-indentation
-  :ensure t)
-
-;; isort mode automatically sorts headers.
-(use-package python-isort
-  :ensure t
-  :after python)
-
-;; black to reformat python code
-(use-package python-black
-  :ensure t
-  :after python)
-
-;; Pyvenv mode to change virtual environments.
-(use-package pyvenv
-  :ensure t)
-
 ;; Provide an customization option to set the virtualenvs WORKON_HOME directory.
 (defcustom emacs-fast/workon-home nil
   "The default WORKON directory for the `pyvenv-workon' command.
@@ -86,6 +64,31 @@ folder, if any."
                      (data (json-read-from-string
                             (shell-command-to-string "conda info --json 2> /dev/null"))))
                 (car (gethash "envs_dirs" data)))))))
+
+
+;; Use LSP Pyright for IDE features.
+(use-package lsp-pyright
+  :ensure t
+  :config
+  (setq lsp-pyright-venv-path (getenv "WORKON_HOME")))
+
+;; Shows indentation lines for code.
+(use-package highlight-indentation
+  :ensure t)
+
+;; isort mode automatically sorts headers.
+(use-package python-isort
+  :ensure t
+  :after python)
+
+;; black to reformat python code
+(use-package python-black
+  :ensure t
+  :after python)
+
+;; Pyvenv mode to change virtual environments.
+(use-package pyvenv
+  :ensure t)
 
 ;; Setup the python mode.
 (defun femacs/python-mode-hook()
