@@ -53,5 +53,18 @@
   :ensure t
   :commands helm-lsp-workspace-symbol)
 
+(use-package treemacs
+  :ensure t
+  :commands treemacs)
+
+(use-package treemacs-all-the-icons
+  :ensure t
+  :after treemacs
+  :config
+  (treemacs-load-theme "all-the-icons"))
+
+(use-package lsp-treemacs
+  :ensure t)
+
 (provide 'femacs-lsp)
 ;;; femacs-lsp.el ends here

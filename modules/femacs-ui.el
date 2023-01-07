@@ -124,6 +124,8 @@ multiple usable themes."
   :demand t
   :commands all-the-icons-faicon
   :if window-system
+  :custom
+  (all-the-icons-scale-factor 1.1)
   :config
   (unless (member "all-the-icons" (font-family-list))
     (all-the-icons-install-fonts t)))
