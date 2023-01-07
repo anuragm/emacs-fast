@@ -142,7 +142,7 @@ multiple usable themes."
   (doom-modeline-env-version nil)         ; Environment details
   (doom-modeline-buffer-file-name-style 'truncate-with-project) ; Truncate file names
   (doom-modeline-buffer-encoding nil)     ; Buffer encoding
-  (doom-modeline-checker-simple-format t) ; Single number for errors/warnings
+  (doom-modeline-checker-simple-format nil) ; Show error/warning/info
   :hook
   (after-init . doom-modeline-mode)
   :config

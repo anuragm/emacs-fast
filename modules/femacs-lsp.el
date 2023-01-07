@@ -40,7 +40,8 @@
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
   :init
-  (setq lsp-keymap-prefix "C-c l"))
+  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-modeline-diagnostics-enable nil))
 
 (use-package lsp-ui
   :ensure t
