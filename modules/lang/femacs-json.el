@@ -38,10 +38,13 @@
 ;;; Code:
 
 (use-package json-mode
-  :ensure t)
+  :ensure t
+  :config
+  (flycheck-mode))
 
 (use-package json-reformat
   :ensure t
+  :after json-mode
   :custom
   (json-reformat:indent-width 2))
 
