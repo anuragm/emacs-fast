@@ -59,10 +59,6 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")))
-(setq package-archive-priorities '(("gnu"          . 11)
-                                   ("built-in"     . 10)
-                                   ("melpa-stable" . 0)
-                                   ("melpa"        . 0)))
 (package-initialize)
 
 ;; Store custom configuration in custom.el
