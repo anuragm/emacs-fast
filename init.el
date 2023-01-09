@@ -133,6 +133,7 @@
 (require 'femacs-misc)
 (require 'femacs-org)
 (require 'femacs-lsp)
+(require 'femacs-treesitter)
 
 ;;Additional language support.
 (require 'femacs-lang)

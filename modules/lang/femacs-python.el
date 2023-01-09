@@ -96,12 +96,12 @@ folder, if any."
   (setq-local fill-column 90)
   (electric-indent-mode)
   (nlinum-mode)
-  ; (auto-fill-mode) Autofill is broken; linter can take care of long lines
   (company-mode)
   (whitespace-mode)
   (dtrt-indent-mode)
   (highlight-indentation-mode)
   (python-isort-on-save-mode)
+  (tree-sitter-hl-mode)
   (require 'lsp-pyright)
   (lsp))
 
