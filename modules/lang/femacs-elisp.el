@@ -47,7 +47,7 @@
 ;; CAUTION : Set variables first before loading modes.
 (add-hook
  'emacs-lisp-mode-hook
- '(lambda ()
+ (lambda ()
     (unless (string= "*scratch*" (buffer-name))
       (setq-local fill-column 90)
       (electric-pair-local-mode)

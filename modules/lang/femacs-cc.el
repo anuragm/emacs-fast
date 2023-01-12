@@ -76,7 +76,7 @@
 ;; Set variables first before loading modes.
 (add-hook
  'c-mode-common-hook
- #'(lambda ()
+ (lambda ()
     (when (derived-mode-p 'c-mode 'c++-mode)
       (run-hooks 'prog-mode-hook) ; Run prog-mode hook since cc-mode does not derives from it.
       (setq-local company-backends femacs/cc-mode-backends)
