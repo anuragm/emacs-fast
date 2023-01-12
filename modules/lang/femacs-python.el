@@ -102,6 +102,7 @@ folder, if any."
   (highlight-indentation-mode)
   (python-isort-on-save-mode)
   (tree-sitter-hl-mode)
+  (pyvenv-tracking-mode)
   (require 'lsp-pyright)
   (lsp))
 
