@@ -51,6 +51,7 @@
   (company-dabbrev-ignore-case nil)
   (company-dabbrev-code-ignore-case nil)
   (company-dabbrev-downcase nil)
+  (company-icon-margin 3)
   :config
   (diminish 'company-mode "ⓒ"))
 
@@ -67,7 +68,7 @@
   :bind
   ("s-h" . company-quickhelp-manual-begin)
   :init
-  (setq company-quickhelp-delay nil)
+  (setq company-quickhelp-delay 0.1)
   :config
   (add-hook 'prog-mode-hook 'company-quickhelp-mode))
 
