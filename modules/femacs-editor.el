@@ -86,7 +86,7 @@
 (defvar emacs-fast--reenable-whitespace-mode nil)
 (use-package whitespace
   :ensure nil
-  :commands (whitespace-mode)
+  :demand
   :init
   (setq whitespace-style '(face tabs empty trailing lines-tail))
   (setq whitespace-line-column nil) ; Let white space follow fill-column
