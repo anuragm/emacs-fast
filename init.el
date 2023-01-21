@@ -58,7 +58,13 @@
 (setq package-enable-at-startup nil)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/")))
+(setq package-archive-priorities '(("gnu"          . 10)
+                                   ("built-in"     . 10)
+                                   ("melpa-stable" . 10)
+                                   ("melpa"        . 10)
+                                   ("jcs-elpa"     .  5)))
 (package-initialize)
 
 ;; Store custom configuration in custom.el

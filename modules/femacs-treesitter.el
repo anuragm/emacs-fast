@@ -47,6 +47,11 @@
   :ensure t
   :after tree-sitter)
 
+;; Use tree-sitter to automatically insert proper docstrings.
+(use-package ts-docstr
+  :ensure t
+  :commands (ts-docstr-at-point ts-docstr-mode))
+
 (provide 'femacs-treesitter)
 
 ;;; femacs-treesitter.el ends here
