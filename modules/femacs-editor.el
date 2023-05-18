@@ -41,26 +41,6 @@
 
 ;; Line numbers
 
-;; Add additional space to (n)Linum mode in terminal.
-(defun linum-format-func (line)
-  "Add a space to the `linum-mode' LINE."
-    (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
-      (propertize (format (format "%%%dd " w) line) 'face 'linum)))
-(unless window-system
-  (defvar linum-format)
-  (setq linum-format #'linum-format-func)
-  (defvar nlinum-format)
-  (setq nlinum-format "%d "))
-
-;; For newer emacs, use the built-in display line number mode.
-;; Else use nlinum mode, a faster alternative to linum mode
-(when (version< emacs-version "26.1")
-  (use-package nlinum
-    :ensure t
-    :commands (nlinum-mode)
-    :init
-    (add-hook 'prog-mode-hook 'nlinum-mode)))
-
 (use-package display-line-numbers
   :ensure nil
   :if (not (version< emacs-version "26.1"))
