@@ -41,7 +41,7 @@
 ;; remove this command.
 (use-package tree-sitter
   :ensure t
-  :hook (python-mode))
+  :hook (python-mode . tree-sitter-mode))
 
 (use-package tree-sitter-langs
   :ensure t
