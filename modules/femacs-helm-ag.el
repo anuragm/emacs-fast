@@ -41,7 +41,9 @@
 ;;; Code:
 (use-package helm-ag
   :ensure t
-  :commands (helm-ag helm-ag-project-root))
+  :commands (helm-ag)
+  :custom (helm-ag-insert-at-point 'symbol)
+  :bind (("C-c s" . helm-do-ag-project-root)))
 
 (provide 'femacs-helm-ag)
 ;;; femacs-helm-ag.el ends here
