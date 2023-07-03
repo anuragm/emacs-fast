@@ -130,6 +130,13 @@ multiple usable themes."
   (unless (member "all-the-icons" (font-family-list))
     (all-the-icons-install-fonts t)))
 
+;; Nerd icons required for doom modeline
+(use-package nerd-icons
+  :ensure t
+  :config
+  (unless (member nerd-icons-font-family (font-family-list))
+    (nerd-icons-install-fonts)))
+
 (use-package minions
   :ensure t
   :custom
