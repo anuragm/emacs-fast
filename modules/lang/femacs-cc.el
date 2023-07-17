@@ -56,39 +56,21 @@
   :config
   (setq company-c-headers-path-user '("." "./include")))
 
-;; Set ggtags mode
-(use-package ggtags
-  :ensure t
-  :commands (ggtags-mode)
-  :init
-  (setq ggtags-completing-read-function nil)
-  :config
-  (diminish 'ggtags-mode "Ⓖ"))
-
-;; Keep company-dabbrev at end since it can always complete some stupid thing.
-(defvar femacs/cc-mode-backends
-  '(company-files
-    company-c-headers
-    company-gtags
-    company-dabbrev-code)
-  "Company back-ends to be used in CC mode.")
-
 ;; Set variables first before loading modes.
 (add-hook
  'c-mode-common-hook
  (lambda ()
     (when (derived-mode-p 'c-mode 'c++-mode)
       (run-hooks 'prog-mode-hook) ; Run prog-mode hook since cc-mode does not derives from it.
-      (setq-local company-backends femacs/cc-mode-backends)
       (setq-local fill-column 90)
       (auto-fill-mode)
       (flycheck-mode 1)
       (yas-minor-mode 1)
-      (ggtags-mode 1)
       (whitespace-mode)
       (company-mode)
-      (eldoc-mode)
-      (dtrt-indent-mode))))
+      (tree-sitter-hl-mode)
+      (dtrt-indent-mode)
+      (lsp))))
 
 (provide 'femacs-cc)
 ;;; femacs-cc.el ends here
