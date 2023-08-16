@@ -69,6 +69,8 @@ folder, if any."
 ;; Use LSP Pyright for IDE features.
 (use-package lsp-pyright
   :ensure t
+  ;; this allows for separate LSP servers for seperate projects.
+  :init (setq lsp-pyright-multi-root nil)
   :config
   (setq lsp-pyright-venv-path (getenv "WORKON_HOME")))
 
