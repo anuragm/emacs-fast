@@ -122,6 +122,10 @@
 ;; When in prettify-symbol-mode, expand when point is at the symbol.
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
+;; Use ansi colors in compilation buffers
+(use-package ansi-color
+    :hook (compilation-filter . ansi-color-compilation-filter))
+
 
 ;; Navigation
 
