@@ -44,12 +44,6 @@
   :mode (("CMakeLists\\.txt\\'" . cmake-mode)
          ("\\.cmake\\'" . cmake-mode)))
 
-;; Use CMake IDE to make C++ programming setup easier.
-(use-package cmake-ide
-  :ensure t
-  :init (cmake-ide-setup)
-  :commands (cmake-ide-compile cmake-ide-run-cmake))
-
 (add-hook
  'cmake-mode-hook
  (lambda()
