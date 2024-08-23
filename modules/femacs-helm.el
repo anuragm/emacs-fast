@@ -60,6 +60,7 @@
   (helm-ff-candidate-number-limit 500)      ; Limit candidates.
   (helm-ff-file-name-history-use-recentf t) ; Use standard file history.
   (helm-M-x-fuzzy-match nil)       ; Turn off fuzzy match for M-x
+  (helm-M-x-history-transformer-sort nil)
   :init
   (when (executable-find "curl")
     (setq helm-net-prefer-curl t))
