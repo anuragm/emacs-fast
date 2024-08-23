@@ -1,4 +1,4 @@
-;;; femacs-misc.el --- Support for Misc programming
+;;; femacs-lang-misc.el --- Support for Misc programming
 ;;
 ;; Copyright © 2016-2023 Anurag Mishra
 ;;
@@ -40,5 +40,22 @@
 (use-package protobuf-mode
   :mode (("\\.proto\\'" . protobuf-mode)))
 
-(provide 'femacs-misc)
-;;; femacs-misc.el ends here
+(use-package beancount-mode
+  :quelpa (beancount-mode :fetcher github :repo "beancount/beancount-mode")
+  :mode (("\\.beancount\\'" . beancount-mode))
+  :init
+  (add-hook 'beancount-mode-hook #'outline-minor-mode))
+
+;; Experimental: Bind a key to reformat the entire file using bean-format.
+(defun beancount-format-file ()
+  "Format beancount file with beancount format."
+  (interactive)
+  (let ((line-no (line-number-at-pos)))
+      (call-process-region (point-min) (point-max) "bean-format" t (current-buffer))
+      (goto-char (point-min))
+      (forward-line (1- line-no))
+      (recenter)
+      ))
+
+(provide 'femacs-lang-misc)
+;;; femacs-lang-misc.el ends here
