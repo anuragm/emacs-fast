@@ -92,17 +92,22 @@ folder, if any."
 (use-package pyvenv
   :ensure t)
 
+;; Ruff to lint/format code
+(use-package ruff-format
+  :ensure t
+  :after python)
+
 ;; Setup the python mode.
+;; Format/lint tool should be enabled on folder by folder basis.
 (defun femacs/python-mode-hook()
   "Custom bindings for python mode."
   (setq-local fill-column 90)
   (electric-indent-mode)
-  (nlinum-mode)
+  (display-line-numbers-mode)
   (company-mode)
   (whitespace-mode)
   (dtrt-indent-mode)
   (highlight-indentation-mode)
-  (python-isort-on-save-mode)
   (tree-sitter-hl-mode)
   (pyvenv-tracking-mode)
   (require 'lsp-pyright)
