@@ -48,6 +48,7 @@
          ("M-x"       . helm-M-x)
          ("C-c f"     . helm-recentf)
          ("C-c h"     . helm-command-prefix)
+         ("M-s o"     . helm-occur)
          :map helm-map
          ("<left>"  . helm-previous-source)
          ("<right>" . helm-next-source))
