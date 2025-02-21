@@ -69,10 +69,6 @@
   :init
   (add-hook 'org-mode-hook 'femacs/org-mode-hook))
 
-(use-package ox-slack ;; Add slack exporter for Org mode.
-  :quelpa (ox-slack :fetcher github :repo "titaniumbones/ox-slack")
-  :after org)
-
 (use-package ox-gfm
   :ensure t
   :after org)

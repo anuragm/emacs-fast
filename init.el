@@ -91,24 +91,6 @@
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-;; Bootstrap QELPA.
-(defvar quelpa-checkout-melpa-p)
-(defvar quelpa-melpa-recipe-stores)
-(defvar quelpa-self-upgrade-p)
-(setq quelpa-checkout-melpa-p nil)
-(setq quelpa-melpa-recipe-stores nil)
-(setq quelpa-self-upgrade-p nil)
-(use-package quelpa
-  :ensure t
-  :init
-  (require 'quelpa))
-
-;; Bootstrap quelpa-use-package
-(use-package quelpa-use-package
-  :ensure t
-  :init
-  (require 'quelpa-use-package))
-
 ;; Other default options.
 (setq large-file-warning-threshold 10000000) ;Warn on large files, 1 MB
 (setq load-prefer-newer t) ;Prefer new byte code
