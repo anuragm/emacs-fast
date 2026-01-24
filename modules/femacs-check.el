@@ -40,7 +40,7 @@
 
 ;; Add hunspell/aspell as dictionary back-ends.
 (use-package ispell
-  :ensure nil
+  :straight nil
   :defer t
   :init
   (defvar ispell-program-name)
@@ -60,7 +60,7 @@
   )
 
 (use-package flyspell
-  :ensure nil
+  :straight nil
   :commands (flyspell-correct-word)
   :init
   (add-hook 'text-mode-hook 'flyspell-mode)
@@ -76,7 +76,6 @@
 
 ;; Describe word looks up an English dictionary online.
 (use-package define-word
-  :ensure t
   :commands (define-word-at-point)
   :bind
   (("C-c d". define-word-at-point)
@@ -84,7 +83,6 @@
 
 ;; Initialize flycheck mode for modes that need it.
 (use-package flycheck
-  :ensure t
   :commands (flycheck-mode)
   :custom
   (flycheck-emacs-lisp-load-path 'inherit)   ; Let flycheck.el see loaded paths.

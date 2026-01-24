@@ -39,14 +39,13 @@
 
 ;;; Code:
 ;;(use-package org-ref
-;;  :ensure t
 ;;  :commands (org-ref org-ref-helm-cite)
 ;;  :defer t
 ;;  )
 
 ;; Make org-ref useful for HTML output.
 ;;(use-package org-ref-citeproc
-;;  :ensure nil
+;;  :straight nil
 ;;  :after org-ref
 ;;  :config
 ;;  (let ((org-export-before-parsing-hook '(orcp-citeproc)))
@@ -60,7 +59,6 @@
   (whitespace-cleanup-mode))
 
 (use-package org
-  :ensure t
   :mode (("\\.org$" . org-mode))
   :defer t
   :custom
@@ -70,11 +68,9 @@
   (add-hook 'org-mode-hook 'femacs/org-mode-hook))
 
 (use-package ox-gfm
-  :ensure t
   :after org)
 
 (use-package ox-rst
-  :ensure t
   :after org)
 
 (provide 'femacs-org)

@@ -77,7 +77,6 @@
 
 ;; Give a visual representation to switch windows
 (use-package switch-window
-  :ensure t
   :bind ("C-x o" . switch-window))
 
 ;; Remove the annoying bell sound.
@@ -106,7 +105,6 @@ multiple usable themes."
 (defun emacs-fast/install-and-load-theme (package-name theme-name)
   "Install PACKAGE-NAME and load THEME-NAME from it."
   (eval `(use-package ,package-name
-           :ensure t
            :no-require t
            :config
            (load-theme ',theme-name t))))
@@ -120,7 +118,6 @@ multiple usable themes."
 
 ;; Modeline
 (use-package all-the-icons
-  :ensure t
   :demand t
   :commands all-the-icons-faicon
   :if window-system
@@ -132,19 +129,16 @@ multiple usable themes."
 
 ;; Nerd icons required for doom modeline
 (use-package nerd-icons
-  :ensure t
   :config
   (unless (member nerd-icons-font-family (font-family-list))
     (nerd-icons-install-fonts)))
 
 (use-package minions
-  :ensure t
   :custom
   (minions-mode-line-lighter (all-the-icons-faicon "clipboard" :v-adjust 0 :height 0.83))
   :commands minions-mode)
 
 (use-package doom-modeline
-  :ensure t
   :custom
   (doom-modeline-icon nil)                ; Turn off icons by default.
   (doom-modeline-minor-modes t)           ; Minor modes
@@ -166,7 +160,6 @@ multiple usable themes."
 
 ;; Show key config for shortcuts.
 (use-package which-key
-  :ensure t
   :diminish which-key-mode
   :custom
   (which-key-idle-delay 0.5)
@@ -174,7 +167,6 @@ multiple usable themes."
 
 ;; Add Beacon mode for highlighted cursor
 (use-package beacon
-  :ensure t
   :diminish beacon-mode
   :init
   (beacon-mode 1))

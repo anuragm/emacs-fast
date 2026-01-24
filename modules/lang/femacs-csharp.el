@@ -49,7 +49,6 @@
   (setq-local c-basic-offset 2)) ;; Indent with two spaces.
 
 (use-package csharp-mode
-  :ensure t
   :commands csharp-mode
   :mode (("\\.cs$" . csharp-mode))
   :config
@@ -57,7 +56,6 @@
 
 ;; Editing CSharp project files.
 (use-package csproj-mode
-  :ensure t
   :commands csproj-mode)
 
 (provide 'femacs-csharp)

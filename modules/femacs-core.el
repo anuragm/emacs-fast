@@ -129,7 +129,7 @@ buffer is not visiting a file."
 
 ;; Save recent list of files
 (use-package recentf
-  :ensure nil
+  :straight nil
   :defer 1
   :commands (recentf-save-list)
   :custom
@@ -148,7 +148,7 @@ buffer is not visiting a file."
 
 ;; Keep recent list of commands persistent across sessions
 (use-package savehist
-  :ensure nil
+  :straight nil
   :defer 2
   :custom
   (savehist-additional-variables '(kill-ring search-ring regexp-search-ring))

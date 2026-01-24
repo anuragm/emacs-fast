@@ -40,7 +40,6 @@
 
 ;; Install Magit with sensible defaults.
 (use-package magit
-  :ensure t
   :bind ("C-x g" . magit-status)
   :custom
   (magit-delete-by-moving-to-trash t)
@@ -54,8 +53,7 @@
   (diminish 'auto-revert-mode))
 
 ;; And git modes
-(use-package git-modes
-  :ensure t)
+(use-package git-modes)
 
 ;; Use Magit forge to deal with Github pull requests, etc
 ;; See https://magit.vc/manual/ghub/Storing-a-Token.html
@@ -66,7 +64,6 @@
 ;;   And then save the results in ~/.authinfo as
 ;;   machine api.github.com login USERNAME^forge password TOKEN
 (use-package forge
-  :ensure t
   :after magit
   :custom
   (forge-database-file
@@ -74,13 +71,11 @@
 
 ;; Git-Link. Create the Github/forge URL for a buffer location.
 (use-package git-link
-  :ensure t
   :after magit)
 
 
 ;; Add git time machine with its Hydra menu
 (use-package git-timemachine
-  :ensure t
   :after hydra
   :commands (git-timemachine)
   :bind (:map git-timemachine-mode-map ("`" . hydra-git-timemachine/body))
@@ -100,7 +95,6 @@ _p_: previous  _n_: next _b_: blame _c_: show commit
 
 ;; Add helm package for listing git files
 (use-package helm-ls-git
-  :ensure t
   :commands (helm-ls-git)
   :bind ("C-x C-d" . helm-browse-project)
   :init ; Do not overload git rebase mode
@@ -108,7 +102,6 @@ _p_: previous  _n_: next _b_: blame _c_: show commit
 
 ;; Show diffs in fringe
 (use-package diff-hl
-  :ensure t
   :commands (diff-hl-mode diff-hl-dired-mode-unless-remote diff-hl-magit-post-refresh)
   :init
   (add-hook 'prog-mode-hook 'diff-hl-mode)

@@ -39,9 +39,6 @@
 
 ;;; Code:
 
-;;Start with a large GC, and then narrow it at the end
-(setq gc-cons-threshold most-positive-fixnum)
-
 ;; Always prefer new version of code, compiled or not.
 (setq load-prefer-newer t)
 
@@ -53,42 +50,43 @@
 (setq user-init-file femacs-init-file)
 (setq user-emacs-directory femacs-dir)
 
-;; Initialize packages.
-(require 'package)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")
-                         ("jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/")))
-(setq package-archive-priorities '(("gnu"          . 10)
-                                   ("built-in"     . 10)
-                                   ("melpa-stable" . 10)
-                                   ("melpa"        . 10)
-                                   ("jcs-elpa"     .  5)))
-(package-initialize)
-
 ;; Store custom configuration in custom.el
 (setq custom-file (expand-file-name "private/custom.el" femacs-dir))
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
 
-;; Bootstrap use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-(require 'use-package))
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                         (or (bound-and-true-p straight-base-dir)
+                             user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; Use straight.el by default in use-package
+(setq straight-use-package-by-default t)
+(setq straight-check-for-modifications '(check-on-save find-when-checking))
+(setq straight-vc-git-default-protocol 'ssh)
+
+;; Install use-package via straight.el
+(straight-use-package 'use-package)
 (require 'bind-key)
+
 (use-package diminish
-  :ensure t
   :commands (diminish))
 
-;; Add benchmarking code
+;; Benchmarking
 (use-package benchmark-init
-  :ensure t
   :config
-  ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 ;; Other default options.

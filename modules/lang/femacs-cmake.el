@@ -39,7 +39,6 @@
 ;;; Code:
 
 (use-package cmake-mode
-  :ensure t
   :commands cmake-mode
   :mode (("CMakeLists\\.txt\\'" . cmake-mode)
          ("\\.cmake\\'" . cmake-mode)))

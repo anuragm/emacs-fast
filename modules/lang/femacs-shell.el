@@ -45,7 +45,7 @@
   (company-mode))
 
 (use-package sh-mode
-  :ensure nil
+  :straight nil
   :mode (("\\.sh\\'" . sh-mode)
          ("\\.bash\\'" . sh-mode)
          ("\\.pbs\\'" . sh-mode))

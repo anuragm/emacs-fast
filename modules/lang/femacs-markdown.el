@@ -39,7 +39,6 @@
 ;;; Code:
 
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode
   (("README\\.md\\'" . gfm-mode)
@@ -52,7 +51,6 @@
   (yas-minor-mode))
 
 (use-package yaml-mode
-  :ensure t
   :mode
   (("\\.yml$" . yaml-mode)
    ("\\.yaml$" . yaml-mode))

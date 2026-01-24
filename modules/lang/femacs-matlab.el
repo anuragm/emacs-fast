@@ -61,7 +61,7 @@
   (yas-minor-mode))
 
 (use-package matlab
-  :ensure matlab-mode
+  :straight matlab-mode
   :commands
   (matlab-mode matlab-shell matlab-mode-common-setup mlint-minor-mode)
   :functions (matlab-functions-have-end-minor-mode)

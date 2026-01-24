@@ -36,7 +36,7 @@
 ;;; Code:
 
 (use-package ibuffer
-  :ensure nil
+  :straight nil
   :commands (ibuffer)
   :bind (:map ibuffer-mode-map ("`" . hydra-ibuffer-main/body))
   :config

@@ -35,7 +35,6 @@
 ;;; Code:
 
 (use-package lsp-mode
-  :ensure t
   :commands lsp
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
@@ -46,27 +45,22 @@
   )
 
 (use-package lsp-ui
-  :ensure t
   :commands lsp-ui-mode
   :custom
   (lsp-ui-doc-position 'bottom))
 
 (use-package helm-lsp
-  :ensure t
   :commands helm-lsp-workspace-symbol)
 
 (use-package treemacs
-  :ensure t
   :commands treemacs)
 
 (use-package treemacs-all-the-icons
-  :ensure t
   :after treemacs
   :config
   (treemacs-load-theme "all-the-icons"))
 
-(use-package lsp-treemacs
-  :ensure t)
+(use-package lsp-treemacs)
 
 (provide 'femacs-lsp)
 ;;; femacs-lsp.el ends here

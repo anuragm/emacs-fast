@@ -11,8 +11,7 @@
 
 ;;; Commentary:
 
-;; Contains various configurations for C++/C mode, especially using Irony mode as
-;; completion engine.
+;; Contains various configurations for C++/C mode.
 
 ;;; License:
 
@@ -41,7 +40,6 @@
 
 ;; Use company-c-headers to complete header files.
 (use-package company-c-headers
-  :ensure t
   :commands (company-c-headers)
   :config
   (setq company-c-headers-path-user '("." "./include")))

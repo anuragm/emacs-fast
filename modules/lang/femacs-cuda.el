@@ -39,7 +39,6 @@
 ;;; Code:
 
 (use-package cuda-mode
-  :ensure t
   :commands cuda-mode
   :mode (("\\.cu\\'" . cuda-mode)
          ("\\.cuh\\'" . cuda-mode)))

@@ -71,7 +71,6 @@ configuration.  Manually specifying the path will make the process faster."
       (setq exec-path emacs-fast/exec-path)
       (setenv "PATH" (mapconcat 'identity exec-path ":")))
   (use-package exec-path-from-shell
-    :ensure t
     :demand
     :functions exec-path-from-shell-initialize
     :config
@@ -94,7 +93,7 @@ When using Homebrew, install it using \"brew install trash\"."
 
 ;; Some helper functions.
 (use-package dired-x
-  :ensure nil
+  :straight nil
   :commands dired-smart-shell-command)
 
 (defun finder-here ()

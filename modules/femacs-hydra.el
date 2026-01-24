@@ -39,12 +39,10 @@
 ;;; Code:
 
 (use-package hydra
-  :ensure t
   :init
   (setq lv-use-separator t))
 
-(use-package use-package-hydra
-  :ensure t)
+(use-package use-package-hydra)
 
 ;; Include all the code from Hydra sub-folder
 (when (and (boundp 'femacs-module-path) femacs-module-path)

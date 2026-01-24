@@ -40,7 +40,6 @@
 
 ;;; Code:
 (use-package helm-ag
-  :ensure t
   :commands (helm-ag)
   :custom (helm-ag-insert-at-point 'symbol)
   :bind (("C-c s" . helm-do-ag-project-root)))

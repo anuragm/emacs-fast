@@ -38,7 +38,6 @@
 
 ;;; Code:
 (use-package helm
-  :ensure t
   :diminish helm-mode
   :defines helm-net-prefer-curl
   :bind (("C-x b"     . helm-mini)

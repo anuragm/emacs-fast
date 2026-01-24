@@ -18,3 +18,10 @@ url/
 /projects
 /ielm-history.eld
 .lsp-session-*
+
+# straight.el
+straight/repos/
+straight/build*/
+straight/modified/
+straight/build-cache.el
+!straight/versions/

@@ -68,7 +68,6 @@ folder, if any."
 
 ;; Use LSP Pyright for IDE features.
 (use-package lsp-pyright
-  :ensure t
   ;; this allows for separate LSP servers for seperate projects.
   :init (setq lsp-pyright-multi-root nil)
   :config
@@ -76,25 +75,22 @@ folder, if any."
 
 ;; Shows indentation lines for code.
 (use-package highlight-indentation
-  :ensure t)
+  )
 
 ;; isort mode automatically sorts headers.
 (use-package python-isort
-  :ensure t
   :after python)
 
 ;; black to reformat python code
 (use-package python-black
-  :ensure t
   :after python)
 
 ;; Pyvenv mode to change virtual environments.
 (use-package pyvenv
-  :ensure t)
+  )
 
 ;; Ruff to lint/format code
 (use-package ruff-format
-  :ensure t
   :after python)
 
 ;; Setup the python mode.

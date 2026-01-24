@@ -56,7 +56,6 @@
 ;; Create new backup every 12 hours and whenever Emacs starts
 ;; Delete backups older than 7 days
 (use-package persistent-scratch
-  :ensure t
   :commands
   (persistent-scratch-restore)
   :init

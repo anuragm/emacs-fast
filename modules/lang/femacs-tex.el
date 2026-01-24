@@ -50,36 +50,31 @@
 
 ;; Compile with Latexmk
 (use-package auctex-latexmk
-  :ensure t
   :commands (auctex-latexmk-setup))
 
 ;; Add math symbols help to latex mode, and expand commands (like yasnippet).
 (use-package cdlatex
-  :ensure t
   :commands (cdlatex-mode turn-on-cdlatex)
   :diminish cdlatex-mode)
 
 ;; And company math mode for auto-complete
 (use-package company-math
-  :ensure t
   :commands (company-math-symbols-latex
              company-math-latex-commands))
 
 ;; Use latex extra for better indentation and auto fill.
 (use-package latex-extra
-  :ensure t
   :custom (latex/override-font-map nil "Don't hijack C-c f")
   :commands (latex-extra-mode)
   :diminish latex-extra-mode)
 
 ;; Magic latex buffer, for better latex font lock and preview.
 (use-package magic-latex-buffer
-  :ensure t
   :commands (magic-latex-buffer))
 
 ;; Reftex comes packaged with Emacs > 20.2
 (use-package reftex
-  :ensure nil
+  :straight nil
   :config
   (diminish 'reftex-mode "ⓡ"))
 
@@ -87,14 +82,12 @@
 ;; Use company auctex for better completion.
 
 (use-package company-auctex
-  :ensure t
   :commands
   (company-auctex-labels company-auctex-bibs company-auctex-macros
    company-auctex-symbols company-auctex-environments))
 
 ;; Use company reftex for citations and reference
 (use-package company-reftex
-  :ensure t
   :commands (company-reftex-labels company-reftex-citations))
 
 ;; Set variables first before loading modes
@@ -184,7 +177,7 @@
   (diff-hl-mode))
 
 (use-package latex
-  :ensure auctex
+  :straight auctex
   :commands (TeX-mode LaTeX-mode LaTeX-mode-hook math-minor-mode)
   :mode     (("\\.[tT]e[xX]\\'" . LaTeX-mode)
              ("\\.tikz\\'" . LaTeX-mode))
@@ -213,14 +206,12 @@
 ;;;; Other packages to manage LaTeX related stuff.
 
 (use-package helm-bibtex
-  :ensure t
   :commands (helm-bibtex)
   :init
   (setq bibtex-completion-pdf-field "File"))
 
 (when (version< "25.3" emacs-version)
   (use-package ebib
-  :ensure t
   :commands (ebib)))
 
 

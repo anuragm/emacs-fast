@@ -40,16 +40,19 @@
 ;; programming modes will automatically use tree-sitter, at which point we can centrally
 ;; remove this command.
 (use-package tree-sitter
-  :ensure t
   :hook (python-mode . tree-sitter-mode))
 
 (use-package tree-sitter-langs
-  :ensure t
   :after tree-sitter)
 
 ;; Use tree-sitter to automatically insert proper docstrings.
+;; ts-docstr is from emacs-vs, msgu is from jcs-elpa (neither on MELPA)
+(use-package msgu
+  :straight (msgu :type git :host github :repo "jcs-elpa/msgu"))
+
 (use-package ts-docstr
-  :ensure t
+  :straight (ts-docstr :type git :host github :repo "emacs-vs/ts-docstr")
+  :after msgu
   :commands (ts-docstr-at-point ts-docstr-mode))
 
 (provide 'femacs-treesitter)

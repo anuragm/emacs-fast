@@ -42,7 +42,7 @@
 ;; Line numbers
 
 (use-package display-line-numbers
-  :ensure nil
+  :straight nil
   :if (not (version< emacs-version "26.1"))
   :init
   (defalias 'nlinum-mode 'display-line-numbers-mode)
@@ -57,7 +57,6 @@
 
 ;; Use rainbow delimiter mode
 (use-package rainbow-delimiters
-  :ensure t
   :commands (rainbow-delimiters-mode)
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
@@ -65,7 +64,7 @@
 ;; Whitespace mode.
 (defvar emacs-fast--reenable-whitespace-mode nil)
 (use-package whitespace
-  :ensure nil
+  :straight nil
   :demand
   :init
   (setq whitespace-style '(face tabs empty trailing lines-tail))
@@ -91,7 +90,6 @@
 ;; no trailing whitespace, etc. This is handy when collaborating with other people.
 ;; https://github.com/purcell/whitespace-cleanup-mode
 (use-package whitespace-cleanup-mode
-  :ensure t
   :commands (whitespace-cleanup-mode global-whitespace-cleanup-mode)
   :init
   (add-hook 'prog-mode-hook 'whitespace-cleanup-mode)
@@ -101,7 +99,6 @@
 ;; Use dtrt-indent to auto-detect indentation style in a file for all programming
 ;; languages.
 (use-package dtrt-indent
-  :ensure t
   :commands (dtrt-indent-mode)
   :custom (dtrt-indent-active-mode-line-info nil)
   :init
@@ -114,7 +111,7 @@
 
 ;; Use CUA mode for rectangular sections.
 (use-package cua-base
-  :ensure nil
+  :straight nil
   :custom (cua-enable-cua-keys nil)
   :init
   (cua-mode 1))
@@ -131,13 +128,11 @@
 
 ;; Add Avy for quick navigation. https://github.com/abo-abo/avy
 (use-package avy
-  :ensure t
   :commands (avy-goto-char-2)
   :bind (("C-c SPC" . avy-goto-char-2)))
 
 ;; Use Move buffer to swap windows.
 (use-package buffer-move
-  :ensure t
   :commands (buf-move buf-move-up buf-move-down buf-move-right buf-move-left)
   :bind (("<C-s-up>" . buf-move-up)
          ("<C-s-down>" . buf-move-down)
@@ -149,7 +144,6 @@
 
 ;; Add Word count minor mode to text modes
 (use-package wc-mode
-  :ensure t
   :init
   (add-hook 'find-file-hook
    (lambda ()
@@ -158,7 +152,6 @@
 
 ;; Integrate ANZU, which gives number of total matches.
 (use-package anzu
-  :ensure t
   :diminish anzu-mode
   :defer 1
   :init
@@ -172,7 +165,7 @@
 
 ;; EDiff customization
 (use-package ediff
-  :ensure nil
+  :straight nil
   :custom
   (ediff-window-setup-function 'ediff-setup-windows-plain) ; Don't use new frame for Ediff
   (ediff-split-window-function 'split-window-vertically))  ; Split vertically always
@@ -185,7 +178,6 @@
 ;; hideshow-org mode intelligently folds code with <TAB> key. We won't globally enable
 ;; this mode, since not all languages might support it properly.
 (use-package hideshow-org
-  :ensure t
   :commands (hs-org/minor-mode))
 
 ;;; femacs-editor.el ends here
