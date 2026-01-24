@@ -60,7 +60,8 @@
   :config
   (treemacs-load-theme "all-the-icons"))
 
-(use-package lsp-treemacs)
+(use-package lsp-treemacs
+  :commands (lsp-treemacs-errors-list lsp-treemacs-symbols))
 
 (provide 'femacs-lsp)
 ;;; femacs-lsp.el ends here

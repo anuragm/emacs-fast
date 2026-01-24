@@ -37,37 +37,51 @@
 
 ;;; Code:
 
-;; Provide an customization option to set the virtualenvs WORKON_HOME directory.
+;; Cached WORKON_HOME directory for fast startup.
 (defcustom emacs-fast/workon-home nil
-  "The default WORKON directory for the `pyvenv-workon' command.
+  "Cached WORKON directory for the `pyvenv-workon' command.
 
-The default WORKON directory for the `pyeven-workon' command is read from the
-$WORKON_HOME shell variable.  When set to automatic and WORKON_HOME variable is
-not inherited by Emacs, WORKON_HOME is set to the default Conda environemnt
-folder, if any."
+This variable is automatically populated from conda and kept in sync.
+Set manually to override automatic detection."
   :group 'emacs-fast
   :type '(choice
           (const :tag "Automatic" nil)
           (directory :tag "Manual")))
 
-;; If a location is specified, use it, else find and set to default Conda environment
-;; folder, if any.
+(defun emacs-fast/get-conda-envs-dir ()
+  "Get conda envs directory by running conda info --json."
+  (when (executable-find "conda")
+    (require 'json)
+    (let* ((json-object-type 'hash-table)
+           (json-array-type 'list)
+           (json-key-type 'string)
+           (data (json-read-from-string
+                  (shell-command-to-string "conda info --json 2> /dev/null"))))
+      (car (gethash "envs_dirs" data)))))
+
+(defun emacs-fast/sync-workon-home ()
+  "Sync WORKON_HOME from conda if it differs from cached."
+  (let ((conda-path (emacs-fast/get-conda-envs-dir)))
+    (when (and conda-path (not (equal emacs-fast/workon-home conda-path)))
+      (customize-save-variable 'emacs-fast/workon-home conda-path)
+      (setenv "WORKON_HOME" conda-path)
+      (message "Synced WORKON_HOME from conda"))))
+
+;; Use cached value at startup, sync in background
 (if emacs-fast/workon-home
-    (setenv "WORKON_HOME" emacs-fast/workon-home)
+    (progn
+      (setenv "WORKON_HOME" emacs-fast/workon-home)
+      (run-with-idle-timer 60 nil #'emacs-fast/sync-workon-home))
   (unless (getenv "WORKON_HOME")
-    (setenv "WORKON_HOME"
-            (when (executable-find "conda")
-              (require 'json)
-              (let* ((json-object-type 'hash-table)
-                     (json-array-type 'list)
-                     (json-key-type 'string)
-                     (data (json-read-from-string
-                            (shell-command-to-string "conda info --json 2> /dev/null"))))
-                (car (gethash "envs_dirs" data)))))))
+    (let ((conda-path (emacs-fast/get-conda-envs-dir)))
+      (when conda-path
+        (setenv "WORKON_HOME" conda-path)
+        (customize-save-variable 'emacs-fast/workon-home conda-path)))))
 
 
 ;; Use LSP Pyright for IDE features.
 (use-package lsp-pyright
+  :defer t
   ;; this allows for separate LSP servers for seperate projects.
   :init (setq lsp-pyright-multi-root nil)
   :config
@@ -75,7 +89,7 @@ folder, if any."
 
 ;; Shows indentation lines for code.
 (use-package highlight-indentation
-  )
+  :commands highlight-indentation-mode)
 
 ;; isort mode automatically sorts headers.
 (use-package python-isort
@@ -87,7 +101,7 @@ folder, if any."
 
 ;; Pyvenv mode to change virtual environments.
 (use-package pyvenv
-  )
+  :commands (pyvenv-workon pyvenv-activate pyvenv-tracking-mode))
 
 ;; Ruff to lint/format code
 (use-package ruff-format

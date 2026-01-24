@@ -44,11 +44,11 @@
   (("README\\.md\\'" . gfm-mode)
    ("\\.md\\'"       . markdown-mode)
    ("\\.markdown\\'" . markdown-mode))
+  :hook (markdown-mode . yas-minor-mode)
   :init
   (setq markdown-command "markdown")
   :config
-  (diminish 'markdown-live-preview-mode "lp")
-  (yas-minor-mode))
+  (diminish 'markdown-live-preview-mode "lp"))
 
 (use-package yaml-mode
   :mode
