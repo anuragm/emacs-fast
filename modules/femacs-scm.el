@@ -48,6 +48,9 @@
   (magit-section-visibility-indicator nil)
   :init
   (add-hook 'git-commit-setup-hook 'whitespace-mode)
+  ;; Add magit to project.el menu before magit loads
+  (with-eval-after-load 'project
+    (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?m) t))
   :config
   (magit-auto-revert-mode)
   (diminish 'auto-revert-mode))

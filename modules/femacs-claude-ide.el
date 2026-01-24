@@ -28,8 +28,7 @@
 
 (use-package claude-code-ide
   :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
-  :after vterm
-  :bind ("C-c C-'" . claude-code-ide-menu)
+  :bind ("C-c a i" . claude-code-ide-menu)
   :custom
   ;; Terminal backend (vterm or eat)
   (claude-code-ide-terminal-backend 'vterm)
