@@ -38,7 +38,7 @@
 
 ;;; Code:
 
-(defun emacs-fast/sh-mode-hook ()
+(defun femacs/sh-mode-hook ()
   "Settings for shell mode."
   (yas-minor-mode)
   (flycheck-mode 1)
@@ -50,7 +50,7 @@
          ("\\.bash\\'" . sh-mode)
          ("\\.pbs\\'" . sh-mode))
   :init
-  (add-hook 'sh-mode-hook #'emacs-fast/sh-mode-hook))
+  (add-hook 'sh-mode-hook #'femacs/sh-mode-hook))
 
 (provide 'femacs-shell)
 ;;; femacs-shell.el ends here

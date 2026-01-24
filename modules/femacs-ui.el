@@ -91,18 +91,18 @@
 ;; Theming
 
 ;; Add user specified theme.
-(defcustom emacs-fast/theme '(material-theme . material)
+(defcustom femacs/theme '(material-theme . material)
   "The theme for Emacs-fast.
 First argument is the name of theme package, which is downloaded
 and installed.  Second argument is the name of the theme which
 can be loaded with `load-theme'.  Some packages might install
 multiple usable themes."
-  :group 'emacs-fast
+  :group 'femacs
   :type '(cons
           (symbol :tag "Theme Package " :value 'material-theme)
           (symbol :tag "Theme name    " :value 'material)))
 
-(defun emacs-fast/install-and-load-theme (package-name theme-name)
+(defun femacs/install-and-load-theme (package-name theme-name)
   "Install PACKAGE-NAME and load THEME-NAME from it."
   (eval `(use-package ,package-name
            :no-require t
@@ -111,9 +111,9 @@ multiple usable themes."
 
 ;; Don't load the theme if user has a predefined theme.
 (unless custom-enabled-themes
-  (emacs-fast/install-and-load-theme
-   (car emacs-fast/theme)
-   (cdr emacs-fast/theme)))
+  (femacs/install-and-load-theme
+   (car femacs/theme)
+   (cdr femacs/theme)))
 
 
 ;; Modeline

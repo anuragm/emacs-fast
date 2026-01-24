@@ -38,17 +38,17 @@
 ;;; Code:
 
 ;; Cached WORKON_HOME directory for fast startup.
-(defcustom emacs-fast/workon-home nil
+(defcustom femacs/workon-home nil
   "Cached WORKON directory for the `pyvenv-workon' command.
 
 This variable is automatically populated from conda and kept in sync.
 Set manually to override automatic detection."
-  :group 'emacs-fast
+  :group 'femacs
   :type '(choice
           (const :tag "Automatic" nil)
           (directory :tag "Manual")))
 
-(defun emacs-fast/get-conda-envs-dir ()
+(defun femacs/get-conda-envs-dir ()
   "Get conda envs directory by running conda info --json."
   (when (executable-find "conda")
     (require 'json)
@@ -59,24 +59,24 @@ Set manually to override automatic detection."
                   (shell-command-to-string "conda info --json 2> /dev/null"))))
       (car (gethash "envs_dirs" data)))))
 
-(defun emacs-fast/sync-workon-home ()
+(defun femacs/sync-workon-home ()
   "Sync WORKON_HOME from conda if it differs from cached."
-  (let ((conda-path (emacs-fast/get-conda-envs-dir)))
-    (when (and conda-path (not (equal emacs-fast/workon-home conda-path)))
-      (customize-save-variable 'emacs-fast/workon-home conda-path)
+  (let ((conda-path (femacs/get-conda-envs-dir)))
+    (when (and conda-path (not (equal femacs/workon-home conda-path)))
+      (customize-save-variable 'femacs/workon-home conda-path)
       (setenv "WORKON_HOME" conda-path)
       (message "Synced WORKON_HOME from conda"))))
 
 ;; Use cached value at startup, sync in background
-(if emacs-fast/workon-home
+(if femacs/workon-home
     (progn
-      (setenv "WORKON_HOME" emacs-fast/workon-home)
-      (run-with-idle-timer 60 nil #'emacs-fast/sync-workon-home))
+      (setenv "WORKON_HOME" femacs/workon-home)
+      (run-with-idle-timer 60 nil #'femacs/sync-workon-home))
   (unless (getenv "WORKON_HOME")
-    (let ((conda-path (emacs-fast/get-conda-envs-dir)))
+    (let ((conda-path (femacs/get-conda-envs-dir)))
       (when conda-path
         (setenv "WORKON_HOME" conda-path)
-        (customize-save-variable 'emacs-fast/workon-home conda-path)))))
+        (customize-save-variable 'femacs/workon-home conda-path)))))
 
 
 ;; Use LSP Pyright for IDE features.

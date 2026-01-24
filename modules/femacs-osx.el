@@ -57,35 +57,35 @@
 
 
 ;; Read path variable from command line, with caching for fast startup.
-(defcustom emacs-fast/exec-path nil
+(defcustom femacs/exec-path nil
   "Cached exec path for Emacs.
 
 When not called from shell, Emacs does not inherit $PATH from shell.  When nil,
 paths are read by launching a login shell, which might be slow with complicated
 configuration.  This variable is automatically populated and kept in sync."
-  :group 'emacs-fast
+  :group 'femacs
   :type '(repeat directory))
 
 (use-package exec-path-from-shell
   :commands (exec-path-from-shell-initialize exec-path-from-shell-getenvs))
 
-(defun emacs-fast/sync-exec-path ()
+(defun femacs/sync-exec-path ()
   "Sync `'exec-path`' from shell if it differs from cached."
   (require 'exec-path-from-shell)
   (let ((shell-path (car (exec-path-from-shell-getenvs '("PATH")))))
     (unless (equal (getenv "PATH") (cdr shell-path))
       (exec-path-from-shell-initialize)
-      (customize-save-variable 'emacs-fast/exec-path exec-path)
+      (customize-save-variable 'femacs/exec-path exec-path)
       (message "Synced exec-path from shell"))))
 
-(if emacs-fast/exec-path
+(if femacs/exec-path
     (progn
-      (setq exec-path emacs-fast/exec-path)
+      (setq exec-path femacs/exec-path)
       (setenv "PATH" (mapconcat 'identity exec-path ":"))
-      (run-with-idle-timer 60 nil #'emacs-fast/sync-exec-path))
+      (run-with-idle-timer 60 nil #'femacs/sync-exec-path))
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)
-    (customize-save-variable 'emacs-fast/exec-path exec-path)))
+    (customize-save-variable 'femacs/exec-path exec-path)))
 
 
 ;; Don't delete directly, use Trash. Inform if 'trash' utility has not been installed.

@@ -91,7 +91,7 @@
   :commands (company-reftex-labels company-reftex-citations))
 
 ;; Set variables first before loading modes
-(defvar emacs-fast/tex-mode-backends
+(defvar femacs/tex-mode-backends
   '(company-reftex-labels company-reftex-citations
     (company-math-symbols-latex company-latex-commands)
     (company-auctex-macros company-auctex-symbols company-auctex-environments)
@@ -101,7 +101,7 @@
 
 ;; Add support for clever ref package to Reftex.
 
-(defun emacs-fast/add-cref-support()
+(defun femacs/add-cref-support()
   "Add support for Cref labels to TeX mode."
   (TeX-add-style-hook
    "cleveref"
@@ -159,10 +159,10 @@
 
 ;; AUCTeX for editing
 
-(defun emacs-fast/latex-mode-hook ()
+(defun femacs/latex-mode-hook ()
   "Settings for LaTeX mode."
   (setq fill-column 90)
-  (setq-local company-backends emacs-fast/tex-mode-backends)
+  (setq-local company-backends femacs/tex-mode-backends)
   (rainbow-delimiters-mode-enable)
   (visual-line-mode 1)
   (latex-extra-mode)
@@ -198,9 +198,9 @@
   (TeX-electric-math '("$" . "$"))
   (TeX-auto-local ".auto") ;; Store parsed information in .auto directory.
   :init
-  (add-hook 'LaTeX-mode-hook 'emacs-fast/latex-mode-hook)
+  (add-hook 'LaTeX-mode-hook 'femacs/latex-mode-hook)
   :config
-  (emacs-fast/add-cref-support))
+  (femacs/add-cref-support))
 
 
 ;;;; Other packages to manage LaTeX related stuff.
