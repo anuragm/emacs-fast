@@ -88,7 +88,6 @@
   (flycheck-emacs-lisp-load-path 'inherit)   ; Let flycheck.el see loaded paths.
   :defer t
   :config
-  (require 'flycheck-ruff)
   (diminish 'flycheck-mode "Ⓕ"))
 
 (provide 'femacs-check)
