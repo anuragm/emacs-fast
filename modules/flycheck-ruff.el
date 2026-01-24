@@ -44,7 +44,7 @@
   `flycheck-python-ruff-executable'.
   See URL `http://pypi.python.org/pypi/ruff'."
   :command ("ruff"
-            "--format=text"
+            "check --format=text"
             (eval (when buffer-file-name
                     (concat "--stdin-filename=" buffer-file-name)))
             "-")
