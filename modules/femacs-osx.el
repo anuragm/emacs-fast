@@ -130,5 +130,11 @@ When using Homebrew, install it using \"brew install trash\"."
 (with-eval-after-load "helm"
   (setq helm-locate-command "mdfind %s %s"))
 
+
+;; Allow Emacs to quit gracefully when MacOS sends a kill signal. This can happen, for
+;; example, when MacOS needs to reboot to finish system updates.
+(setq confirm-kill-processes nil)
+
+
 (provide 'femacs-osx)
 ;;; femacs-osx.el ends here
