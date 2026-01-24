@@ -11,3 +11,10 @@ custom.el
 request/
 url/
 /elpy/
+/.cache/
+/transient/
+/eln-cache/
+/helm-adaptive-history
+/projects
+/ielm-history.eld
+.lsp-session-*
