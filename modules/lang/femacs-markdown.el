@@ -46,7 +46,10 @@
    ("\\.markdown\\'" . markdown-mode))
   :hook (markdown-mode . yas-minor-mode)
   :init
-  (setq markdown-command "markdown")
+  (setq markdown-command
+        (if (executable-find "pandoc")
+            "pandoc -f markdown -t html5 --standalone"
+          "markdown"))
   :config
   (diminish 'markdown-live-preview-mode "lp"))
 
