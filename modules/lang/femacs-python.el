@@ -107,6 +107,27 @@ Set manually to override automatic detection."
 (use-package ruff-format
   :after python)
 
+;; Automatically detect and set the right virtual environment for the buffer.
+(defun femacs/python-auto-venv ()
+  "Set buffer-local pyvenv variables for automatic venv activation.
+Checks for .venv in the project root first, then falls back to a conda
+environment whose name matches the project directory.  Sets `pyvenv-activate'
+or `pyvenv-workon' so that `pyvenv-tracking-mode' activates the right env."
+  (let* ((root (or (when-let ((proj (project-current)))
+                     (project-root proj))
+                   default-directory))
+         (local-venv (expand-file-name ".venv" root))
+         (project-name (file-name-nondirectory (directory-file-name root)))
+         (workon-home (getenv "WORKON_HOME")))
+    (cond
+     ;; Local .venv directory exists — use it directly
+     ((file-directory-p local-venv)
+      (setq-local pyvenv-activate local-venv))
+     ;; Conda env matching project directory name
+     ((and workon-home
+           (file-directory-p (expand-file-name project-name workon-home)))
+      (setq-local pyvenv-workon project-name)))))
+
 ;; Setup the python mode.
 ;; Format/lint tool should be enabled on folder by folder basis.
 (defun femacs/python-mode-hook()
@@ -119,6 +140,7 @@ Set manually to override automatic detection."
   (dtrt-indent-mode)
   (highlight-indentation-mode)
   (tree-sitter-hl-mode)
+  (femacs/python-auto-venv)
   (pyvenv-tracking-mode)
   (require 'lsp-pyright)
   (lsp))
