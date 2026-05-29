@@ -46,6 +46,7 @@
   (magit-diff-refine-hunk nil)
   (magit-diff-highlight-hunk-body nil)
   (magit-section-visibility-indicator nil)
+  (magit-list-refs-sortby "-committerdate")
   :init
   (add-hook 'git-commit-setup-hook 'whitespace-mode)
   ;; Add magit to project.el menu before magit loads
