@@ -96,6 +96,19 @@
   :config
   (diminish 'whitespace-cleanup-mode))
 
+;; Make hidden/zero-width characters visible. By default Emacs renders
+;; format-control chars (Cf category, e.g. U+200B ZERO WIDTH SPACE) as a thin
+;; space, so stray ones pasted from the web are invisible and break parsers.
+;; Show them as boxed acronyms instead, and give them a loud face.
+(setq glyphless-char-display-control
+      '((c0-control          . empty-box)
+        (c1-control          . empty-box)
+        (format-control      . acronym)
+        (variation-selectors . acronym)
+        (no-font             . hex-code)))
+(update-glyphless-char-display nil glyphless-char-display-control)
+(set-face-attribute 'glyphless-char nil :background "red" :foreground "white")
+
 ;; Use dtrt-indent to auto-detect indentation style in a file for all programming
 ;; languages.
 (use-package dtrt-indent
