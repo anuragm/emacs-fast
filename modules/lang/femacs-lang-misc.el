@@ -41,7 +41,7 @@
   :mode (("\\.proto\\'" . protobuf-mode)))
 
 (use-package beancount-mode
-  :quelpa (beancount-mode :fetcher github :repo "beancount/beancount-mode")
+  :straight (:host github :repo "beancount/beancount-mode")
   :mode (("\\.beancount\\'" . beancount-mode))
   :init
   (add-hook 'beancount-mode-hook #'outline-minor-mode))

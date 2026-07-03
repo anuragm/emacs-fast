@@ -81,6 +81,7 @@
 ;; Add git time machine with its Hydra menu
 (use-package git-timemachine
   :after hydra
+  :straight (:host github :repo "emacsmirror/git-timemachine")
   :commands (git-timemachine)
   :bind (:map git-timemachine-mode-map ("`" . hydra-git-timemachine/body))
   :init

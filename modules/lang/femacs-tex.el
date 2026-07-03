@@ -64,6 +64,7 @@
 
 ;; Use latex extra for better indentation and auto fill.
 (use-package latex-extra
+  :straight (:host github :repo "Malabarba/latex-extra")
   :custom (latex/override-font-map nil "Don't hijack C-c f")
   :commands (latex-extra-mode)
   :diminish latex-extra-mode)
