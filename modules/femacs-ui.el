@@ -120,12 +120,12 @@ multiple usable themes."
 (use-package all-the-icons
   :demand t
   :commands all-the-icons-faicon
-  :if window-system
   :custom
   (all-the-icons-scale-factor 1.1)
   :config
-  (unless (member "all-the-icons" (font-family-list))
-    (all-the-icons-install-fonts t)))
+  (when (display-graphic-p)
+    (unless (member "all-the-icons" (font-family-list))
+      (all-the-icons-install-fonts t))))
 
 ;; Nerd icons required for doom modeline
 (use-package nerd-icons
