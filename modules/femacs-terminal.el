@@ -14,6 +14,12 @@
 
 ;;; Code:
 
+;; Enable terminal mouse reporting without affecting graphical frames.
+(unless (display-graphic-p)
+  (xterm-mouse-mode 1)
+  (global-set-key (kbd "<wheel-up>") 'scroll-down-line)
+  (global-set-key (kbd "<wheel-down>") 'scroll-up-line))
+
 ;; vterm - Native terminal emulator (recommended for performance)
 (use-package vterm
   :commands (vterm vterm-other-window)
