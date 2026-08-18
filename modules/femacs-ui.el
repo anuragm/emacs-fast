@@ -117,25 +117,17 @@ multiple usable themes."
 
 
 ;; Modeline
-(use-package all-the-icons
-  :demand t
-  :commands all-the-icons-faicon
-  :custom
-  (all-the-icons-scale-factor 1.1)
-  :config
-  (when (display-graphic-p)
-    (unless (member "all-the-icons" (font-family-list))
-      (all-the-icons-install-fonts t))))
 
-;; Nerd icons required for doom modeline
+;; Nerd Icons are only needed by Doom Modeline in graphical frames.
 (use-package nerd-icons
   :config
-  (unless (member nerd-icons-font-family (font-family-list))
-    (nerd-icons-install-fonts)))
+  (when (display-graphic-p)
+    (unless (member nerd-icons-font-family (font-family-list))
+      (nerd-icons-install-fonts))))
 
 (use-package minions
   :custom
-  (minions-mode-line-lighter (all-the-icons-faicon "clipboard" :v-adjust 0 :height 0.83))
+  (minions-mode-line-lighter "[m]")   ; Use a terminal friendly modeline icon by default.
   :commands minions-mode)
 
 (use-package doom-modeline
@@ -152,8 +144,10 @@ multiple usable themes."
   (set-face-attribute
    'doom-modeline-panel nil :inverse-video t)
   (minions-mode 1)                        ; Minion mode for minor modes.
-  (when (display-graphic-p)               ; Show icons on window systems.
-    (setq doom-modeline-icon t)))
+  (when (display-graphic-p)               ; Show Nerd Icons on window systems.
+    (setq doom-modeline-icon t
+          minions-mode-line-lighter
+          (nerd-icons-octicon "nf-oct-gear" :v-adjust 0 :height 0.83))))
 
 
 ;; Other niceties

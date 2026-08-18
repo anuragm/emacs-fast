@@ -55,10 +55,21 @@
 (use-package treemacs
   :commands treemacs)
 
+;; all-the-icons is used only for the Treemacs theme.
+(use-package all-the-icons
+  :after treemacs
+  :custom
+  (all-the-icons-scale-factor 1.1)
+  :config
+  (when (display-graphic-p)
+    (unless (member "all-the-icons" (font-family-list))
+      (all-the-icons-install-fonts t))))
+
 (use-package treemacs-all-the-icons
   :after treemacs
   :config
-  (treemacs-load-theme "all-the-icons"))
+  (when (display-graphic-p)
+    (treemacs-load-theme "all-the-icons")))
 
 (use-package lsp-treemacs
   :commands (lsp-treemacs-errors-list lsp-treemacs-symbols))
