@@ -120,9 +120,9 @@
 ;;Additional language support.
 (require 'femacs-lang)
 
-;; Terminal and AI assistance.
+;; Terminal and coding agents.
 (require 'femacs-terminal)
-(require 'femacs-claude-ide)
+(require 'femacs-coding-agents)
 
 ;;Restore garbage size and collect it on idle.
 (setq gc-cons-threshold (* 200 1024 1024)) ; 200 MB
