@@ -154,6 +154,7 @@ multiple usable themes."
 
 ;; Show key config for shortcuts.
 (use-package which-key
+  :straight nil
   :diminish which-key-mode
   :custom
   (which-key-idle-delay 0.5)

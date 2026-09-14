@@ -40,7 +40,6 @@
 (defvar c-basic-offset)
 (defun femacs/csharp-mode-hook ()
   "Custom hook for C# mode."
-  (run-hooks 'prog-mode-hook)
   (yas-minor-mode)
   (company-mode)
   (auto-fill-mode)
@@ -49,6 +48,7 @@
   (setq-local c-basic-offset 2)) ;; Indent with two spaces.
 
 (use-package csharp-mode
+  :straight nil
   :commands csharp-mode
   :mode (("\\.cs$" . csharp-mode))
   :config
