@@ -59,22 +59,6 @@
 ;; And git modes
 (use-package git-modes)
 
-;; Forge requires a working SQLite backend.  Do not let its absence prevent
-;; Magit itself from opening.
-;; See https://magit.vc/manual/ghub/Storing-a-Token.html
-;;   To use forge, setup your Github username to gitconfig, such as
-;;   git config --global github.user USERNAME
-;;   Create an authentication token here
-;;   https://github.com/settings/tokens
-;;   And then save the results in ~/.authinfo as
-;;   machine api.github.com login USERNAME^forge password TOKEN
-(use-package forge
-  :if (fboundp 'sqlite-open)
-  :after magit
-  :custom
-  (forge-database-file
-           (expand-file-name "private/forge-database.sqlite" femacs-dir)))
-
 ;; Git-Link. Create the Github/forge URL for a buffer location.
 (use-package git-link
   :after magit)
