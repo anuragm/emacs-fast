@@ -128,10 +128,10 @@ or `pyvenv-workon' so that `pyvenv-tracking-mode' activates the right env."
            (file-directory-p (expand-file-name project-name workon-home)))
       (setq-local pyvenv-workon project-name)))))
 
-;; Setup the python mode.
+;; Setup Python modes.
 ;; Format/lint tool should be enabled on folder by folder basis.
-(defun femacs/python-mode-hook()
-  "Custom bindings for python mode."
+(defun femacs/python-base-mode-hook ()
+  "Custom bindings for Python modes."
   (setq-local fill-column 90)
   (electric-indent-mode)
   (display-line-numbers-mode)
@@ -139,13 +139,12 @@ or `pyvenv-workon' so that `pyvenv-tracking-mode' activates the right env."
   (whitespace-mode)
   (dtrt-indent-mode)
   (highlight-indentation-mode)
-  (tree-sitter-hl-mode)
   (femacs/python-auto-venv)
   (pyvenv-tracking-mode)
   (require 'lsp-pyright)
   (lsp))
 
-(add-hook 'python-mode-hook #'femacs/python-mode-hook)
+(add-hook 'python-base-mode-hook #'femacs/python-base-mode-hook)
 
 (provide 'femacs-python)
 ;;; femacs-python.el ends here

@@ -35,25 +35,32 @@
 
 ;;; Code:
 
-;; TODO: Switch to inbuilt version when released with Emacs 29.
-;; We define hook here instead of individual languages. In future, it is expected that
-;; programming modes will automatically use tree-sitter, at which point we can centrally
-;; remove this command.
-(use-package tree-sitter
-  :hook (python-mode . tree-sitter-mode))
+(require 'treesit)
 
-(use-package tree-sitter-langs
-  :after tree-sitter)
+(defconst femacs/treesit-language-sources
+  '((python "https://github.com/tree-sitter/tree-sitter-python" "26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64")
+    (c "https://github.com/tree-sitter/tree-sitter-c" "b780e47fc780ddc8da13afa35a3f4ed5c157823d")
+    (cpp "https://github.com/tree-sitter/tree-sitter-cpp" "8b5b49eb196bec7040441bee33b2c9a4838d6967"))
+  "Pinned native Tree-sitter grammar sources used by femacs.")
 
-;; Use tree-sitter to automatically insert proper docstrings.
-;; ts-docstr is from emacs-vs, msgu is from jcs-elpa (neither on MELPA)
-(use-package msgu
-  :straight (msgu :type git :host github :repo "jcs-elpa/msgu"))
+(when (treesit-available-p)
+  (dolist (source femacs/treesit-language-sources)
+    (setf (alist-get (car source) treesit-language-source-alist) (cdr source)))
+  (dolist (remap '((python python-mode python-ts-mode)
+                   (c c-mode c-ts-mode)
+                   (cpp c++-mode c++-ts-mode)))
+    (when (treesit-ready-p (car remap) t)
+      (add-to-list 'major-mode-remap-alist
+                   (cons (nth 1 remap) (nth 2 remap))))))
 
-(use-package ts-docstr
-  :straight (ts-docstr :type git :host github :repo "emacs-vs/ts-docstr")
-  :after msgu
-  :commands (ts-docstr-at-point ts-docstr-mode))
+(defun femacs/treesit-install-grammars ()
+  "Install any missing native Tree-sitter grammars used by femacs."
+  (interactive)
+  (unless (treesit-available-p)
+    (user-error "This Emacs was built without native Tree-sitter support"))
+  (dolist (source femacs/treesit-language-sources)
+    (unless (treesit-ready-p (car source) t)
+      (treesit-install-language-grammar (car source)))))
 
 (provide 'femacs-treesitter)
 

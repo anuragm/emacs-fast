@@ -66,10 +66,9 @@
   (add-hook 'text-mode-hook 'flyspell-mode)
   (add-hook 'prog-mode-hook 'flyspell-prog-mode)
   :custom
-  (flyspell-prog-text-faces '(tree-sitter-hl-face:comment tree-sitter-hl-face:doc
-                              tree-sitter-hl-face:string font-lock-comment-face
-                              font-lock-doc-face font-lock-string-face)
-                            "Add tree-sitter faces to check list."
+  (flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face
+                               font-lock-string-face)
+                            "Faces that Flyspell should check in programming modes."
                             )
   :config
   (diminish 'flyspell-mode "ⓕ"))

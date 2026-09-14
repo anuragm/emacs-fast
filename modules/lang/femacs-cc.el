@@ -44,21 +44,23 @@
   :config
   (setq company-c-headers-path-user '("." "./include")))
 
-;; Set variables first before loading modes.
-(add-hook
- 'c-mode-common-hook
- (lambda ()
-    (when (derived-mode-p 'c-mode 'c++-mode)
-      (run-hooks 'prog-mode-hook) ; Run prog-mode hook since cc-mode does not derives from it.
-      (setq-local fill-column 90)
-      (auto-fill-mode)
-      (flycheck-mode 1)
-      (yas-minor-mode 1)
-      (whitespace-mode)
-      (company-mode)
-      (tree-sitter-hl-mode)
-      (dtrt-indent-mode)
-      (lsp))))
+;; Native C modes already derive from `prog-mode', unlike the legacy CC modes.
+(defun femacs/c-mode-setup ()
+  "Configure C and C++ editing modes."
+  (unless (derived-mode-p 'prog-mode)
+    (run-hooks 'prog-mode-hook))
+  (setq-local fill-column 90)
+  (auto-fill-mode)
+  (flycheck-mode 1)
+  (yas-minor-mode 1)
+  (whitespace-mode)
+  (company-mode)
+  (dtrt-indent-mode)
+  (lsp))
+
+(add-hook 'c-mode-common-hook #'femacs/c-mode-setup)
+(add-hook 'c-ts-mode-hook #'femacs/c-mode-setup)
+(add-hook 'c++-ts-mode-hook #'femacs/c-mode-setup)
 
 (provide 'femacs-cc)
 ;;; femacs-cc.el ends here
