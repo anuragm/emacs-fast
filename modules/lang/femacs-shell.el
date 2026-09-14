@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-shell.el --- Shell scripting management (bash/zsh/etc)
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

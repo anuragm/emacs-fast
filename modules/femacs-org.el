@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-org.el --- Org mode configuration for Fast emacs
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

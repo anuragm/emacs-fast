@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; init.el --- Start up point.
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-helm-ag.el --- Adds silver surfer (ag) helm utilities
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

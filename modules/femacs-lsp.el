@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-lsp.el --- Language server integration
 
 ;; Author: Anurag Mishra

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-osx.el --- OS X Specific configuration
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

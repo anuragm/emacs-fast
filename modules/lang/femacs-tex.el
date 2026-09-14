@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-tex.el --- Configuration for LaTeX mode
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

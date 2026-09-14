@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; hydra-ibuffer.el --- Hydra IBuffer
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

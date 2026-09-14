@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-cuda.el --- CUDA mode support
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

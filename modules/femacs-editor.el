@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-editor.el --- Editor enhancement in fast Emacs.
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

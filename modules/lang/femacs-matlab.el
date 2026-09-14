@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-matlab.el --- MATLAB mode configuration
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

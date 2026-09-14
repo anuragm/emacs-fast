@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-markdown.el --- Markdown mode setup
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

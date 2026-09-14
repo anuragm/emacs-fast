@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-lang-misc.el --- Support for Misc programming
 ;;
 ;; Copyright © 2016-2023 Anurag Mishra

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-misc.el --- Contains miscellaneous packages.
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

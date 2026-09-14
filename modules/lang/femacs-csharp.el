@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-csharp.el --- C# programming support
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

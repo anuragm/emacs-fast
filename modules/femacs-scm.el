@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-scm.el --- Source code management for Emacs-fast
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

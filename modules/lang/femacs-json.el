@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-json.el --- Module for editing JSON files
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

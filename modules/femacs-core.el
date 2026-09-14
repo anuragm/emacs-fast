@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-core.el --- Contains core fast EMacs functionality
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

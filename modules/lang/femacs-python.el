@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-python.el --- Support for Python programming
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-lang.el --- Master file to include all supported languages
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

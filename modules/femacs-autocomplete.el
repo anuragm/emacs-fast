@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-autocomplete.el --- Adds auto-completion packages to EMacs
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

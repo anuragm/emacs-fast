@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-cmake.el --- CMake additions
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

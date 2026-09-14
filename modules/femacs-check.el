@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-check.el --- Adds checks to different buffers
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

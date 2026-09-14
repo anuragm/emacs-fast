@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-elisp.el --- Support for editing Emacs lisp files.
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

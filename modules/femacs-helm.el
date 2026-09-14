@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-helm.el --- Helm configuration
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

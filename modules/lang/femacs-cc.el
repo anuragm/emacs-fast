@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-cc.el --- Binds for CC modes
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

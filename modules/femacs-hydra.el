@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-hydra.el --- Hydra for defining simple menus
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra

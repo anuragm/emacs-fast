@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 ;;; femacs-ui.el --- Adds UI elements.
 ;;
 ;; Copyright © 2016-2021 Anurag Mishra
