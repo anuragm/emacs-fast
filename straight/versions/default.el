@@ -24,7 +24,7 @@
  ("company-quickhelp" . "5bda859577582cc42d16fc0eaf5f7c8bedfd9e69")
  ("company-reftex" . "42eb98c6504e65989635d95ab81b65b9d5798e76")
  ("compat" . "e127bb6528e33c2bbbdc42065a5e2c34955ab221")
- ("cond-let" . "e08a9ccf29e28aae43988458789dea04a562ccd1")
+ ("cond-let" . "3b88187fe067d4ca3dec3ef8a329b0ce18bdb356")
  ("csproj-mode" . "a7f0f4610c976a28c41b9b8299892f88b5d0336c")
  ("cuda-mode" . "c3dae31b3d1abedf4d0b98840127e2cac73d6ad8")
  ("dash.el" . "fb443e7a6e660ba849cafcd01021d9aac3ac6764")
