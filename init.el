@@ -76,7 +76,8 @@
 ;; Use straight.el by default in use-package
 (setq straight-use-package-by-default t)
 (setq straight-check-for-modifications '(check-on-save find-when-checking))
-(setq straight-vc-git-default-protocol 'ssh)
+;; Public GitHub dependencies install over HTTPS on hosts without GitHub SSH.
+(setq straight-vc-git-default-protocol 'https)
 
 ;; Install use-package via straight.el
 (straight-use-package 'use-package)
