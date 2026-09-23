@@ -20,6 +20,17 @@
   (global-set-key (kbd "<wheel-up>") 'scroll-down-line)
   (global-set-key (kbd "<wheel-down>") 'scroll-up-line))
 
+;; Terminal protocols have no standard Super modifier.  Decode two otherwise
+;; unused sequences as Super arrows so the UI module's Windmove bindings work
+;; over SSH as well as in graphical Emacs.
+;;
+;; iTerm2: Settings > Profiles > Keys > Key Mappings.  Add Option+Left and
+;; Option+Right with the "Send Escape Sequence" action and values "[99;1D"
+;; and "[99;1C", respectively.  Other terminal emulators can use the same
+;; escape sequences in their custom key mappings.
+(define-key input-decode-map "\e[99;1D" [s-left])
+(define-key input-decode-map "\e[99;1C" [s-right])
+
 ;; vterm - Native terminal emulator (recommended for performance)
 (use-package vterm
   :commands (vterm vterm-other-window)
