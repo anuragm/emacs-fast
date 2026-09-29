@@ -37,30 +37,60 @@
 
 (require 'treesit)
 
+;; Each recipe is (LANG URL TAG [SOURCE-DIR]).  The tags build the same parsers
+;; as the commits Emacs 31 pins in its own recipes (all tree-sitter ABI 14).
+;; Tags, rather than commits, keep the recipes usable on Emacs 30, whose
+;; installer only understands a branch or tag in the REVISION slot.
 (defconst femacs/treesit-language-sources
-  '((python "https://github.com/tree-sitter/tree-sitter-python" "26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64")
-    (c "https://github.com/tree-sitter/tree-sitter-c" "b780e47fc780ddc8da13afa35a3f4ed5c157823d")
-    (cpp "https://github.com/tree-sitter/tree-sitter-cpp" "8b5b49eb196bec7040441bee33b2c9a4838d6967"))
+  '((python "https://github.com/tree-sitter/tree-sitter-python" "v0.23.6")
+    (c "https://github.com/tree-sitter/tree-sitter-c" "v0.23.5")
+    (cpp "https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4")
+    (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src")
+    (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "tsx/src")
+    (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "v0.23.1")
+    (jsdoc "https://github.com/tree-sitter/tree-sitter-jsdoc" "v0.23.2")
+    (css "https://github.com/tree-sitter/tree-sitter-css" "v0.23.1"))
   "Pinned native Tree-sitter grammar sources used by femacs.")
+
+(defconst femacs/treesit-mode-remaps
+  '((python (python-mode) python-ts-mode)
+    (c (c-mode) c-ts-mode)
+    (cpp (c++-mode) c++-ts-mode)
+    (javascript (js-mode javascript-mode) js-ts-mode)
+    (css (css-mode) css-ts-mode))
+  "Entries (LANG FROM-MODES TS-MODE): use TS-MODE once LANG's grammar exists.")
+
+(defun femacs/treesit-enable-modes ()
+  "Switch to native Tree-sitter modes for every installed grammar."
+  (dolist (remap femacs/treesit-mode-remaps)
+    (when (treesit-ready-p (car remap) t)
+      (dolist (from (nth 1 remap))
+        (add-to-list 'major-mode-remap-alist (cons from (nth 2 remap))))))
+  ;; Emacs 31 maps these files to `typescript-ts-mode-maybe' and
+  ;; `tsx-ts-mode-maybe'.  Emacs 30 only adds its entries when
+  ;; typescript-ts-mode.el is loaded, so a fresh session opens them in
+  ;; `fundamental-mode'.  Register them ourselves there.
+  (unless (fboundp 'tsx-ts-mode-maybe)
+    (when (treesit-ready-p 'typescript t)
+      (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode)))
+    (when (treesit-ready-p 'tsx t)
+      (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode)))))
 
 (when (treesit-available-p)
   (dolist (source femacs/treesit-language-sources)
     (setf (alist-get (car source) treesit-language-source-alist) (cdr source)))
-  (dolist (remap '((python python-mode python-ts-mode)
-                   (c c-mode c-ts-mode)
-                   (cpp c++-mode c++-ts-mode)))
-    (when (treesit-ready-p (car remap) t)
-      (add-to-list 'major-mode-remap-alist
-                   (cons (nth 1 remap) (nth 2 remap))))))
+  (femacs/treesit-enable-modes))
 
 (defun femacs/treesit-install-grammars ()
-  "Install any missing native Tree-sitter grammars used by femacs."
+  "Install any missing native Tree-sitter grammars used by femacs.
+Buffers opened afterwards use the native modes; reopen existing ones."
   (interactive)
   (unless (treesit-available-p)
     (user-error "This Emacs was built without native Tree-sitter support"))
   (dolist (source femacs/treesit-language-sources)
     (unless (treesit-ready-p (car source) t)
-      (treesit-install-language-grammar (car source)))))
+      (treesit-install-language-grammar (car source))))
+  (femacs/treesit-enable-modes))
 
 (provide 'femacs-treesitter)
 
