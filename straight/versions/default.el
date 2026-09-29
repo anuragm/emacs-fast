@@ -4,6 +4,7 @@
  ("all-the-icons.el" . "4778632b29c8c8d2b7cd9ce69535d0be01d846f9")
  ("agent-shell" . "71669673d769f6bf37cb6d911e29b76f7cf995b5")
  ("anzu" . "21cb5ab2295614372cb9f1a21429381e49a6255f")
+ ("apheleia" . "047119b7c6f18ffdbf5f88116a427f7e38653cc6")
  ("auctex" . "c53e231ab08e26c842750706f5350a48af2665ab")
  ("auctex-latexmk" . "b00a95e6b34c94987fda5a57c20cfe2f064b1c7a")
  ("avy" . "933d1f36cca0f71e4acb5fac707e9ae26c536264")
