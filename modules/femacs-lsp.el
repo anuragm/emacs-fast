@@ -43,7 +43,29 @@
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-modeline-diagnostics-enable nil)
   (setq lsp-headerline-breadcrumb-enable nil)
-  )
+  :config
+  ;; Git worktrees live in <repo>/worktrees/.  They are separate projects with
+  ;; their own LSP sessions, so the main checkout should not watch them.
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]worktrees\\'")
+  (advice-add 'lsp-find-session-folder :around
+              #'femacs/lsp-session-folder-within-project))
+
+(declare-function lsp-f-ancestor-of? "lsp-mode")
+
+(defun femacs/lsp-session-folder-within-project (orig session file-name)
+  "Call ORIG, but reject session folders above FILE-NAME's project root.
+lsp-mode assigns a file to the deepest known session folder containing it,
+so once <repo> is imported, files in <repo>/worktrees/<name> would join the
+main checkout's servers.  A git worktree is its own `project.el' project;
+refusing a folder above that root makes lsp-mode offer to import the worktree
+as a new root with its own servers."
+  (let ((folder (funcall orig session file-name)))
+    (if-let* ((folder)
+              (project (project-current nil (file-name-directory file-name)))
+              (root (project-root project))
+              ((lsp-f-ancestor-of? folder root)))
+        nil
+      folder)))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
